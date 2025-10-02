@@ -4,7 +4,7 @@ This file included the framework for getting the electromagnetic fields from a p
     density distribution in six-dimensional position/momentum space, which is done
     by summing contributions from all parts of the plasma fluid. While this is O(N^6)
     versus the number of cells on each side, so is the Vlasov simulation itself,
-    and this typically takes only about 10% the time of the actual Vlasov simulation.
+    and this typically takes only about 1% the time of the actual Vlasov simulation.
 
 @author: Eric A. Comstock
 
@@ -166,4 +166,5 @@ def EB_compute(result_arrays, q, grids, FEM_data):
         return E1, E2, E3, B1, B2, B3
     else:
         uniqs = (x_uniq, y_uniq, z_uniq)
+
         return E1_xyz, E2_xyz, E3_xyz, B1_xyz, B2_xyz, B3_xyz, uniqs
