@@ -1,0 +1,41 @@
+# -*- coding: utf-8 -*-
+"""
+This file is a set of code snippets that can be run in the main.py file of OpenVlasov6.
+
+@author: Eric A. Comstock
+"""
+
+#### Paper results - test cases 1-3 ####
+
+grids13 = Vlasov_testing_code_6D.make_grids(3, 20, 10, 11) # Shows momentum transfer better in uniform plasmas
+grids2  = Vlasov_testing_code_6D.make_grids(8, 10, 10, 11) # Balanced representation of nonuniformity in position and momentum space
+
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example1(), grids13, 1, 1) # Test case 1
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example3(), grids13, 1, 1) # Test case 3
+
+#### Shock simulation - test case 4 ####
+
+Vlasov_testing_code_6D.logging.info('\n\n\nRunning')
+Nx      = 8  # Number of points in position-space
+Np      = 12 # Number of points in velocity-space
+
+x_size  = 10 # meters extended from the center
+p_size  = 11 # km/s extended from the center
+
+grids   = Vlasov_testing_code_6D.make_grids(Nx, Np, x_size, p_size) # Generate grids
+fluids  = [[1, 1/1800/30], [1, -1]] # NO+ and electrons
+
+params  = params_generator.params_example4()
+force, stability, result_arrays, params = Vlasov_testing_code_6D.iterateEB_until_result(params, grids, fluids)
+
+a, b    = params_generator.value_test(result_arrays, params, 4)
+print('RMS Error =',b)
+
+#### Code for convergence plot (Fig. 7 in the paper) ####
+
+if __name__ == '__main__':
+    params  = params_generator.params_example3()
+    Nx_list = [3,3,3,4,3,4,3,4,5,4,5,4,6,5,6,5,6,7,5,6,7,6,7,8]
+    Np_list = [3,4,5,4,6,5,7,6,5,7,6,8,6,8,7,9,8,7,10,9,8,10,9,8]
+    Vlasov_testing_code_6D.conv_data(Nx_list, Np_list, params, 12)

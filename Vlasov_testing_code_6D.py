@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 This file conducts the tests needed for 6D Vlasov simulation validation, allowing
-    for the generation of the results of the journal article "A 3D-3V Fully Kinetic
+    for the generation of the results of the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
     Multifluid Vlasov Solver" in Physics of Plasmas, by E. Comstock & A. Romero-Calvo.
 
 @author: Eric A. Comstock
@@ -45,9 +45,7 @@ import scipy.interpolate        # Used for interpolation of EM fields for more a
 import scipy.sparse             # In some OS environments, importing every specific subpackage used is needed
 import scipy.sparse.linalg      # See above - if these are not imported the code will not run on some Windows 11 HPCs
 import logging                  # Used for logging and the logger for code
-import matplotlib.pyplot as plt # Used for plotting if requested by the code
 import multiprocessing          # Used for multithreading when running multiple sims at once
-import shelve                   # Used to save data in case it is needed later
 
 #### Import other files ####
 
@@ -149,7 +147,7 @@ def parfor_loop_internals(args):
     
     i, Nx_list, Np_list, params = args                                      # Decompose arguments into the inputs
     grids       = make_grids(Nx_list[i], Np_list[i], 10, 11)                # Make the grids of the current size
-    force, stability, result_arrays = eval3D3V(params, grids, False)        # Evaluate Vlasov simulation
+    force, stability, result_arrays = eval3D3V(params, grids, 1, 1, False)        # Evaluate Vlasov simulation
     maxe, l2e   = params_generator.value_test(result_arrays, params, 3)     # Find error vs analytical solution
     dof         = 7 * 308 * (Nx_list[i] - 1) ** 3 * (Np_list[i] - 1) ** 3   # Because each hexarract has >= 308 heptapetons inside,
                                                                             # which each have 7 DoF (one for each vertex)                                                                
@@ -561,7 +559,7 @@ def iterateEB(params, grids, mass, q):
     
     return forcetot, stability, result_arrays, params
 
-def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-2):
+def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     # This function iterates a Vlasov simulation for all fluids given, giving
     #   the total EM fields generated, as well as the total force applied by the particles.
     #   The results can be used for the next iteration of the function.
@@ -578,11 +576,14 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-2):
     #                   This is due to a design decision early on, when the code
     #                       was originally meant to be specific to LEO. It works
     #                       fine in other plasmas now, but the units from LEO are still there.
+    #   rmserrormax     is the maximum allowable rms error of the current iteration
+    #                       and the previous one. Once error drops to this level,
+    #                       the simulation is terminated.
     #
     # Outputs:
     #   1. Force applied to the electromagnetic fields by the plasma in Newtons
     #   2. Simulation stability parameters to see if anything unstable is happening,
-    #       defined by finding the normalized extremeties of the density function.
+    #       defined by finding the norm♦alized extremeties of the density function.
     #   3. result_arrays - a tuple of the coordinates and plasma component density
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momenta coordinates
@@ -613,76 +614,3 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-2):
     logging.info('Total force (N): '+str( np.linalg.norm(force)))
     logging.info('Total force (kg*m/s/yr): '+str( np.linalg.norm(force*31557600))) # Multiplied by # of seconds in a year
     return force, stability, result_arrays, params
-
-#### Running code with specifics ####
-
-logging.info('\n\n\nRunning')
-Nx = 8
-Np = 12
-x_size = 10#10
-p_size = 11
-grids = make_grids(Nx, Np, x_size, p_size)
-fluids = [[1, 1/1800/30], [1, -1]]#NO+ and electrons
-
-#params = params_generator.generate_Earth_params(80e-6, [0,0,1*1], 0, 0, -7.8, 0., 1e6+0.0, 2.9, grids)
-params = params_generator.params_example4()
-force, stability, result_arrays, params = iterateEB_until_result(params, grids, fluids)
-#force, stability, result_arrays = eval3D3V(params, grids, 1, 1)
-
-a, b = params_generator.value_test(result_arrays, params, 4)
-print('RMS Error =',b)
-'''
-f, x, y, z, u, v, w = result_arrays
-x_uniq, x_inv   = np.unique(x, return_inverse = True)
-y_uniq, y_inv   = np.unique(y, return_inverse = True)
-z_uniq, z_inv   = np.unique(z, return_inverse = True)
-u_uniq, u_inv   = np.unique(u, return_inverse = True)
-v_uniq, v_inv   = np.unique(v, return_inverse = True)
-w_uniq, w_inv   = np.unique(w, return_inverse = True)
-df = f - sol
-plotting_6D.plot_slice_density_maps(grids[0], grids[1], df, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'])
-
-
-# Code for convergence plot 2
-if __name__ == '__main__':
-    params = params_generator.params_example4()
-    Nx_list = [3,4]#,,6,7]#,4,5,4,6,5,6]#,5,6,7,5,6,7,6,7,8]#,8,9,10]
-    Np_list = [4,4]#,,4,4]#,7,6,8,6,8,7]#,9,8,7,10,9,8,10,9,8]#,9,9,10]
-    conv_data_em_feedback(Nx_list, Np_list, params, 2, fluids)
-
-
-#params_generator.value_test(result_arrays, params, 3)
-
-# At v_therm  = 2.9, avg energy / temperature is 1.31 eV
-
-# Code for Verification plots
-
-grids13 = make_grids(3, 20, 10, 11)
-grids2 = make_grids(8, 10, 10, 11)
-
-#force, stability, result_arrays = eval3D3V(params_generator.params_example1(), grids13)
-force, stability, result_arrays = eval3D3V(params_generator.params_example2(), grids2)
-#force, stability, result_arrays = eval3D3V(params_generator.params_example3(), grids13)
-
-# Code for convergence plot
-if __name__ == '__main__':
-    params = params_generator.params_example3()
-    Nx_list = [3,3,3,4,3,4,3,4,5,4,5,4,6,5,6,5,6,7,5,6,7,6,7,8]#,8,9,10]
-    Np_list = [3,4,5,4,6,5,7,6,5,7,6,8,6,8,7,9,8,7,10,9,8,10,9,8]#,9,9,10]
-    conv_data(Nx_list, Np_list, params, 12)
-'''
-
-#### Record generated variables ####
-
-filename=str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
-my_shelf = shelve.open(filename,'n') # 'n' for new
-
-for key in dir():
-    try:
-        my_shelf[key] = globals()[key]
-    except:
-        #
-        # __builtins__, my_shelf, and imported modules can not be shelved.
-        #
-        print('ERROR shelving: {0}'.format(key))
-my_shelf.close()

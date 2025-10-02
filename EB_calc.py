@@ -6,7 +6,7 @@ This file included the framework for getting the electromagnetic fields from a p
     versus the number of cells on each side, so is the Vlasov simulation itself,
     and this typically takes only about 10% the time of the actual Vlasov simulation.
 
-@author: ecomstock3
+@author: Eric A. Comstock
 
 v0.1, Eric A. Comstock, 26-Sep-2025
 v0.0, Eric A. Comstock, 6-Aug-2025
