@@ -14,9 +14,9 @@ First, compatible versions of Python and GetFEM must be installed. There are a f
 This is the best option if you want to use the latest GetFEM and Python features, or if you are not on Windows. To do this, first install the latest version of Python, and then follow the instructions on [getfem.org/install/install_linux.html](getfem.org/install/install_linux.html) to download and install from the GetFEM github repository.
 
 I personally use the configure options
-'''
+```
 --with-blas=openblas --with-optimization=-O2 --with-pic --enable-python --disable-matlab --disable-superlu --enable-mumps --disable-openmp
-'''
+```
 for GetFEM, and this set of options has the best chance of working with OpenVlasov6.
 
 #### Building GetFEM from Windows installable on Anaconda
@@ -61,6 +61,9 @@ This program is free software: you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
+
+## Citation
+Academic works using OpenVlasov6 should cite the paper "OpenVlasov6: A 3D-3V Fully Kinetic Multifluid Vlasov Solver," by Eric A. Comstock and Álvaro Romero-Calvo. Additionally, since GetFEM is a requirement, "GetFEM: Automated FE Modeling of Multiphysics Problems Based on a Generic Weak Form Language" by Yves Renard and Konstantinos Poulios should also be cited.
 
 ## Questions and inquiries
 Please submit any questions or inquiries to [my institutional email](eric.comstock@gatech.edu). If and only if that does not work, try [my personal email](eac@comstockcomputing.com). If my institutional email is still active, I will only accept inquiries there.
