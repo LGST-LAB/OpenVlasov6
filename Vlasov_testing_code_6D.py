@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
 v0.4.4, Eric A. Comstock, 22-Sep-2025
 v0.4.3.1, Eric A. Comstock, 18-Sep-2025
@@ -49,9 +50,9 @@ import multiprocessing          # Used for multithreading when running multiple 
 
 #### Import other files ####
 
-import plotting_6D
-import params_generator
-import EB_calc
+from . import plotting_6D
+from . import params_generator
+from . import EB_calc
 
 #### Add global variables and logging ####
 

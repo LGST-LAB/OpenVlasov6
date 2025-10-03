@@ -8,6 +8,7 @@ This file included the framework for getting the electromagnetic fields from a p
 
 @author: Eric A. Comstock
 
+v1.0, Eric A. Comstock, 3-Oct-2025
 v0.1, Eric A. Comstock, 26-Sep-2025
 v0.0, Eric A. Comstock, 6-Aug-2025
 """

@@ -8,6 +8,7 @@ It also generates the value test functions, which are used to test results again
 
 @author: Eric A. Comstock
 
+v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
 v0.4.4, Eric A. Comstock, 22-Sep-2025
 v0.4.3.1, Eric A. Comstock, 18-Sep-2025

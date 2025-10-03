@@ -5,6 +5,7 @@ This file conducts the plotting needed for 6D Vlasov simulation, and has a whole
 
 @author: Eric A. Comstock
 
+v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4, Eric A. Comstock, 26-Sep-2025
 v0.3, Eric A. Comstock, 2-Sep-2025
 v0.2, Eric A. Comstock, 26-Aug-2025
