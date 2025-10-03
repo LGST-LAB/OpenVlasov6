@@ -16,7 +16,7 @@ First, compatible versions of Python and GetFEM must be installed. There are a f
 
 This is the best option if you want to use the latest GetFEM and Python features, or if you are not on Windows. To do this, first install the latest version of Python, and then follow the instructions on [getfem.org/install/install_linux.html](getfem.org/install/install_linux.html) to download and install from the GetFEM github repository.
 
-I personally use the configure options
+It is recommended to use the configure options
 ```
 --with-blas=openblas --with-optimization=-O2 --with-pic --enable-python --disable-matlab --disable-superlu --enable-mumps --disable-openmp
 ```
@@ -58,6 +58,12 @@ This folder contains example codes that can be run to get used to the solver.
 #### test_code_snippets.txt
 This file is a set of code snippets that can be run in the main.py file of OpenVlasov6 to replicate the results of the associated paper.
 
+### getfem
+This folder contains a compressed copy of GetFEM, to ensure that the repository stays functional.
+
+#### getfem-5.4.4.tar.gz
+This is a compressed copy of GetFEM version 5.4.4. GetFEM also uses the GNU Lesser General Public License in exactly the same way OpenVlasov6 does. This compressed copy includes documentation and license information for GetFEM as well.
+
 ## Liscense
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -69,4 +75,4 @@ You should have received a copy of the GNU Lesser General Public License along w
 Academic works using OpenVlasov6 should cite the paper "OpenVlasov6: A 3D-3V Fully Kinetic Multifluid Vlasov Solver," by Eric A. Comstock and Álvaro Romero-Calvo. Additionally, since GetFEM is a requirement, "GetFEM: Automated FE Modeling of Multiphysics Problems Based on a Generic Weak Form Language" by Yves Renard and Konstantinos Poulios should also be cited.
 
 ## Questions and inquiries
-Please submit any questions or inquiries to [my institutional email](eric.comstock@gatech.edu). If and only if that does not work, try [my personal email](eac@comstockcomputing.com). If my institutional email is still active, I will only accept inquiries there.
+Please submit any questions or inquiries to [eric.comstock@gatech.edu](eric.comstock@gatech.edu) or [alvaro.romerocalvo@gatech.edu](alvaro.romerocalvo@gatech.edu).
