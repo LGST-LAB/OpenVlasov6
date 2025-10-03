@@ -7,6 +7,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.0, Eric A. Comstock, 3-Oct-2025
 v0.0, Eric A. Comstock, 2-Oct-2025
 """
 
@@ -18,15 +19,15 @@ import time                     # Used for getting time for logging and file nam
 
 #### Import other files ####
 
-import plotting_6D
-import params_generator
-import EB_calc
-import Vlasov_testing_code_6D
+from functions import plotting_6D
+from functions import params_generator
+from functions import EB_calc
+from functions import Vlasov_testing_code_6D
 
 #### Running code with specifics - Modify this part! ####
 
 # Sample code for your initial run of a plasma in an EM field - feel free to delete this
-grids2  = Vlasov_testing_code_6D.make_grids(5, 6, 10, 11) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids(5, 5, 10, 11) # Rough representation of nonuniformity in position and momentum space
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
 
 #### Shelving all data for potential later use ####
