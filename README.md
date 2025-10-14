@@ -3,6 +3,9 @@
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
 
+### Changes in 1.0.1
+Minor edits and clarifications for comments.
+
 ### Changes in 1.0
 First public release.
 
@@ -24,7 +27,7 @@ for GetFEM, and this set of options has the best chance of working with OpenVlas
 
 #### Building GetFEM from Windows installable on Anaconda
 
-This is the easiest option, especially for people on Windows machines. Go to [getfem.org/download.html](getfem.org/download.html) and find the Installer of the GetFEM 5.4 interface for 64bits Windows and Python 3.7 of Anaconda 3 (furnished by J.-F. Barthelemy), which can also be found at [download-mirror.savannah.gnu.org/releases/getfem/misc/getfem5.4win-amd64-py3.7.exe](download-mirror.savannah.gnu.org/releases/getfem/misc/getfem5.4win-amd64-py3.7.exe). Install Python 3.7 and Anaconda 3, and then download and run this installer to generate the nessesary package interface files.
+This is the easiest option, especially for people on Windows machines. Go to [getfem.org/download.html](getfem.org/download.html) and find the Installer of the GetFEM 5.4 interface for 64bits Windows and Python 3.7 of Anaconda 3 (furnished by J.-F. Barthelemy), which can also be found at [download-mirror.savannah.gnu.org/releases/getfem/misc/getfem5.4win-amd64-py3.7.exe](download-mirror.savannah.gnu.org/releases/getfem/misc/getfem5.4win-amd64-py3.7.exe). Install Python 3.7 and Anaconda 3, and then download and run this installer to generate the necessary package interface files.
 
 ### Installing OpenVlasov6
 
@@ -64,7 +67,7 @@ This folder contains a compressed copy of GetFEM, to ensure that the repository 
 #### getfem-5.4.4.tar.gz
 This is a compressed copy of GetFEM version 5.4.4. GetFEM also uses the GNU Lesser General Public License in exactly the same way OpenVlasov6 does. This compressed copy includes documentation and license information for GetFEM as well.
 
-## Liscense
+## License
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.

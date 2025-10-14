@@ -7,6 +7,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.0, Eric A. Comstock, 2-Oct-2025
 """
@@ -32,7 +33,7 @@ force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generat
 
 #### Shelving all data for potential later use ####
 
-filename=str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
+filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
 my_shelf = shelve.open(filename,'n')
 
 for key in dir():
