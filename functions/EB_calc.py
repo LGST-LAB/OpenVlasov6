@@ -8,6 +8,7 @@ This file included the framework for getting the electromagnetic fields from a p
 
 @author: Eric A. Comstock
 
+v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.1, Eric A. Comstock, 26-Sep-2025
 v0.0, Eric A. Comstock, 6-Aug-2025
@@ -15,7 +16,7 @@ v0.0, Eric A. Comstock, 6-Aug-2025
 
 import numpy as np
 
-# Electric vacuum premittivity and magnetic vacuum permeability
+# Electric vacuum permittivity and magnetic vacuum permeability
 # Because of my unit normalizations:
 #   Units are m, ms, m_NO (30 amu), and e - the mmm unit system
 #   1 T = 3216.178 m_NO/(ms * e)
@@ -145,7 +146,7 @@ def EB_compute(result_arrays, q, grids, FEM_data):
       
     # Choose output strategy based on requested results
     if FEM_data:
-        # Generating 6D FEM node vectors to output data as for re-insertion to getFEM on the next simualtion round
+        # Generating 6D FEM node vectors to output data as for re-insertion to GetFEM on the next simulation round
         E1 = np.zeros([N])
         E2 = np.zeros([N])
         E3 = np.zeros([N])

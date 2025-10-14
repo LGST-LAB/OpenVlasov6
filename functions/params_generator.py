@@ -8,6 +8,7 @@ It also generates the value test functions, which are used to test results again
 
 @author: Eric A. Comstock
 
+v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
 v0.4.4, Eric A. Comstock, 22-Sep-2025
@@ -72,7 +73,7 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     # Initialize params structure for input to Vlasov solver
     params              = {}
     
-    # getFEM assembly language for the dirichlet condition of Earth's ionosphere
+    # getFEM assembly language for the Dirichlet condition of Earth's ionosphere
     dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u - params['v_x'])/params['v_therm'])**2-0.5*((v - params['v_y'])/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
     zeros = '''0'''
     
@@ -121,7 +122,7 @@ def params_example1():
     
     params['v_therm']   = 2.9 # Thermal velocity of incoming plasma
     
-    # getFEM assembly language for the dirichlet condition of this example
+    # getFEM assembly language for the Dirichlet condition of this example
     dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
     
     # Initialize electric and magnetic fields for input into getFEM
@@ -164,7 +165,7 @@ def params_example2():
     
     params['v_therm']   = 2.9 # Thermal velocity of incoming plasma
     
-    # getFEM assembly language for the dirichlet condition of this example
+    # getFEM assembly language for the Dirichlet condition of this example
     dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2+x**2/200*4+y**2/2312*4+z**2/1058*4)'''
     
     # Initialize electric and magnetic fields for input into getFEM
@@ -207,7 +208,7 @@ def params_example3():
     
     params['v_therm']   = 2.9 # Thermal velocity of incoming plasma
     
-    # getFEM assembly language for the dirichlet condition of this example
+    # getFEM assembly language for the Dirichlet condition of this example
     dirichlet_conds     = '''params['p_0'] * np.exp( -0.5*(np.sqrt(((u - params['v_x'])/params['v_therm'])**2+((v - params['v_y'])/params['v_therm'])**2) - params['v_rad'] / params['v_therm'])**2 -0.5* ((w)/params['v_therm'])**2)'''
     
     # Initialize electric and magnetic fields for input into getFEM
@@ -303,7 +304,7 @@ def value_test(result_arrays, params, soln_number):
     #                   of the density function
     f, x, y, z, u, v, w = result_arrays # Decompose the result_arrays structure to its base components
     
-    # Define the exact solution from the formula used in each test case. Then define the error as the difference bteween the simuated and exact densities
+    # Define the exact solution from the formula used in each test case. Then define the error as the difference between the simulated and exact densities
     if soln_number      == 1:
         # Exact solution for a uniform thermalized plasma
         exact_soln      = params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)

@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
 v0.4.4, Eric A. Comstock, 22-Sep-2025
@@ -103,7 +104,7 @@ def make_grids(Nx, Np, x_size, p_size):
     return grids
 
 def check_simulation_stability(mins):
-    # This function makes a qualitative assemsment of simulation stability from
+    # This function makes a qualitative assessment of simulation stability from
     #   the normalized density minimum.
     #
     # Inputs:
@@ -170,7 +171,7 @@ def conv_data(Nx_list, Np_list, params, procs):
     
     N                   = len(Nx_list)
     
-    # Initialise parallel processing to get the RMS error for each simulation
+    # Initialize parallel processing to get the RMS error for each simulation
     l2_list             = []
     dof_list            = []
     pool                = multiprocessing.Pool(procs) # Initialize parallelization
@@ -217,7 +218,7 @@ def parfor_loop_internals_em_feedback(args):
     grids       = make_grids(Nx_list[i], Np_list[i], 10, 11)                # Make the grids of the current size
     force, stability, result_arrays, params2 = iterateEB_until_result(params, grids, fluids) # Evaluate Vlasov simulation
     maxe, l2e   = params_generator.value_test(result_arrays, params, 4)     # Find error vs analytical solution
-    dof         = 7 * 308 * (Nx_list[i] - 1) ** 3 * (Np_list[i] - 1) ** 3   # Because each hexarract has >= 308 heptapetons inside,
+    dof         = 7 * 308 * (Nx_list[i] - 1) ** 3 * (Np_list[i] - 1) ** 3   # Because each hexeract has >= 308 heptapetons inside,
                                                                             # which each have 7 DoF (one for each vertex)  
     return l2e, dof
 
@@ -244,7 +245,7 @@ def conv_data_em_feedback(Nx_list, Np_list, params, procs, fluids):
     
     N                   = len(Nx_list)
     
-    # Initialise parallel processing to get the RMS error for each simulation
+    # Initialize parallel processing to get the RMS error for each simulation
     l2_list             = []
     dof_list            = []
     pool                = multiprocessing.Pool(procs) # Initialize parallelization
@@ -264,7 +265,7 @@ def conv_data_em_feedback(Nx_list, Np_list, params, procs, fluids):
 
 def eval3D3V(params, grids, mass, q, plot = True):
     # This function calculates the forces induced to a 3D volume of plasma by electromagnetic
-    #   fields applied to it usinf the Vlasov eqaution. It generates a force, density
+    #   fields applied to it usinf the Vlasov equation. It generates a force, density
     #   plots, and 
     #
     # Inputs:
@@ -276,7 +277,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # Outputs:
     #   1. Force applied to the electromagnetic fields by the plasma in Newtons
     #   2. Simulation stability parameters to see if anything unstable is happening,
-    #       defined by finding the normalized extremeties of the density function.
+    #       defined by finding the normalized extremities of the density function.
     #   3. result_arrays - a tuple of the coordinates and plasma component density
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momentum coordinates
@@ -375,7 +376,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
     
-    # Use linear terms with multiplier preconditioning for diriclet BCs in position space setting f = DirichletData on the edges
+    # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
     for i in params['BCs']:
         if i[1]     == 'Dirichlet':
@@ -411,9 +412,9 @@ def eval3D3V(params, grids, mass, q, plot = True):
     solution        = np.array(solution) # Extract solution
     logging.info('Solution converted to numpy')
     
-    # Grab solution and insert into getFEM
-    md.to_variables(solution) # insert back into getFEM for integration
-    logging.info('Solution injected to getFEM')
+    # Grab solution and insert into GetFEM
+    md.to_variables(solution) # insert back into GetFEM for integration
+    logging.info('Solution injected to GetFEM')
     
     # extracted solution variables
     density         = md.variable('f')
@@ -471,7 +472,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Simulation is ' + check_simulation_stability(min(density) / params['p_0']))
     logging.info('Stability is ' + str(min(density) / params['p_0']))
     
-    # Because each hexarract has >= 308 heptapetons inside, which each have 7 DoF (one for each vertex)
+    # Because each hexeract has >= 308 heptapetons inside, which each have 7 DoF (one for each vertex)
     logging.info('Total degrees of freedom >= ' + str(7 * 308 * (len(grid_x) - 1) ** 3 * (len(grid_p) - 1) ** 3))
     
     logging.info('Time = '+str( time.time() - start) + '\n')
@@ -584,7 +585,7 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     # Outputs:
     #   1. Force applied to the electromagnetic fields by the plasma in Newtons
     #   2. Simulation stability parameters to see if anything unstable is happening,
-    #       defined by finding the norm♦alized extremeties of the density function.
+    #       defined by finding the normalized extremities of the density function.
     #   3. result_arrays - a tuple of the coordinates and plasma component density
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momenta coordinates
