@@ -74,11 +74,11 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     params              = {}
     
     # getFEM assembly language for the Dirichlet condition of Earth's ionosphere
-    dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u - params['v_x'])/params['v_therm'])**2-0.5*((v - params['v_y'])/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
+    dirichlet_conds     = '''params['p_0'] * np.exp(x/20-0.5*((u - params['v_x'])/params['v_therm'])**2-0.5*((v - params['v_y'])/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
     zeros = '''0'''
     
     # Initialize electric and magnetic fields for input into getFEM
-    params['E1']        = '''-params['B_earth'] * params['v_y']'''
+    params['E1']        = '''-params['B_earth'] * params['v_y']+841/2000'''
     params['E2']        = '''params['B_earth'] * params['v_x']'''
     params['E3']        = '0'
     params['B1']        = '''(1 / 4 / np.pi) * (3 * x * (x * params['sp_m'][0] + y * params['sp_m'][1] + z * params['sp_m'][2]) / ((x ** 2 + y ** 2 + z ** 2) ** (5 / 2)) - params['sp_m'][0] / ((x ** 2 + y ** 2 + z ** 2) ** (3 / 2)))'''
@@ -86,13 +86,7 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     params['B3']        = '''params['B_earth'] + (1 / 4 / np.pi) * (3 * x * (x * params['sp_m'][0] + y * params['sp_m'][1] + z * params['sp_m'][2]) / ((x ** 2 + y ** 2 + z ** 2) ** (5 / 2)) - params['sp_m'][2] / ((x ** 2 + y ** 2 + z ** 2) ** (3 / 2)))'''
     
     # Initialize boundary conditions for input into getFEM
-    params['BCs']       = [[40, 'Dirichlet', dirichlet_conds],[41, 'Dirichlet', dirichlet_conds],
-                           [46, 'Dirichlet', zeros],
-                           [47, 'Dirichlet', zeros],
-                           [48, 'Dirichlet', zeros],
-                           [49, 'Dirichlet', zeros],
-                           [50, 'Dirichlet', zeros],
-                           [51, 'Dirichlet', zeros]]
+    params['BCs']       = [[40, 'Dirichlet', dirichlet_conds]]
     
     params['E&B fields included'] = False # This is an initial problem, not a problem with plasma fields as well. Let the simulation iterate
     

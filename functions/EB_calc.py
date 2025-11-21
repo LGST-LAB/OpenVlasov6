@@ -8,6 +8,7 @@ This file included the framework for getting the electromagnetic fields from a p
 
 @author: Eric A. Comstock
 
+v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.1, Eric A. Comstock, 26-Sep-2025
@@ -29,6 +30,25 @@ import numpy as np
 
 eps0 = 17182972
 mu0 = 6.47531e-19
+
+def find_element_size(gridlist, N, i):
+    # This function calculates the element size from a grid, its size, and for an element
+    #
+    # Inputs:
+    #   gridlist        is the grid being decomposed, as a list
+    #   N               is the size of the grid
+    #   i               is the element number in the grid
+    #
+    # Outputs:
+    #   esize           is the size of the element being analyzed in 1 dimension
+    esize = 0
+    if i == 0:
+        esize = gridlist[1] - gridlist[0]
+    elif i >= N - 1:
+        esize = gridlist[-1] - gridlist[-2]
+    else:
+        esize = (gridlist[i + 1] - gridlist[i - 1]) / 2
+    return esize
 
 def EB_compute(result_arrays, q, grids, FEM_data):
     # This function calculates the electric and magnetic field from the plasma density
@@ -102,15 +122,23 @@ def EB_compute(result_arrays, q, grids, FEM_data):
         xi                      = x_inv[i]
         yi                      = y_inv[i]
         zi                      = z_inv[i]
-        charge_xyz[xi][yi][zi]  += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) ** 3 * density[i] * q
-        
-        # Find magnet pole strength for every 6D fEM cell, and add to the 3D point we are interested in
         ui                      = u_inv[i]
         vi                      = v_inv[i]
         wi                      = w_inv[i]
-        mps1_xyz[xi][yi][zi]    += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) ** 3 * density[i] * u[i] * q
-        mps2_xyz[xi][yi][zi]    += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) ** 3 * density[i] * v[i] * q
-        mps3_xyz[xi][yi][zi]    += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) ** 3 * density[i] * w[i] * q
+        charge_xyz[xi][yi][zi]  += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                    density[i] * q)
+        
+        # Find magnet pole strength for every 6D fEM cell, and add to the 3D point we are interested in
+        mps1_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                    density[i] * u[i] * q)
+        mps2_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                    density[i] * v[i] * q)
+        mps3_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                    density[i] * w[i] * q)
     
     # Calculate electric and magnetic fields from charge and magnetic dipole contributions
     for i_target in range(Nx):
