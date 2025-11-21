@@ -5,6 +5,7 @@ This file conducts the plotting needed for 6D Vlasov simulation, and has a whole
 
 @author: Eric A. Comstock
 
+v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4, Eric A. Comstock, 26-Sep-2025
@@ -20,6 +21,7 @@ import numpy as np              # Used for vector algebra and for getFEM
 import matplotlib.pyplot as plt # Used for plotting if requested by the code
 import matplotlib.colors as colors
 import time
+from . import EB_calc
 
 #colorlist = ["#000020","0000C0", "FF00FF", "FF"]
 #cmap = colors.LinearSegmentedColormap.from_list("my_custom_cmap", colorlist, N=256)
@@ -227,17 +229,29 @@ def plot_avg_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v
         xi     = x_inv[i]
         yi     = y_inv[i]
         zi     = z_inv[i]
-        density_xy[xi][yi] += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) * density[i]
-        density_xz[xi][zi] += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) * density[i]
-        density_yz[yi][zi] += (grid_p[1]-grid_p[0]) ** 3 * (grid_x[1]-grid_x[0]) * density[i]
-        
-        # Generate graphs in momentum space, weighting them by the cell hypervolume in the 4 dimensions being crushed together
         ui     = u_inv[i]
         vi     = v_inv[i]
         wi     = w_inv[i]
-        density_uv[ui][vi] += (grid_x[1]-grid_x[0]) ** 3 * (grid_p[1]-grid_p[0]) * density[i]
-        density_uw[ui][wi] += (grid_x[1]-grid_x[0]) ** 3 * (grid_p[1]-grid_p[0]) * density[i]
-        density_vw[vi][wi] += (grid_x[1]-grid_x[0]) ** 3 * (grid_p[1]-grid_p[0]) * density[i]
+        density_xy[xi][yi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                               EB_calc.find_element_size(grid_x, Nx, zi) * 
+                               density[i])
+        density_xz[xi][zi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                               EB_calc.find_element_size(grid_x, Nx, yi) * 
+                               density[i])
+        density_yz[yi][zi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                               EB_calc.find_element_size(grid_x, Nx, xi) * 
+                               density[i])
+        
+        # Generate graphs in momentum space, weighting them by the cell hypervolume in the 4 dimensions being crushed together
+        density_uv[ui][vi] += (EB_calc.find_element_size(grid_p, Np, wi) * 
+                               EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                               density[i])
+        density_uw[ui][wi] += (EB_calc.find_element_size(grid_p, Np, vi) * 
+                               EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                               density[i])
+        density_vw[vi][wi] += (EB_calc.find_element_size(grid_p, Np, ui) * 
+                               EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                               density[i])
     
     # Call function to actually plot everything
     plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw)
@@ -284,21 +298,27 @@ def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv,
     for i in range(num_points):
         # Generate graphs in position space, weighting them by the cell hypervolume in the 3 dimensions being crushed together
         #   but not the one sliced through
-        xi     = x_inv[i]
-        yi     = y_inv[i]
-        zi     = z_inv[i]
-        if zi == xms: density_xy[xi][yi] += (grid_p[1]-grid_p[0]) ** 3 * density[i]
-        if yi == xms: density_xz[xi][zi] += (grid_p[1]-grid_p[0]) ** 3 * density[i]
-        if xi == xms: density_yz[yi][zi] += (grid_p[1]-grid_p[0]) ** 3 * density[i]
-        
-        # Generate graphs in momentum space, weighting them by the cell hypervolume in the 3 dimensions being crushed together
-        #   but not the one sliced through
         ui     = u_inv[i]
         vi     = v_inv[i]
         wi     = w_inv[i]
-        if wi == pms: density_uv[ui][vi] += (grid_x[1]-grid_x[0]) ** 3 * density[i]
-        if vi == pms: density_uw[ui][wi] += (grid_x[1]-grid_x[0]) ** 3 * density[i]
-        if ui == pms: density_vw[vi][wi] += (grid_x[1]-grid_x[0]) ** 3 * density[i]
+        xi     = x_inv[i]
+        yi     = y_inv[i]
+        zi     = z_inv[i]
+        if zi == xms: density_xy[xi][yi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                                             density[i])
+        if yi == xms: density_xz[xi][zi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                                             density[i])
+        if xi == xms: density_yz[yi][zi] += (EB_calc.find_element_size(grid_p, Np, ui) * EB_calc.find_element_size(grid_p, Np, vi) * EB_calc.find_element_size(grid_p, Np, wi) * 
+                                             density[i])
+        
+        # Generate graphs in momentum space, weighting them by the cell hypervolume in the 3 dimensions being crushed together
+        #   but not the one sliced through
+        if wi == pms: density_uv[ui][vi] += (EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                                             density[i])
+        if vi == pms: density_uw[ui][wi] += (EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                                             density[i])
+        if ui == pms: density_vw[vi][wi] += (EB_calc.find_element_size(grid_x, Nx, xi) * EB_calc.find_element_size(grid_x, Nx, yi) * EB_calc.find_element_size(grid_x, Nx, zi) * 
+                                             density[i])
     
     # Call function to actually plot everything
     plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw)
