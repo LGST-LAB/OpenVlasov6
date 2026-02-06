@@ -50,7 +50,7 @@ def find_element_size(gridlist, N, i):
         esize = (gridlist[i + 1] - gridlist[i - 1]) / 2
     return esize
 
-def EB_compute(result_arrays, q, grids, FEM_data):
+def EB_compute(result_arrays, q, grids, FEM_data = True, return_potential = False):
     # This function calculates the electric and magnetic field from the plasma density
     #   and velocity distribution for the current fluid. If plasma has more than 1 fluid,
     #   use this function once for each fluid density distribution, and sum the results.
@@ -109,6 +109,8 @@ def EB_compute(result_arrays, q, grids, FEM_data):
     mps2_xyz        = np.zeros([Nx, Nx, Nx]) # Magnetic y-pole strength per cell (e * m / ms)
     mps3_xyz        = np.zeros([Nx, Nx, Nx]) # Magnetic z-pole strength per cell (e * m / ms)
     
+    V_xyz           = np.zeros([Nx, Nx, Nx]) # E-potential in xyz space
+    
     E1_xyz          = np.zeros([Nx, Nx, Nx]) # x E-field in xyz space
     E2_xyz          = np.zeros([Nx, Nx, Nx]) # y E-field in xyz space
     E3_xyz          = np.zeros([Nx, Nx, Nx]) # z E-field in xyz space
@@ -129,16 +131,17 @@ def EB_compute(result_arrays, q, grids, FEM_data):
                                     find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
                                     density[i] * q)
         
-        # Find magnet pole strength for every 6D fEM cell, and add to the 3D point we are interested in
-        mps1_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
-                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
-                                    density[i] * u[i] * q)
-        mps2_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
-                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
-                                    density[i] * v[i] * q)
-        mps3_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
-                                    find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
-                                    density[i] * w[i] * q)
+        if not return_potential:
+            # Find magnet pole strength for every 6D fEM cell, and add to the 3D point we are interested in
+            mps1_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                        find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                        density[i] * u[i] * q)
+            mps2_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                        find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                        density[i] * v[i] * q)
+            mps3_xyz[xi][yi][zi]    += (find_element_size(grid_p, Np, ui) * find_element_size(grid_p, Np, vi) * find_element_size(grid_p, Np, wi) * 
+                                        find_element_size(grid_x, Nx, xi) * find_element_size(grid_x, Nx, yi) * find_element_size(grid_x, Nx, zi) * 
+                                        density[i] * w[i] * q)
     
     # Calculate electric and magnetic fields from charge and magnetic dipole contributions
     for i_target in range(Nx):
@@ -162,15 +165,19 @@ def EB_compute(result_arrays, q, grids, FEM_data):
                                 # Compute the 3D distance itself to prevent unneeded computation later
                                 r2  = xd1 ** 2 + xd2 ** 2 + xd3 ** 2
                                 
-                                # Find E field from Coulomb potential
-                                E1_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd1 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
-                                E2_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd2 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
-                                E3_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd3 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
-                                
-                                # Find B field from Biot-Savart law
-                                B1_xyz[i_target, j_target, k_target] += (mps2_xyz[i][j][k] * xd3 - mps3_xyz[i][j][k] * xd2) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
-                                B2_xyz[i_target, j_target, k_target] += (mps3_xyz[i][j][k] * xd1 - mps1_xyz[i][j][k] * xd3) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
-                                B3_xyz[i_target, j_target, k_target] += (mps1_xyz[i][j][k] * xd2 - mps2_xyz[i][j][k] * xd1) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
+                                if return_potential:
+                                    # Find electric potential from Coulomb potential
+                                    V_xyz[i_target, j_target, k_target]  += charge_xyz[i][j][k] / (4 * np.pi * eps0) / np.sqrt(r2)
+                                else:
+                                    # Find E field from Coulomb potential
+                                    E1_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd1 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
+                                    E2_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd2 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
+                                    E3_xyz[i_target, j_target, k_target] += charge_xyz[i][j][k] * xd3 / (4 * np.pi * eps0) / (np.sqrt(r2) ** 3)
+                                    
+                                    # Find B field from Biot-Savart law
+                                    B1_xyz[i_target, j_target, k_target] += (mps2_xyz[i][j][k] * xd3 - mps3_xyz[i][j][k] * xd2) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
+                                    B2_xyz[i_target, j_target, k_target] += (mps3_xyz[i][j][k] * xd1 - mps1_xyz[i][j][k] * xd3) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
+                                    B3_xyz[i_target, j_target, k_target] += (mps1_xyz[i][j][k] * xd2 - mps2_xyz[i][j][k] * xd1) * mu0 / (4 * np.pi) / (np.sqrt(r2) ** 3)
       
     # Choose output strategy based on requested results
     if FEM_data:
@@ -196,5 +203,7 @@ def EB_compute(result_arrays, q, grids, FEM_data):
         return E1, E2, E3, B1, B2, B3
     else:
         uniqs = (x_uniq, y_uniq, z_uniq)
-
-        return E1_xyz, E2_xyz, E3_xyz, B1_xyz, B2_xyz, B3_xyz, uniqs
+        if return_potential:
+            return V_xyz, uniqs
+        else:
+            return E1_xyz, E2_xyz, E3_xyz, B1_xyz, B2_xyz, B3_xyz, uniqs

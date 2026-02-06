@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.2, Eric A. Comstock, 3-Feb-2026
 v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
@@ -407,6 +408,35 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
+        
+    '''new'''
+    
+    # Compute a scalar tau
+    tau_vals = []
+    
+    # Loop over mesh elements
+    # Compute tau per element
+    tau_vals = []
+    
+    for k in range(m.nbcvs()):   # <--- note the 'es' at the end
+        h_elem = m.convex_radius(k)    # radius of element k
+        
+        # Approximate advection magnitude
+        A_mag = 1.0  # placeholder, tune later
+        tau_vals.append(h_elem / (2 * A_mag))
+    
+    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
+    md.add_initialized_fem_data('tau', mf, tau_vals)
+    
+    A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
+        ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
+        ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
+
+    vlasov_SUPG = 'tau * (' + A_vec + '.Grad_f) * (' + A_vec + '.Grad_Test_f)'
+    
+    md.add_linear_term(mim, vlasov_SUPG)
+    
+    '''old'''
     
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
