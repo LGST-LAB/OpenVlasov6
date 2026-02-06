@@ -39,3 +39,29 @@ if __name__ == '__main__':
     Nx_list = [3,3,3,4,3,4,3,4,5,4,5,4,6,5,6,5,6,7,5,6,7,6,7,8]
     Np_list = [3,4,5,4,6,5,7,6,5,7,6,8,6,8,7,9,8,7,10,9,8,10,9,8]
     Vlasov_testing_code_6D.conv_data(Nx_list, Np_list, params, 12)
+
+#### Code for finding electric field of plasma for the magnet in LEO:
+
+def v_mass(mass):
+    grids  = Vlasov_testing_code_6D.make_grids_sinh(5, 5, 10, 11,1,1) # Rough representation of nonuniformity in position and momentum space
+    fluids  = [[1, 1/1800/30], [1, -1]] # NO+ and electrons
+    
+    Earth_field = 80e-6
+    B_dipole = [0,0,mass*1.42/7000]#1.42/7000]
+    Q = 0
+    E_dipole = [0,0,0]
+    v_x = -7.8
+    v_y = 0
+    density = 1e6
+    v_therm = 1
+    params = params_generator.generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density, v_therm, grids)
+    force, stability, result_arrays, params = Vlasov_testing_code_6D.iterateEB_until_result(params, grids, fluids, 0.01)
+    
+    force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params, grids, 1, 1)
+    V_xyz_i, uniqs = EB_calc.EB_compute(result_arrays, fluids[1][0], grids, False, True)
+    force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params, grids, 1/1800/30, -1)
+    V_xyz_e, uniqs = EB_calc.EB_compute(result_arrays, fluids[1][1], grids, False, True)
+    V_tot = V_xyz_i + V_xyz_e
+    return V_tot
+    
+vtotdiff = v_mass(10) - v_mass(0)

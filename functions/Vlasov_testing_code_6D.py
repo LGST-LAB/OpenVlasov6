@@ -6,6 +6,8 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.2, Eric A. Comstock, 3-Feb-2026
+v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
@@ -100,6 +102,37 @@ def make_grids(Nx, Np, x_size, p_size):
     # Both grids are given as linear based on the position and velocity sizes requested
     grid_x = orig_gridx * x_size
     grid_p = orig_gridp * p_size
+    grids = (grid_x, grid_p)
+    return grids
+
+def make_grids_sinh(Nx, Np, x_size, p_size, xfactor, pfactor):
+    # This function is a new model that generates the position and momentum grids
+    #   to integrate the problem on. It uses sinh to make the grids more dense at
+    #   the center.
+    #
+    # Inputs:
+    #   Nx      is the number of points in each dimension of position in the mesh
+    #   Np      is the number of points in each dimension of momentum in the mesh
+    #   x_size  is the physical half-size of the position grid
+    #   p_size  is the half-size of the momentum grid
+    #   xfactor is the sinh multiplier that determines how intense the pos stretching
+    #               is. At 1e-6 or similar nearo-zero values, the function generates
+    #               the same results as make_grids
+    #   pfactor is the sinh multiplier that determines how intense the mom stretching
+    #               is. At 1e-6 or similar nearo-zero values, the function generates
+    #               the same results as make_grids
+    #
+    # Outputs:
+    #   grids   is a tuple of the position and momentum grids to be used
+    #               for the rectangular elements of the FEM mesh.
+    
+    # Define a grid of the right size to distort everything else from
+    orig_gridx = np.linspace(-1,1,Nx)
+    orig_gridp = np.linspace(-1,1,Np)
+    
+    # Both grids are given as linear based on the position and velocity sizes requested
+    grid_x = np.sinh(orig_gridx * xfactor) * x_size / np.sinh(xfactor)
+    grid_p = np.sinh(orig_gridp * pfactor) * p_size / np.sinh(pfactor)
     grids = (grid_x, grid_p)
     return grids
 
@@ -375,6 +408,35 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
+        
+    '''new'''
+    
+    # Compute a scalar tau
+    tau_vals = []
+    
+    # Loop over mesh elements
+    # Compute tau per element
+    tau_vals = []
+    
+    for k in range(m.nbcvs()):   # <--- note the 'es' at the end
+        h_elem = m.convex_radius(k)    # radius of element k
+        
+        # Approximate advection magnitude
+        A_mag = 1.0  # placeholder, tune later
+        tau_vals.append(h_elem / (2 * A_mag))
+    
+    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
+    md.add_initialized_fem_data('tau', mf, tau_vals)
+    
+    A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
+        ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
+        ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
+
+    vlasov_SUPG = 'tau * (' + A_vec + '.Grad_f) * (' + A_vec + '.Grad_Test_f)'
+    
+    md.add_linear_term(mim, vlasov_SUPG)
+    
+    '''old'''
     
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
@@ -476,7 +538,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Total degrees of freedom >= ' + str(7 * 308 * (len(grid_x) - 1) ** 3 * (len(grid_p) - 1) ** 3))
     
     logging.info('Time = '+str( time.time() - start) + '\n')
-    return total_force*4.9816*(10**-26), [max(density) / params['p_0'], min(density) / params['p_0']], result_arrays
+    return total_force*4.9816*(10**-20), [max(density) / params['p_0'], min(density) / params['p_0']], result_arrays
 
 def iterateEB(params, grids, mass, q):
     # This function iterates a Vlasov simulation once for all fluids given, giving

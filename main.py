@@ -7,6 +7,8 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.2, Eric A. Comstock, 3-Feb-2026
+v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.0, Eric A. Comstock, 2-Oct-2025

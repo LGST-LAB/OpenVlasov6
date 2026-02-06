@@ -86,13 +86,13 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     params['B3']        = '''params['B_earth'] + (1 / 4 / np.pi) * (3 * x * (x * params['sp_m'][0] + y * params['sp_m'][1] + z * params['sp_m'][2]) / ((x ** 2 + y ** 2 + z ** 2) ** (5 / 2)) - params['sp_m'][2] / ((x ** 2 + y ** 2 + z ** 2) ** (3 / 2)))'''
     
     # Initialize boundary conditions for input into getFEM
-    params['BCs']       = [[40, 'Dirichlet', dirichlet_conds],[41, 'Dirichlet', dirichlet_conds],
-                           [46, 'Dirichlet', zeros],
-                           [47, 'Dirichlet', zeros],
-                           [48, 'Dirichlet', zeros],
-                           [49, 'Dirichlet', zeros],
-                           [50, 'Dirichlet', zeros],
-                           [51, 'Dirichlet', zeros]]
+    params['BCs']       = [[40, 'Dirichlet', dirichlet_conds],
+                           [46, 'Dirichlet', dirichlet_conds],
+                           [47, 'Dirichlet', dirichlet_conds],
+                           [48, 'Dirichlet', dirichlet_conds],
+                           [49, 'Dirichlet', dirichlet_conds],
+                           [50, 'Dirichlet', dirichlet_conds],
+                           [51, 'Dirichlet', dirichlet_conds]]
     
     params['E&B fields included'] = False # This is an initial problem, not a problem with plasma fields as well. Let the simulation iterate
     
