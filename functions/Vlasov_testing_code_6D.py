@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.2.1, Eric A. Comstock, 10-Feb-2026
 v1.2, Eric A. Comstock, 3-Feb-2026
 v1.1, Eric A. Comstock, 20-Nov-2025
 v1.0.1, Eric A. Comstock, 14-Oct-2025
@@ -466,13 +467,20 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Stiffness matrix size: ' + str(K.shape))
     
     # Scipy matrix solving
+    time_start      = time.time()
     K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
     ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
     M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
+    time_ilu        = time.time() - time_start
+    logging.info('Time to precondition in seconds: ' + str(time_ilu))
     solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving
+    time_solve      = time.time() - time_ilu - time_start
+    logging.info('Time to solve in seconds: ' + str(time_solve))
     logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
     solution        = np.array(solution) # Extract solution
     logging.info('Solution converted to numpy')
+    time_convert    = time.time() - time_solve - time_ilu - time_start
+    logging.info('Time to convert in seconds: ' + str(time_convert))
     
     # Grab solution and insert into GetFEM
     md.to_variables(solution) # insert back into GetFEM for integration
