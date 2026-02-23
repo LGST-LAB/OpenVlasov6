@@ -1,10 +1,16 @@
-# OpenVlasov6 1.2
+# OpenVlasov6 1.2.2
 3D-3V GetFEM-based Vlasov solver
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
 
+### Changes in 1.2.2
+Added parallelization of assembly procedures. Make sure to run with the arguments ---mpirun -n 4 python3--- to take advantage of this.
+
+### Changes in 1.2.1
+Bugfixes and more comments added.
+
 ### Changes in 1.2
-Added SUPG hyperbolic stabilization for FEM method
+Added SUPG hyperbolic stabilization for FEM method.
 
 ### Changes in 1.1
 Buxfixes, added nonuniform grid generation and plotting and E&B field calculation to support it.
