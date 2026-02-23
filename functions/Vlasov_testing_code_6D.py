@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.2.2, Eric A. Comstock, 23-Feb-2026
 v1.2.1, Eric A. Comstock, 10-Feb-2026
 v1.2, Eric A. Comstock, 3-Feb-2026
 v1.1, Eric A. Comstock, 20-Nov-2025
@@ -51,12 +52,19 @@ import scipy.sparse             # In some OS environments, importing every speci
 import scipy.sparse.linalg      # See above - if these are not imported the code will not run on some Windows 11 HPCs
 import logging                  # Used for logging and the logger for code
 import multiprocessing          # Used for multithreading when running multiple sims at once
+from mpi4py import MPI
 
 #### Import other files ####
 
 from . import plotting_6D
 from . import params_generator
 from . import EB_calc
+
+#### MPI4py ####
+
+comm = MPI.COMM_WORLD
+rank = comm.Get_rank()
+size = comm.Get_size()
 
 #### Add global variables and logging ####
 
@@ -409,8 +417,6 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
-        
-    '''new'''
     
     # Compute a scalar tau
     tau_vals = []
@@ -437,8 +443,6 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     md.add_linear_term(mim, vlasov_SUPG)
     
-    '''old'''
-    
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
     for i in params['BCs']:
@@ -451,7 +455,10 @@ def eval3D3V(params, grids, mass, q, plot = True):
             
     # List variables
     md.variable_list()
+        
+    '''new'''
     
+    '''
     # Build all terms in getFEM
     md.assembly("build_all")
     md.assembly("build_rhs")
@@ -467,24 +474,89 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Stiffness matrix size: ' + str(K.shape))
     
     # Scipy matrix solving
-    time_start      = time.time()
     K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
     ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
     M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
-    time_ilu        = time.time() - time_start
-    logging.info('Time to precondition in seconds: ' + str(time_ilu))
     solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving
-    time_solve      = time.time() - time_ilu - time_start
-    logging.info('Time to solve in seconds: ' + str(time_solve))
     logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
     solution        = np.array(solution) # Extract solution
     logging.info('Solution converted to numpy')
-    time_convert    = time.time() - time_solve - time_ilu - time_start
-    logging.info('Time to convert in seconds: ' + str(time_convert))
     
     # Grab solution and insert into GetFEM
     md.to_variables(solution) # insert back into GetFEM for integration
     logging.info('Solution injected to GetFEM')
+    '''
+    
+    # Build
+    md.assembly("build_all")
+    md.assembly("build_rhs")
+    #md.assembly("finalize")
+    
+    if rank == 0:
+        logging.info('All terms built')
+    
+    rhs_local = md.rhs()          # local RHS vector
+    K_dist = md.tangent_matrix()  # local distributed matrix (Spmat)
+    
+   # ------------------------------
+    # Step 0: local Spmat and RHS
+    # ------------------------------
+    vals_local = K_dist.csc_val()
+    indptr_local, indices_local = K_dist.csc_ind()  # indices are global
+    rhs_local = rhs_local  # already local to this rank
+    
+    # ------------------------------
+    # Step 1: gather all CSC pieces to rank 0
+    # ------------------------------
+    gathered_vals = comm.gather(vals_local, root=0)
+    gathered_indices = comm.gather(indices_local, root=0)
+    gathered_indptr = comm.gather(indptr_local, root=0)
+    gathered_rhs = comm.gather(rhs_local, root=0)
+    
+    # ------------------------------
+    # Step 2: assemble global CSC on rank 0
+    # ------------------------------
+    if rank == 0:
+        # Initialize empty global CSC matrix
+        n_dofs = md.nbdof()  # total DOFs in model
+        K = scipy.sparse.csc_matrix((n_dofs, n_dofs), dtype=np.float64)
+    
+        # Sum all ranks’ CSCs (works because shapes match)
+        for vals, indices, indptr in zip(gathered_vals, gathered_indices, gathered_indptr):
+            K += scipy.sparse.csc_matrix((vals, indices, indptr), shape=(n_dofs, n_dofs))
+    
+        # Assemble RHS
+        rhs = np.sum(gathered_rhs, axis=0)
+    
+        logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
+        logging.info('Stiffness matrix size: ' + str(K.shape))
+    
+        # Diagonal shift
+        K_shifted = K + 1e-10 * scipy.sparse.identity(md.nbdof(), format='csc')
+    
+        ilu = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10)
+        M = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve)
+    
+        solution, exit_code = scipy.sparse.linalg.bicgstab(
+            K_shifted, rhs, M=M, atol=1e-8
+        )
+    
+        logging.info('SciPy solve, exit code ' + str(exit_code))
+        solution = np.array(solution)
+    
+    else:
+        solution = None
+    
+    # Broadcast solution to all ranks
+    solution = comm.bcast(solution, root=0)
+    
+    # Inject back into GetFEM
+    md.to_variables(solution)
+    
+    if rank == 0:
+        logging.info('Solution injected to GetFEM')
+    
+    '''old'''
     
     # extracted solution variables
     density         = md.variable('f')
