@@ -8,4 +8,4 @@ This file is a configuration file that controls whether MPI is activated for par
 v1.2.3, Eric A. Comstock, 9-Mar-2026
 """
 
-MPI_toggle = False
+MPI_toggle = True
