@@ -7,6 +7,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.2.3, Eric A. Comstock, 9-Mar-2026
 v1.2.2, Eric A. Comstock, 23-Feb-2026
 v1.2.1, Eric A. Comstock, 10-Feb-2026
 v1.2, Eric A. Comstock, 3-Feb-2026
@@ -21,7 +22,12 @@ v0.0, Eric A. Comstock, 2-Oct-2025
 import numpy as np              # Used for vector algebra
 import shelve                   # Used to save data in case it is needed later
 import time                     # Used for getting time for logging and file names
-from mpi4py import MPI
+from config.MPI_config import * # Used for controlling configuration parameters
+if MPI_toggle:
+    try:
+        from mpi4py import MPI
+    except:
+        raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
 
 #### Import other files ####
 
@@ -32,9 +38,10 @@ from functions import Vlasov_testing_code_6D
 
 #### MPI4py ####
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
+if MPI_toggle:
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
+    size = comm.Get_size()
 
 #### Running code with specifics - Modify this part! ####
 
@@ -44,13 +51,24 @@ force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generat
 
 #### Shelving all data for potential later use ####
 
-if rank == 0:
-    filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
-    my_shelf = shelve.open(filename,'n')
-    
-    for key in dir():
-        try:
-            my_shelf[key] = globals()[key]
-        except:
-            print('ERROR shelving: {0}'.format(key))
-    my_shelf.close()
+if MPI_toggle:
+    if rank == 0:
+        filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
+        my_shelf = shelve.open(filename,'n')
+        
+        for key in dir():
+            try:
+                my_shelf[key] = globals()[key]
+            except:
+                print('ERROR shelving: {0}'.format(key))
+        my_shelf.close()
+    else:
+        filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
+        my_shelf = shelve.open(filename,'n')
+        
+        for key in dir():
+            try:
+                my_shelf[key] = globals()[key]
+            except:
+                print('ERROR shelving: {0}'.format(key))
+        my_shelf.close()
