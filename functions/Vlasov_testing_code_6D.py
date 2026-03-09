@@ -43,16 +43,22 @@ v0.0, Eric A. Comstock, 28-Oct-2024
 
 #### Import basic modules ####
 
-import numpy as np              # Used for vector algebra and for getFEM
-import getfem as gf             # Main FEM assembly package used in this code
-import time                     # Used for getting time for logging and file names
-import scipy                    # Used for matrix operations - most customizable than getFEM
-import scipy.interpolate        # Used for interpolation of EM fields for more accurate FEA
-import scipy.sparse             # In some OS environments, importing every specific subpackage used is needed
-import scipy.sparse.linalg      # See above - if these are not imported the code will not run on some Windows 11 HPCs
-import logging                  # Used for logging and the logger for code
-import multiprocessing          # Used for multithreading when running multiple sims at once
-from mpi4py import MPI
+import numpy as np                # Used for vector algebra and for getFEM
+import getfem as gf               # Main FEM assembly package used in this code
+import time                       # Used for getting time for logging and file names
+import scipy                      # Used for matrix operations - most customizable than getFEM
+import scipy.interpolate          # Used for interpolation of EM fields for more accurate FEA
+import scipy.sparse               # In some OS environments, importing every specific subpackage used is needed
+import scipy.sparse.linalg        # See above - if these are not imported the code will not run on some Windows 11 HPCs
+import logging                    # Used for logging and the logger for code
+import multiprocessing            # Used for multithreading when running multiple sims at once
+from config.MPI_config import *   # Used for controlling configuration parameters
+if MPI_toggle:
+    try:
+        from mpi4py import MPI
+    except:
+        raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
+
 
 #### Import other files ####
 
@@ -62,9 +68,10 @@ from . import EB_calc
 
 #### MPI4py ####
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
-size = comm.Get_size()
+if MPI_toggle:
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
+    size = comm.Get_size()
 
 #### Add global variables and logging ####
 
@@ -462,29 +469,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # Build all terms in getFEM
     md.assembly("build_all")
     md.assembly("build_rhs")
-    logging.info('All terms built')
     
-    # Extract rhs and matrix to use scipy for solving
-    rhs             = md.rhs()
-    K               = md.tangent_matrix()
-    
-    # Scipy matrix transformation and basic diagnostics
-    K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
-    logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
-    logging.info('Stiffness matrix size: ' + str(K.shape))
-    
-    # Scipy matrix solving
-    K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
-    ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
-    M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
-    solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving
-    logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
-    solution        = np.array(solution) # Extract solution
-    logging.info('Solution converted to numpy')
-    
-    # Grab solution and insert into GetFEM
-    md.to_variables(solution) # insert back into GetFEM for integration
-    logging.info('Solution injected to GetFEM')
     '''
     
     # Build
@@ -492,71 +477,93 @@ def eval3D3V(params, grids, mass, q, plot = True):
     md.assembly("build_rhs")
     #md.assembly("finalize")
     
-    if rank == 0:
+    if MPI_toggle:
+        if rank == 0:
+            logging.info('All terms built')
+        
+        rhs_local = md.rhs()          # local RHS vector
+        K_dist = md.tangent_matrix()  # local distributed matrix (Spmat)
+        
+        # ------------------------------
+        # Step 0: local Spmat and RHS
+        # ------------------------------
+        vals_local = K_dist.csc_val()
+        indptr_local, indices_local = K_dist.csc_ind()  # indices are global
+        rhs_local = rhs_local  # already local to this rank
+        
+        # ------------------------------
+        # Step 1: gather all CSC pieces to rank 0
+        # ------------------------------
+        gathered_vals = comm.gather(vals_local, root=0)
+        gathered_indices = comm.gather(indices_local, root=0)
+        gathered_indptr = comm.gather(indptr_local, root=0)
+        gathered_rhs = comm.gather(rhs_local, root=0)
+        
+        # ------------------------------
+        # Step 2: assemble global CSC on rank 0
+        # ------------------------------
+        if rank == 0:
+            # Initialize empty global CSC matrix
+            n_dofs = md.nbdof()  # total DOFs in model
+            K = scipy.sparse.csc_matrix((n_dofs, n_dofs), dtype=np.float64)
+        
+            # Sum all ranks’ CSCs (works because shapes match)
+            for vals, indices, indptr in zip(gathered_vals, gathered_indices, gathered_indptr):
+                K += scipy.sparse.csc_matrix((vals, indices, indptr), shape=(n_dofs, n_dofs))
+        
+            # Assemble RHS
+            rhs = np.sum(gathered_rhs, axis=0)
+        
+            logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
+            logging.info('Stiffness matrix size: ' + str(K.shape))
+        
+            # Diagonal shift
+            K_shifted = K + 1e-10 * scipy.sparse.identity(md.nbdof(), format='csc')
+        
+            ilu = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10)
+            M = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve)
+        
+            solution, exit_code = scipy.sparse.linalg.bicgstab(
+                K_shifted, rhs, M=M, atol=1e-8
+            )
+        
+            logging.info('SciPy solve, exit code ' + str(exit_code))
+            solution = np.array(solution)
+        
+        else:
+            solution = None
+        
+        # Broadcast solution to all ranks
+        solution = comm.bcast(solution, root=0)
+    else:
         logging.info('All terms built')
-    
-    rhs_local = md.rhs()          # local RHS vector
-    K_dist = md.tangent_matrix()  # local distributed matrix (Spmat)
-    
-   # ------------------------------
-    # Step 0: local Spmat and RHS
-    # ------------------------------
-    vals_local = K_dist.csc_val()
-    indptr_local, indices_local = K_dist.csc_ind()  # indices are global
-    rhs_local = rhs_local  # already local to this rank
-    
-    # ------------------------------
-    # Step 1: gather all CSC pieces to rank 0
-    # ------------------------------
-    gathered_vals = comm.gather(vals_local, root=0)
-    gathered_indices = comm.gather(indices_local, root=0)
-    gathered_indptr = comm.gather(indptr_local, root=0)
-    gathered_rhs = comm.gather(rhs_local, root=0)
-    
-    # ------------------------------
-    # Step 2: assemble global CSC on rank 0
-    # ------------------------------
-    if rank == 0:
-        # Initialize empty global CSC matrix
-        n_dofs = md.nbdof()  # total DOFs in model
-        K = scipy.sparse.csc_matrix((n_dofs, n_dofs), dtype=np.float64)
-    
-        # Sum all ranks’ CSCs (works because shapes match)
-        for vals, indices, indptr in zip(gathered_vals, gathered_indices, gathered_indptr):
-            K += scipy.sparse.csc_matrix((vals, indices, indptr), shape=(n_dofs, n_dofs))
-    
-        # Assemble RHS
-        rhs = np.sum(gathered_rhs, axis=0)
-    
+        
+        # Extract rhs and matrix to use scipy for solving
+        rhs             = md.rhs()
+        K               = md.tangent_matrix()
+        
+        # Scipy matrix transformation and basic diagnostics
+        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
         logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
         logging.info('Stiffness matrix size: ' + str(K.shape))
-    
-        # Diagonal shift
-        K_shifted = K + 1e-10 * scipy.sparse.identity(md.nbdof(), format='csc')
-    
-        ilu = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10)
-        M = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve)
-    
-        solution, exit_code = scipy.sparse.linalg.bicgstab(
-            K_shifted, rhs, M=M, atol=1e-8
-        )
-    
-        logging.info('SciPy solve, exit code ' + str(exit_code))
-        solution = np.array(solution)
-    
-    else:
-        solution = None
-    
-    # Broadcast solution to all ranks
-    solution = comm.bcast(solution, root=0)
-    
+        
+        # Scipy matrix solving
+        K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
+        ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
+        M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
+        solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving
+        logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
+        solution        = np.array(solution) # Extract solution
+        logging.info('Solution converted to numpy')
+        
     # Inject back into GetFEM
     md.to_variables(solution)
     
-    if rank == 0:
+    if MPI_toggle:
+        if rank == 0:
+            logging.info('Solution injected to GetFEM')
+    else:
         logging.info('Solution injected to GetFEM')
-    
-    '''old'''
     
     # extracted solution variables
     density         = md.variable('f')
