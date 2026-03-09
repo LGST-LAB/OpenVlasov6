@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.2.3, Eric A. Comstock, 9-Mar-2026
 v1.2.2, Eric A. Comstock, 23-Feb-2026
 v1.2.1, Eric A. Comstock, 10-Feb-2026
 v1.2, Eric A. Comstock, 3-Feb-2026
@@ -764,4 +765,5 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     # Output forces and log the final results
     logging.info('Total force (N): '+str( np.linalg.norm(force)))
     logging.info('Total force (kg*m/s/yr): '+str( np.linalg.norm(force*31557600))) # Multiplied by # of seconds in a year
+
     return force, stability, result_arrays, params
