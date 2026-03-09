@@ -3,6 +3,9 @@
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
 
+### Changes in 1.2.3
+Fixed bug where parallelization always happened, even when unwanted. Use the config/MPI_config.py file to change whether or not it is applied in the code. The default is yes.
+
 ### Changes in 1.2.2
 Added parallelization of assembly procedures. Make sure to run with the arguments ---mpirun -n 4 python3--- to take advantage of this.
 
@@ -50,6 +53,18 @@ OpenVlasov6 is written in Python, so its installation is simply cloning this rep
 ### main.py
 This is the main file of OpenVlasov6, and is where you should place the code you would like to run. To run the code under set parameters, modify the part of the code that says "Modify this part!"
 
+### config
+This folder contains the config file(s) needed to run the code, which can be changed to edit global properties of each simulation, such as parallelization and MPI compatibility.
+
+#### MPI_config.py
+This file contains the configuration options for parallelization
+
+### examples
+This folder contains example codes that can be run to get used to the solver. 
+
+#### test_code_snippets.txt
+This file is a set of code snippets that can be run in the main.py file of OpenVlasov6 to replicate the results of the associated paper.
+
 ### functions
 This folder contains the main functions that are used to support the OpenVlasov6 solver.
 
@@ -66,12 +81,6 @@ This would also be the file where custom-built simulation parameters can be ente
 
 #### plotting_6D.py
 This file conducts the plotting needed for 6D Vlasov simulation, and has a whole bunch of modes of operation.
-
-### examples
-This folder contains example codes that can be run to get used to the solver. 
-
-#### test_code_snippets.txt
-This file is a set of code snippets that can be run in the main.py file of OpenVlasov6 to replicate the results of the associated paper.
 
 ### getfem
 This folder contains a compressed copy of GetFEM, to ensure that the repository stays functional.
