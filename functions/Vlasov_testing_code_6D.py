@@ -2,10 +2,11 @@
 """
 This file conducts the tests needed for 6D Vlasov simulation validation, allowing
     for the generation of the results of the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
-    Multifluid Vlasov Solver" in Physics of Plasmas, by E. Comstock & A. Romero-Calvo.
+    Multifluid Vlasov Solver," by E. Comstock & A. Romero-Calvo.
 
 @author: Eric A. Comstock
 
+v1.3, Eric A. Comstock, 10-Mar-2026
 v1.2.3, Eric A. Comstock, 9-Mar-2026
 v1.2.2, Eric A. Comstock, 23-Feb-2026
 v1.2.1, Eric A. Comstock, 10-Feb-2026
@@ -353,6 +354,19 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     #Build GetFEM mesh using grids
     m               = gf.Mesh('regular simplices', grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
+    mf_unmodified      = gf.MeshFem(m, 1)
+    mf_unmodified.set_fem(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')'))
+    x              = mf_unmodified.eval("x")
+    y              = mf_unmodified.eval("y")
+    z              = mf_unmodified.eval("z")
+    u              = mf_unmodified.eval("u")
+    v              = mf_unmodified.eval("v")
+    w              = mf_unmodified.eval("w")
+    del mf_unmodified
+    
+    logging.info('Mesh points modified by params function')
+    m.set_pts(params['grid_edit_function'](m.pts()))
+    logging.info(str(m.pts()[:,[0,1,2,3,4,-5,-4,-3,-2,-1]]))
     
     # create a MeshFem of for a field of dimension 1 (i.e. a scalar field, corresponding to f)
     mf              = gf.MeshFem(m, 1)
@@ -367,18 +381,18 @@ def eval3D3V(params, grids, mass, q, plot = True):
     mim             = gf.MeshIm(m, gf.Integ('IM_NC(' + str(dims) + ',' + order + ')'))
     
     # detect the borders of the mesh on all 12 sides of the hypercube
-    fb0             = m.outer_faces_with_direction([ 1., 0., 0., 0., 0., 0.], 0.01)
-    fb1             = m.outer_faces_with_direction([-1., 0., 0., 0., 0., 0.], 0.01)
-    fb2             = m.outer_faces_with_direction([0.,  1., 0., 0., 0., 0.], 0.01)
-    fb3             = m.outer_faces_with_direction([0., -1., 0., 0., 0., 0.], 0.01)
-    fb4             = m.outer_faces_with_direction([0., 0.,  1., 0., 0., 0.], 0.01)
-    fb5             = m.outer_faces_with_direction([0., 0., -1., 0., 0., 0.], 0.01)
-    fb6             = m.outer_faces_with_direction([0., 0., 0.,  1., 0., 0.], 0.01)
-    fb7             = m.outer_faces_with_direction([0., 0., 0., -1., 0., 0.], 0.01)
-    fb8             = m.outer_faces_with_direction([0., 0., 0., 0.,  1., 0.], 0.01)
-    fb9             = m.outer_faces_with_direction([0., 0., 0., 0., -1., 0.], 0.01)
-    fb10            = m.outer_faces_with_direction([0., 0., 0., 0., 0.,  1.], 0.01)
-    fb11            = m.outer_faces_with_direction([0., 0., 0., 0., 0., -1.], 0.01)
+    fb0             = m.outer_faces_with_direction([ 1., 0., 0., 0., 0., 0.], 0.75)
+    fb1             = m.outer_faces_with_direction([-1., 0., 0., 0., 0., 0.], 0.75)
+    fb2             = m.outer_faces_with_direction([0.,  1., 0., 0., 0., 0.], 0.75)
+    fb3             = m.outer_faces_with_direction([0., -1., 0., 0., 0., 0.], 0.75)
+    fb4             = m.outer_faces_with_direction([0., 0.,  1., 0., 0., 0.], 0.75)
+    fb5             = m.outer_faces_with_direction([0., 0., -1., 0., 0., 0.], 0.75)
+    fb6             = m.outer_faces_with_direction([0., 0., 0.,  1., 0., 0.], 0.75)
+    fb7             = m.outer_faces_with_direction([0., 0., 0., -1., 0., 0.], 0.75)
+    fb8             = m.outer_faces_with_direction([0., 0., 0., 0.,  1., 0.], 0.75)
+    fb9             = m.outer_faces_with_direction([0., 0., 0., 0., -1., 0.], 0.75)
+    fb10            = m.outer_faces_with_direction([0., 0., 0., 0., 0.,  1.], 0.75)
+    fb11            = m.outer_faces_with_direction([0., 0., 0., 0., 0., -1.], 0.75)
     
     # mark and label the 12 boundaries
     m.set_region(40, fb0)# Face the plasma is entering on
@@ -463,15 +477,6 @@ def eval3D3V(params, grids, mass, q, plot = True):
             
     # List variables
     md.variable_list()
-        
-    '''new'''
-    
-    '''
-    # Build all terms in getFEM
-    md.assembly("build_all")
-    md.assembly("build_rhs")
-    
-    '''
     
     # Build
     md.assembly("build_all")
@@ -568,14 +573,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # extracted solution variables
     density         = md.variable('f')
-    x               = mf.eval("x")
-    y               = mf.eval("y")
-    z               = mf.eval("z")
-    u               = mf.eval("u")
-    v               = mf.eval("v")
-    w               = mf.eval("w")
+    x2              = mf.eval("x")
+    y2              = mf.eval("y")
+    z2              = mf.eval("z")
+    u2              = mf.eval("u")
+    v2              = mf.eval("v")
+    w2              = mf.eval("w")
     
-    result_arrays   = (density, x, y, z, u, v, w)
+    result_arrays   = (density, x2, y2, z2, u2, v2, w2)
     
     #### Boundary integration ####
     
