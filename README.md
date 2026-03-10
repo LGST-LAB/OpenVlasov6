@@ -1,7 +1,10 @@
-# OpenVlasov6 1.2.3
+# OpenVlasov6 1.3
 3D-3V GetFEM-based Vlasov solver
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
+
+### Changes in 1.3
+Added nonlinear mesh transformations. Use the functions/nonlinear_mesh_transformations.py to make your own, and then add them to the params before execution. Plotting still untransformed, so use sparingly. Updates to update plotting coming soon, and plotting should still work with anything from 1.2.X.
 
 ### Changes in 1.2.3
 Fixed bug where parallelization always happened, even when unwanted. Use the config/MPI_config.py file to change whether or not it is applied in the code. The default is yes.
@@ -68,11 +71,11 @@ This file is a set of code snippets that can be run in the main.py file of OpenV
 ### functions
 This folder contains the main functions that are used to support the OpenVlasov6 solver.
 
-#### Vlasov_testing_code_6D.py
-This file is the workhorse of the code, and includes the functions that run tests and handle the solve itself for each fluid, multifluid interactions, and the iteration of electromagnetic coupling.
-
 #### EB_calc.py
 This file includes the framework for getting the electromagnetic fields from a plasma density distribution in six-dimensional position/momentum space, which is done  by summing contributions from all parts of the plasma fluid. While this is O(N^6) versus the number of cells on each side, so is the Vlasov simulation itself, and this typically takes only about 1% the time of the actual Vlasov simulation.
+
+#### nonlinear_mesh_transformations.py
+This file contains functions for applying transformations to the default rectangular mesh. You can add your own functions, which are called by params_generator and must be added to the input parameters for each run.
 
 #### params_generator.py
 This file builds the parameter structures needed for 6D Vlasov simulation solver. It also generates the value test functions, which are used to test results against analytical solutions.
@@ -81,6 +84,9 @@ This would also be the file where custom-built simulation parameters can be ente
 
 #### plotting_6D.py
 This file conducts the plotting needed for 6D Vlasov simulation, and has a whole bunch of modes of operation.
+
+#### Vlasov_testing_code_6D.py
+This file is the workhorse of the code, and includes the functions that run tests and handle the solve itself for each fluid, multifluid interactions, and the iteration of electromagnetic coupling.
 
 ### getfem
 This folder contains a compressed copy of GetFEM, to ensure that the repository stays functional.
