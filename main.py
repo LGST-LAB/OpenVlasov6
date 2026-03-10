@@ -7,6 +7,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.3, Eric A. Comstock, 10-Mar-2026
 v1.2.3, Eric A. Comstock, 9-Mar-2026
 v1.2.2, Eric A. Comstock, 23-Feb-2026
 v1.2.1, Eric A. Comstock, 10-Feb-2026
@@ -46,7 +47,7 @@ if MPI_toggle:
 #### Running code with specifics - Modify this part! ####
 
 # Sample code for your initial run of a plasma in an EM field - feel free to delete this
-grids2  = Vlasov_testing_code_6D.make_grids(4, 4, 10, 11) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(6, 6, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
 
 #### Shelving all data for potential later use ####
@@ -62,13 +63,13 @@ if MPI_toggle:
             except:
                 print('ERROR shelving: {0}'.format(key))
         my_shelf.close()
-    else:
-        filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
-        my_shelf = shelve.open(filename,'n')
-        
-        for key in dir():
-            try:
-                my_shelf[key] = globals()[key]
-            except:
-                print('ERROR shelving: {0}'.format(key))
-        my_shelf.close()
+else:
+    filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
+    my_shelf = shelve.open(filename,'n')
+    
+    for key in dir():
+        try:
+            my_shelf[key] = globals()[key]
+        except:
+            print('ERROR shelving: {0}'.format(key))
+    my_shelf.close()

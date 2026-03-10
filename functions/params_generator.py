@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 """
 This file builds the parameter structures needed for 6D Vlasov simulation solver,
-    for the journal article "OpenVlasov6: Collisionless Plasma Momentum Transfer" in Physics of 
-    Plasmas, by E. Comstock & A. Romero-Calvo.
+    for the journal article "OpenVlasov6: Collisionless Plasma Momentum Transfer,"
+    by E. Comstock & A. Romero-Calvo.
 It also generates the value test functions, which are used to test results against
     analytical solutions.
 
 @author: Eric A. Comstock
 
+v1.3, Eric A. Comstock, 10-Mar-2026
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
 v0.4.5, Eric A. Comstock, 26-Sep-2025
@@ -24,6 +25,7 @@ v0.0, Eric A. Comstock, 1-Aug-2024
 """
 
 import numpy as np
+from . import nonlinear_mesh_transformations as nmt
 
 density_baseline = 9e10 # Density of plasma in test cases, m^-3
 
@@ -102,6 +104,9 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     params['v_therm']   = v_therm # Thermal velocity of incoming plasma
     params['B_earth']   = B_earth # Magnetic field of Earth
     params['sp_m']      = sp_m    # Spacecraft magnetic moment
+    
+    # No change to the grids - maintain hyperrectangular
+    params['grid_edit_function']  = nmt.nothing
     return params
 
 def params_example1():
@@ -146,6 +151,9 @@ def params_example1():
     params['p_0']       = density_baseline / np.pi / params['v_therm'] ** 2 # Particle density at center of incoming velocity distribution
     params['v_x']       = 0 # x-velocity of incoming plasma
     params['v_y']       = 0 # y-velocity of incoming plasma
+    
+    # No change to the grids - maintain hyperrectangular
+    params['grid_edit_function']  = nmt.nothing
     return params
 
 def params_example2():
@@ -189,6 +197,9 @@ def params_example2():
     params['p_0']       = density_baseline / np.pi / params['v_therm'] ** 2 # Particle density at center of incoming velocity distribution
     params['v_x']       = 0 # x-velocity of incoming plasma
     params['v_y']       = 0 # y-velocity of incoming plasma
+    
+    # No change to the grids - maintain hyperrectangular
+    params['grid_edit_function']  = nmt.corners_concentrate
     return params
 
 def params_example3():
@@ -234,6 +245,9 @@ def params_example3():
     params['v_y']       = 0 # y-velocity of incoming plasma
     params['v_rad']     = 4 # Radius of the toroidal distribution in velocity-space
     params['B']         = 80e-6 # Applied magnetic field
+    
+    # No change to the grids - maintain hyperrectangular
+    params['grid_edit_function']  = nmt.nothing
     return params
 
 def params_example4():
@@ -290,6 +304,9 @@ def params_example4():
     params['v_therm2']  = np.sqrt(T_diff) * params['v_therm'] # Thermal velocity of outgoing plasma
     params['B']         = 80e-6 # Applied magnetic field (incoming, before the shock)
     params['Mach']      = Mach # Adding Mach number
+    
+    # No change to the grids - maintain hyperrectangular
+    params['grid_edit_function']  = nmt.nothing
     return params
 
 def value_test(result_arrays, params, soln_number):    
