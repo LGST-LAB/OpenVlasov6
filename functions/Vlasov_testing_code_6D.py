@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.3.1, Eric A. Comstock, 13-Mar-2026
 v1.3, Eric A. Comstock, 10-Mar-2026
 v1.2.3, Eric A. Comstock, 9-Mar-2026
 v1.2.2, Eric A. Comstock, 23-Feb-2026
@@ -440,20 +441,11 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
     
-    # Compute a scalar tau
-    tau_vals = []
-    
     # Loop over mesh elements
     # Compute tau per element
-    tau_vals = []
-    
-    for k in range(m.nbcvs()):   # <--- note the 'es' at the end
-        h_elem = m.convex_radius(k)    # radius of element k
-        
-        # Approximate advection magnitude
-        A_mag = 1.0  # placeholder, tune later
-        tau_vals.append(h_elem / (2 * A_mag))
-    
+    A_mag = 1.0
+    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
+    h_elem=max(m.convex_radius(m.cvid()))
     tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
     md.add_initialized_fem_data('tau', mf, tau_vals)
     
@@ -772,3 +764,4 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     logging.info('Total force (kg*m/s/yr): '+str( np.linalg.norm(force*31557600))) # Multiplied by # of seconds in a year
 
     return force, stability, result_arrays, params
+
