@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.3.2, Eric A. Comstock, 15-Mar-2026
 v1.3.1, Eric A. Comstock, 13-Mar-2026
 v1.3, Eric A. Comstock, 10-Mar-2026
 v1.2.3, Eric A. Comstock, 9-Mar-2026
@@ -56,12 +57,6 @@ import scipy.sparse.linalg        # See above - if these are not imported the co
 import logging                    # Used for logging and the logger for code
 import multiprocessing            # Used for multithreading when running multiple sims at once
 from config.MPI_config import *   # Used for controlling configuration parameters
-if MPI_toggle:
-    try:
-        from mpi4py import MPI
-    except:
-        raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
-
 
 #### Import other files ####
 
@@ -72,6 +67,11 @@ from . import EB_calc
 #### MPI4py ####
 
 if MPI_toggle:
+    try:
+        from mpi4py import MPI
+    except:
+        raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
+    
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()
     size = comm.Get_size()
@@ -312,6 +312,34 @@ def conv_data_em_feedback(Nx_list, Np_list, params, procs, fluids):
     
     # Plotting
     plotting_6D.plot_conv([[dof_list, l2_list]], ['Convergence'])
+    
+#### Function used to solve the matrix ####
+
+def matrix_solve(K, rhs):
+    # This function calculates the solution of K * solution = rhs. It uses a custom
+    #   procedure to solve it, using biconjugate gradient
+    #
+    # Inputs:
+    #   K           is the sparse matrix we are solving
+    #   rhs         is the right hand side of the linear problem.
+    #
+    # Outputs:
+    #   solution    Vector solution
+    
+    # Routine diagnostics
+    logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
+    logging.info('Stiffness matrix size: ' + str(K.shape))
+    
+    # Scipy matrix solving
+    K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
+    ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
+    M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
+    solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving using biconjugate gradient
+    logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
+    
+    solution        = np.array(solution) # Convert solution to numpy if it wasn't already
+    logging.info('Solution converted to numpy')
+    return solution
 
 #### Main calculation function ####
 
@@ -511,22 +539,9 @@ def eval3D3V(params, grids, mass, q, plot = True):
         
             # Assemble RHS
             rhs = np.sum(gathered_rhs, axis=0)
-        
-            logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
-            logging.info('Stiffness matrix size: ' + str(K.shape))
-        
-            # Diagonal shift
-            K_shifted = K + 1e-10 * scipy.sparse.identity(md.nbdof(), format='csc')
-        
-            ilu = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10)
-            M = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve)
-        
-            solution, exit_code = scipy.sparse.linalg.bicgstab(
-                K_shifted, rhs, M=M, atol=1e-8
-            )
-        
-            logging.info('SciPy solve, exit code ' + str(exit_code))
-            solution = np.array(solution)
+            
+            # Solve the problem using the function I created to do so
+            solution = matrix_solve(K, rhs)
         
         else:
             solution = None
@@ -542,17 +557,9 @@ def eval3D3V(params, grids, mass, q, plot = True):
         
         # Scipy matrix transformation and basic diagnostics
         K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
-        logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
-        logging.info('Stiffness matrix size: ' + str(K.shape))
         
-        # Scipy matrix solving
-        K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
-        ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
-        M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
-        solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving
-        logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
-        solution        = np.array(solution) # Extract solution
-        logging.info('Solution converted to numpy')
+        # Solve the problem using the function I created to do so
+        solution        = matrix_solve(K, rhs)
         
     # Inject back into GetFEM
     md.to_variables(solution)
