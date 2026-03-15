@@ -7,6 +7,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+v1.3.2, Eric A. Comstock, 15-Mar-2026
 v1.3.1, Eric A. Comstock, 13-Mar-2026
 v1.3, Eric A. Comstock, 10-Mar-2026
 v1.2.3, Eric A. Comstock, 9-Mar-2026
@@ -22,14 +23,6 @@ v0.0, Eric A. Comstock, 2-Oct-2025
 #### Import basic modules ####
 
 import numpy as np              # Used for vector algebra
-import shelve                   # Used to save data in case it is needed later
-import time                     # Used for getting time for logging and file names
-from config.MPI_config import * # Used for controlling configuration parameters
-if MPI_toggle:
-    try:
-        from mpi4py import MPI
-    except:
-        raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
 
 #### Import other files ####
 
@@ -37,41 +30,14 @@ from functions import plotting_6D
 from functions import params_generator
 from functions import EB_calc
 from functions import Vlasov_testing_code_6D
-
-#### MPI4py ####
-
-if MPI_toggle:
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-    size = comm.Get_size()
+from functions import utils
 
 #### Running code with specifics - Modify this part! ####
 
 # Sample code for your initial run of a plasma in an EM field - feel free to delete this
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(8, 8, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(4, 4, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
 
 #### Shelving all data for potential later use ####
 
-if MPI_toggle:
-    if rank == 0:
-        filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
-        my_shelf = shelve.open(filename,'n')
-        
-        for key in dir():
-            try:
-                my_shelf[key] = globals()[key]
-            except:
-                print('ERROR shelving: {0}'.format(key))
-        my_shelf.close()
-else:
-    filename = str(time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime())) + 'shelve.out'
-    my_shelf = shelve.open(filename,'n')
-    
-    for key in dir():
-        try:
-            my_shelf[key] = globals()[key]
-        except:
-            print('ERROR shelving: {0}'.format(key))
-
-    my_shelf.close()
+utils.save_everything()
