@@ -199,7 +199,7 @@ def params_example2():
     params['v_y']       = 0 # y-velocity of incoming plasma
     
     # No change to the grids - maintain hyperrectangular
-    params['grid_edit_function']  = nmt.corners_concentrate
+    params['grid_edit_function']  = nmt. inlet#corners_concentrate
     return params
 
 def params_example3():
