@@ -27,6 +27,21 @@ from . import EB_calc
 #cmap = colors.LinearSegmentedColormap.from_list("my_custom_cmap", colorlist, N=256)
 cmap = plt.cm.plasma
 
+def rescale_62(X, Y, pDX, pDY, meshfunc, custom_bounds):
+    all_dims = [0] * 6
+    all_dims[pDX] = X
+    all_dims[pDY] = Y
+    dims_remaining = [0,1,2,3,4,5]
+    dims_remaining.pop(max(pDX,pDY))
+    dims_remaining.pop(min(pDX,pDY))
+    for i in dims_remaining:
+        all_dims[i] = np.zeros(X.shape)
+    all_dims = np.array(all_dims)
+    all_dims = meshfunc(all_dims, custom_bounds)
+    newX = all_dims[pDX]
+    newY = all_dims[pDY]
+    return newX, newY
+
 def plot_conv(stuff, labels):
     # This function plots the results of a convergence for arbitrarily many functions,
     #   as well as the machine error as a separate, dashed line.
@@ -121,9 +136,9 @@ def plot2D(X, Y, data, ctext, lpd):
     # Ensure that the plots are tightly squeezed, to make sure they fit in the paper
     plt.locator_params(tight=True, nbins=6)
 
-def plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw):
+def plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw, meshfunc):
     # This function plots six 2D representations of a 6D space, three corresponding
-    #   to each triplet of dimensions.
+    #   to each triplet of dimensions. Grid is scaled with a center or near-center of each coordinate.
     #
     # Inputs:
     #   grid_x          is the position grid of the FEM calculation mesh
@@ -137,8 +152,9 @@ def plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density
     #       however this function was called
     
     # Create meshgrids for the plotting
-    X1, X2      = np.meshgrid(grid_x, grid_x)
-    P1, P2      = np.meshgrid(grid_p, grid_p)
+    X1_base, X2_base      = np.meshgrid(grid_x, grid_x)
+    P1_base, P2_base      = np.meshgrid(grid_p, grid_p)
+    custom_bounds = [grid_x, grid_x, grid_x, grid_p, grid_p, grid_p]
     
     plt.figure(figsize  = (3.7, 5.5))# Generate the figure
     plt.subplots_adjust(left = 0.0, right = 1, top = 0.9, bottom = 0.15,
@@ -150,36 +166,43 @@ def plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density
     labelpady   = -3
 
     # Plot x vs y in position-space
+    # Edit the functions
+    X1, X2 = rescale_62(X1_base, X2_base, 0, 1, meshfunc, custom_bounds)
     plt.subplot(321)
     plot2D(X1, X2, np.transpose(density_xy) / 1e12, 'f ($10^{12} m^{-3}$)', 0)
     plt.xlabel('$x_1$ (m)', labelpad            = labelpadx)
     plt.ylabel('$x_2$ (m)', labelpad            = labelpady)
     
     # Plot x vs z in position-space
+    X1, X2 = rescale_62(X1_base, X2_base, 0, 2, meshfunc, custom_bounds)
     plt.subplot(323)
     plot2D(X1, X2, np.transpose(density_xz) / 1e12, 'f ($10^{12} m^{-3}$)', 0)
     plt.xlabel('$x_1$ (m)', labelpad            = labelpadx)
     plt.ylabel('$x_3$ (m)', labelpad            = labelpady)
     
     # Plot y vs z in position-space
+    X1, X2 = rescale_62(X1_base, X2_base, 1, 2, meshfunc, custom_bounds)
     plt.subplot(325)
     plot2D(X1, X2, np.transpose(density_yz) / 1e12, 'f ($10^{12} m^{-3}$)', 0)
     plt.xlabel('$x_2$ (m)', labelpad            = labelpadx)
     plt.ylabel('$x_3$ (m)', labelpad            = labelpady)
     
     # Plot u vs v in momentum-space
+    P1, P2 = rescale_62(P1_base, P2_base, 3, 4, meshfunc, custom_bounds)
     plt.subplot(322)
     plot2D(P1 + v_x, P2 + v_y, np.transpose(density_uv) / 1e12, 'f ($10^{12} m^{-3}s^3$)', 0)
     plt.xlabel('$p_1/m_i$ (km/s)', labelpad     = labelpadx)
     plt.ylabel('  $p_2/m_i$ (km/s)', labelpad   = labelpady)
     
     # Plot u vs w in momentum-space
+    P1, P2 = rescale_62(P1_base, P2_base, 3, 5, meshfunc, custom_bounds)
     plt.subplot(324)
     plot2D(P1 + v_x, P2, np.transpose(density_uw) / 1e12, 'f ($10^{12} m^{-3}s^3$)', 0)
     plt.xlabel('$p_1/m_i$ (km/s)', labelpad     = labelpadx)
     plt.ylabel('  $p_3/m_i$ (km/s)', labelpad   = labelpady)
     
     # Plot v vs w in momentum-space
+    P1, P2 = rescale_62(P1_base, P2_base, 4, 5, meshfunc, custom_bounds)
     plt.subplot(326)
     plot2D(P1 + v_y, P2, np.transpose(density_vw) / 1e12, 'f ($10^{12} m^{-3}s^3$)', 0)
     plt.xlabel('$p_2/m_i$ (km/s)', labelpad     = labelpadx)
@@ -188,7 +211,7 @@ def plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density
     # Save figure as a .pdf file, in such a way that it does not overwrite any others
     plt.savefig('Density_graphs' + time.strftime("%Y,%m,%d %H,%M,%S", time.gmtime()) + '.pdf', format='pdf', bbox_inches='tight')
 
-def plot_avg_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y):
+def plot_avg_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y, meshfunc):
     # This function plots the results of a 6D FEM method applied to the Vlasov equation.
     #   It generates plots made of the total density within each segment os a 2D
     #   plane, crushing the distribution together instead of slicing it.
@@ -254,9 +277,9 @@ def plot_avg_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v
                                density[i])
     
     # Call function to actually plot everything
-    plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw)
+    plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw, meshfunc)
 
-def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y):
+def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y, meshfunc):
     # This function plots the results of a 6D FEM method applied to the Vlasov equation.
     #   It generates plots made of the total density within each segment os a 2D
     #   plane, slicing the distribution in position space and crushing it in momentum space
@@ -272,6 +295,7 @@ def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv,
     #                       x, y, z, u, v, w position
     #   v_x             is the velocity of the plasma horizontally in km/s
     #   v_y             is the velocity of the plasma vertically in km/s
+    #   meshfunc        is the function applied to distort the mesh
     #
     # Outputs:
     #   Plots of the xy, xz, yz, uv, uw, and vw distributions of densities, sliced
@@ -321,4 +345,4 @@ def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv,
                                              density[i])
     
     # Call function to actually plot everything
-    plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw)
+    plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw, meshfunc)

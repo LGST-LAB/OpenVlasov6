@@ -6,6 +6,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+v1.3.3, Eric A. Comstock, 17-Mar-2026
 v1.3.2, Eric A. Comstock, 15-Mar-2026
 v1.3.1, Eric A. Comstock, 13-Mar-2026
 v1.3, Eric A. Comstock, 10-Mar-2026
@@ -609,7 +610,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #### Plotting ####
     
     if plot:
-        plotting_6D.plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'])
+        plotting_6D.plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'], params['grid_edit_function'])
     
     #### Finishing ####
     
