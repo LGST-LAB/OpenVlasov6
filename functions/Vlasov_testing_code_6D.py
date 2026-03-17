@@ -609,7 +609,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #### Plotting ####
     
     if plot:
-        plotting_6D.plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'])
+        plotting_6D.plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'], params['grid_edit_function'])
     
     #### Finishing ####
     

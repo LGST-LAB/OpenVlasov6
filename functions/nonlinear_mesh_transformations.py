@@ -35,10 +35,9 @@ def corners_concentrate(in_pts):
     #   out_pts is the return set of mesh points
     
     # Creates the out array in the same shape as the in array
-    out_pts = in_pts.copy()
-    radius  = np.sqrt(in_pts[0]**2 + in_pts[1]**2 + in_pts[2]**2)
-    max_r = np.max(radius)
-    rel_r = radius / max_r
-    out_pts[3:5] = in_pts[3:5] * (1 + 1 * rel_r ** 2 / 4)  
-    #print(out_pts.shape)
+    out_pts = in_pts.copy() * 1.0                                   # Make sure to convert to float
+    radius  = np.sqrt(in_pts[0]**2 + in_pts[1]**2 + in_pts[2]**2)   # Find position radius to determine how far to extend each point
+    max_r = np.max(radius)                                          # Maximum position radius
+    rel_r = radius / max_r                                          # Relative radius, so that the function's effects do not change based on grid size
+    out_pts[3:] = in_pts[3:] * (1 + 1 * rel_r ** 2 / 4)             # Modified points to extend in velocity space at higher radii
     return out_pts

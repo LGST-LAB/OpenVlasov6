@@ -256,7 +256,7 @@ def plot_avg_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v
     # Call function to actually plot everything
     plot6D(grid_x, grid_p, v_x, v_y, density_xy, density_xz, density_yz, density_uv, density_uw, density_vw)
 
-def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y):
+def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, v_x, v_y, meshfunc):
     # This function plots the results of a 6D FEM method applied to the Vlasov equation.
     #   It generates plots made of the total density within each segment os a 2D
     #   plane, slicing the distribution in position space and crushing it in momentum space
@@ -272,6 +272,7 @@ def plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv,
     #                       x, y, z, u, v, w position
     #   v_x             is the velocity of the plasma horizontally in km/s
     #   v_y             is the velocity of the plasma vertically in km/s
+    #   meshfunc        is the function applied to distort the mesh
     #
     # Outputs:
     #   Plots of the xy, xz, yz, uv, uw, and vw distributions of densities, sliced
