@@ -1,10 +1,13 @@
-# OpenVlasov6 1.3.3
+# OpenVlasov6 1.3.4
 3D-3V GetFEM-based Vlasov solver
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
 
+### Changes in 1.3.4
+Improved example problems and comments across the program, shifted version number histories to Semantic Versioning
+
 ### Changes in 1.3.3
-Improved plotting system to take into account nonuniform grids and changed around internal parameters inside the plotting to support that.
+Improved plotting system to take into account nonuniform grids.
 
 ### Changes in 1.3.2
 Cleaned up and refactored code, which shouldn't change the I/O.
@@ -12,28 +15,32 @@ Cleaned up and refactored code, which shouldn't change the I/O.
 ### Changes in 1.3.1
 Removed a for loop in Vlasov_testing_code_6D.py to improve performance.
 
-### Changes in 1.3
+### Changes in 1.3.0
 Added nonlinear mesh transformations. Use the functions/nonlinear_mesh_transformations.py to make your own, and then add them to the params before execution. Plotting still untransformed, so use sparingly. Updates to update plotting coming soon, and plotting should still work with anything from 1.2.X.
 
 ### Changes in 1.2.3
 Fixed bug where parallelization always happened, even when unwanted. Use the config/MPI_config.py file to change whether or not it is applied in the code. The default is yes.
 
 ### Changes in 1.2.2
-Added parallelization of assembly procedures. Make sure to run with the arguments ---mpirun -n 4 python3--- to take advantage of this.
+Added parallelization of assembly procedures. Make sure to run with the arguments 
+```
+mpirun -n 4 python3
+```
+or your equivalent mpi system, to take advantage of this.
 
 ### Changes in 1.2.1
 Bugfixes and more comments added.
 
-### Changes in 1.2
+### Changes in 1.2.0
 Added SUPG hyperbolic stabilization for FEM method.
 
-### Changes in 1.1
+### Changes in 1.1.0
 Buxfixes, added nonuniform grid generation and plotting and E&B field calculation to support it.
 
 ### Changes in 1.0.1
 Minor edits and clarifications for comments.
 
-### Changes in 1.0
+### Changes in 1.0.0
 First public release.
 
 ## Installation Instructions
@@ -111,7 +118,7 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 ## Citation
-Academic works using OpenVlasov6 should cite the paper "OpenVlasov6: A 3D-3V Fully Kinetic Multifluid Vlasov Solver," by Eric A. Comstock and Álvaro Romero-Calvo. Additionally, since GetFEM is a requirement, "GetFEM: Automated FE Modeling of Multiphysics Problems Based on a Generic Weak Form Language" by Yves Renard and Konstantinos Poulios should also be cited.
+Academic works using OpenVlasov6 should cite the paper "OpenVlasov6: A 3D-3V Fully Kinetic Multifluid Vlasov Solver," by Eric A. Comstock, Konstantinos Poulios and Álvaro Romero-Calvo. Additionally, since GetFEM is a requirement, "GetFEM: Automated FE Modeling of Multiphysics Problems Based on a Generic Weak Form Language" by Yves Renard and Konstantinos Poulios should also be cited.
 
 ## Questions and inquiries
 Please submit any questions or inquiries to [eric.comstock@gatech.edu](eric.comstock@gatech.edu) or [alvaro.romerocalvo@gatech.edu](alvaro.romerocalvo@gatech.edu).
