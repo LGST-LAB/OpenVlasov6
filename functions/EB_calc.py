@@ -4,18 +4,26 @@ This file included the framework for getting the electromagnetic fields from a p
     density distribution in six-dimensional position/momentum space, which is done
     by summing contributions from all parts of the plasma fluid. While this is O(N^6)
     versus the number of cells on each side, so is the Vlasov simulation itself,
-    and this typically takes only about 1% the time of the actual Vlasov simulation.
+    and this typically takes only about 1% the time of the actual Vlasov simulation. This is
+    for the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
+    Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock 
+    & K. Poulios & A. Romero-Calvo.
 
 @author: Eric A. Comstock
 
-v1.1, Eric A. Comstock, 20-Nov-2025
-v1.0.1, Eric A. Comstock, 14-Oct-2025
-v1.0, Eric A. Comstock, 3-Oct-2025
-v0.1, Eric A. Comstock, 26-Sep-2025
-v0.0, Eric A. Comstock, 6-Aug-2025
+1.3.4, Eric A. Comstock, 19-Mar-2026
+1.1, Eric A. Comstock, 20-Nov-2025
+1.0.1, Eric A. Comstock, 14-Oct-2025
+1.0, Eric A. Comstock, 3-Oct-2025
+0.1, Eric A. Comstock, 26-Sep-2025
+0.0, Eric A. Comstock, 6-Aug-2025
 """
 
-import numpy as np
+#### Import basic modules ####
+
+import numpy as np  # Used for vector algebra and for getFEM
+
+#### Define constants ####
 
 # Electric vacuum permittivity and magnetic vacuum permeability
 # Because of my unit normalizations:
@@ -28,8 +36,10 @@ import numpy as np
 # We also get mu0 = 1.25663706e-6 H/m or kg m / (s^2 A^2) or kg m / C^2
 #   so m_NO m / e^2 = 1.94066049e12 H/m, thus, mu0 = 6.47531e-19 m_NO m / e^2
 
-eps0 = 17182972
-mu0 = 6.47531e-19
+eps0 = 17182972     # Vacuum permittivity (ms^2 e^2 / (m^3 m_NO))
+mu0  = 6.47531e-19  # Vacuum permeability (m_NO m / e^2)
+
+#### Define functions ####
 
 def find_element_size(gridlist, N, i):
     # This function calculates the element size from a grid, its size, and for an element
@@ -41,13 +51,14 @@ def find_element_size(gridlist, N, i):
     #
     # Outputs:
     #   esize           is the size of the element being analyzed in 1 dimension
-    esize = 0
-    if i == 0:
-        esize = gridlist[1] - gridlist[0]
-    elif i >= N - 1:
-        esize = gridlist[-1] - gridlist[-2]
-    else:
-        esize = (gridlist[i + 1] - gridlist[i - 1]) / 2
+    
+    esize       = 0         # Default element size
+    if i        == 0:       # If we are at the beginning, use the beginning two elements
+        esize   = gridlist[1] - gridlist[0]
+    elif i      >= N - 1:   # If we are at the end, use the ending two elements
+        esize   = gridlist[-1] - gridlist[-2]
+    else:                   # If we are in the middle, use the average of elements on either side
+        esize   = (gridlist[i + 1] - gridlist[i - 1]) / 2
     return esize
 
 def EB_compute(result_arrays, q, grids, FEM_data = True, return_potential = False):
@@ -204,6 +215,8 @@ def EB_compute(result_arrays, q, grids, FEM_data = True, return_potential = Fals
     else:
         uniqs = (x_uniq, y_uniq, z_uniq)
         if return_potential:
+            # Return electric potential array for post-processing and recording purposes
             return V_xyz, uniqs
         else:
+            # Return 3D arrays for post-processing and recording purposes
             return E1_xyz, E2_xyz, E3_xyz, B1_xyz, B2_xyz, B3_xyz, uniqs
