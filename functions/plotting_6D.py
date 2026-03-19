@@ -1,18 +1,24 @@
 # -*- coding: utf-8 -*-
 """
 This file conducts the plotting needed for 6D Vlasov simulation, and has a whole
-    bunch of modes of operation.
+    bunch of modes of operation. This is
+    for the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
+    Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock 
+    & K. Poulios & A. Romero-Calvo.
 
 @author: Eric A. Comstock
 
-v1.1, Eric A. Comstock, 20-Nov-2025
-v1.0.1, Eric A. Comstock, 14-Oct-2025
-v1.0, Eric A. Comstock, 3-Oct-2025
-v0.4, Eric A. Comstock, 26-Sep-2025
-v0.3, Eric A. Comstock, 2-Sep-2025
-v0.2, Eric A. Comstock, 26-Aug-2025
-v0.1, Eric A. Comstock, 5-Aug-2025
-v0.0, Eric A. Comstock, 1-Aug-2024
+1.3.4, Eric A. Comstock, 19-Mar-2026
+1.3.3, Eric A. Comstock, 17-Mar-2026
+1.3.2, Eric A. Comstock, 15-Mar-2026
+1.1.0, Eric A. Comstock, 20-Nov-2025
+1.0.1, Eric A. Comstock, 14-Oct-2025
+1.0.0, Eric A. Comstock, 3-Oct-2025
+1.0.0-alpha.4, Eric A. Comstock, 26-Sep-2025
+1.0.0-alpha.3, Eric A. Comstock, 2-Sep-2025
+1.0.0-alpha.2, Eric A. Comstock, 26-Aug-2025
+1.0.0-alpha.1, Eric A. Comstock, 5-Aug-2025
+1.0.0-alpha, Eric A. Comstock, 1-Aug-2024
 """
 
 #### Import basic modules ####
@@ -23,23 +29,46 @@ import matplotlib.colors as colors
 import time
 from . import EB_calc
 
-#colorlist = ["#000020","0000C0", "FF00FF", "FF"]
-#cmap = colors.LinearSegmentedColormap.from_list("my_custom_cmap", colorlist, N=256)
-cmap = plt.cm.plasma
+#### Define constants ####
+
+cmap = plt.cm.plasma # Default color map
+
+#### Define functions ####
 
 def rescale_62(X, Y, pDX, pDY, meshfunc, custom_bounds):
-    all_dims = [0] * 6
-    all_dims[pDX] = X
-    all_dims[pDY] = Y
-    dims_remaining = [0,1,2,3,4,5]
+    # This function rescales the axes of the plot calling it to match the nonlinear
+    #   mesh functionality of OpenVlasov6.
+    #
+    # Inputs:
+    #   stuff   is a list of datasets. Each dataset in this list i should contain
+    #       two arrays or lists:
+    #           i[0], which is the degrees of freedom from FEA (expressed on the x-axis) 
+    #           i[1], which is relative RMS error (expressed on the y-axis)
+    #   labels  is a list of strings used in the legend (one label per dataset)
+    #
+    # Outputs:
+    #   newX    is the now-scaled array that is going to go onto the horizontal axis of the plot
+    #   newY    is the now-scaled array that is going to go onto the vertical axis of the plot
+    
+    all_dims        = [0] * 6               # This is the list we will feed to the mesh function - it must be 6D.
+    all_dims[pDX]   = X                     # Add X on its dimension
+    all_dims[pDY]   = Y                     # Add Y on its dimension
+    
+    # Create a list of the dimension IDs that are not X or Y using poping from a list.
+    dims_remaining  = [0,1,2,3,4,5]
     dims_remaining.pop(max(pDX,pDY))
     dims_remaining.pop(min(pDX,pDY))
+    
     for i in dims_remaining:
-        all_dims[i] = np.zeros(X.shape)
-    all_dims = np.array(all_dims)
-    all_dims = meshfunc(all_dims, custom_bounds)
-    newX = all_dims[pDX]
-    newY = all_dims[pDY]
+        all_dims[i] = np.zeros(X.shape)     # Other than the main two, the other
+                                            #   dimensions are all averaged to zero by default.
+                                            
+    all_dims        = np.array(all_dims)    # Convert to 3D array
+    all_dims        = meshfunc(all_dims, custom_bounds) # Use the mesh function we were given
+    
+    # Create the new horizonal and vertical dimension meshes.
+    newX            = all_dims[pDX]
+    newY            = all_dims[pDY]
     return newX, newY
 
 def plot_conv(stuff, labels):

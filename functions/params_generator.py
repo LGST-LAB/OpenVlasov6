@@ -1,33 +1,43 @@
 # -*- coding: utf-8 -*-
 """
 This file builds the parameter structures needed for 6D Vlasov simulation solver,
-    for the journal article "OpenVlasov6: Collisionless Plasma Momentum Transfer,"
-    by E. Comstock & A. Romero-Calvo.
-It also generates the value test functions, which are used to test results against
-    analytical solutions.
+    for the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
+    Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock 
+    & K. Poulios & A. Romero-Calvo. It also generates the value test functions, 
+    which are used to test results against analytical solutions.
 
 @author: Eric A. Comstock
 
+1.3.4, Eric A. Comstock, 19-Mar-2026
 v1.3, Eric A. Comstock, 10-Mar-2026
 v1.0.1, Eric A. Comstock, 14-Oct-2025
 v1.0, Eric A. Comstock, 3-Oct-2025
-v0.4.5, Eric A. Comstock, 26-Sep-2025
-v0.4.4, Eric A. Comstock, 22-Sep-2025
-v0.4.3.1, Eric A. Comstock, 18-Sep-2025
-v0.4.3, Eric A. Comstock, 17-Sep-2025
-v0.4.2, Eric A. Comstock, 16-Sep-2025
-v0.4.1, Eric A. Comstock, 15-Sep-2025
-v0.4, Eric A. Comstock, 2-Sep-2025
-v0.3, Eric A. Comstock, 26-Aug-2025
-v0.2, Eric A. Comstock, 5-Aug-2025
-v0.1, Eric A. Comstock, 3-Aug-2024
-v0.0, Eric A. Comstock, 1-Aug-2024
+1.0.0-alpha.4.5, Eric A. Comstock, 26-Sep-2025
+1.0.0-alpha.4.4, Eric A. Comstock, 22-Sep-2025
+1.0.0-alpha.4.3.1, Eric A. Comstock, 18-Sep-2025
+1.0.0-alpha.4.3, Eric A. Comstock, 17-Sep-2025
+1.0.0-alpha.4.2, Eric A. Comstock, 16-Sep-2025
+1.0.0-alpha.4.1, Eric A. Comstock, 15-Sep-2025
+1.0.0-alpha.4, Eric A. Comstock, 2-Sep-2025
+1.0.0-alpha.3, Eric A. Comstock, 26-Aug-2025
+1.0.0-alpha.2, Eric A. Comstock, 5-Aug-2025
+1.0.0-alpha.1, Eric A. Comstock, 3-Aug-2024
+1.0.0-alpha, Eric A. Comstock, 1-Aug-2024
 """
 
-import numpy as np
-from . import nonlinear_mesh_transformations as nmt
+#### Import basic modules ####
+
+import numpy as np              # Used for vector algebra
+
+#### Import other files ####
+
+from . import nonlinear_mesh_transformations as nmt    # Used to get its nonlinear mesh functions
+
+#### Define constants ####
 
 density_baseline = 9e10 # Density of plasma in test cases, m^-3
+
+#### Define functions ####
 
 def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density, v_therm, grids):
     # This function calculates the parameters needed for the full 6D Vlasov simulation
@@ -174,11 +184,11 @@ def params_example2():
     params['v_therm']   = 2.9 # Thermal velocity of incoming plasma
     
     # getFEM assembly language for the Dirichlet condition of this example
-    dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2+x**2/200*4+y**2/2312*4+z**2/1058*4)'''
+    dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2+x**2/200*4+y**2/578*4+z**2/1058*4)'''
     
     # Initialize electric and magnetic fields for input into getFEM
     params['E1']        = '841*x/10000'
-    params['E2']        = '841*y/115600'
+    params['E2']        = '841*y/28900'
     params['E3']        = '841*z/52900'
     params['B1']        = '0'
     params['B2']        = '0'
@@ -199,7 +209,7 @@ def params_example2():
     params['v_y']       = 0 # y-velocity of incoming plasma
     
     # No change to the grids - maintain hyperrectangular
-    params['grid_edit_function']  = nmt. inlet#corners_concentrate
+    params['grid_edit_function']  = nmt.corners_concentrate
     return params
 
 def params_example3():
@@ -310,7 +320,9 @@ def params_example4():
     return params
 
 def value_test(result_arrays, params, soln_number):    
-    # Description
+    # This function finds the RMS error and max error between the solution generated
+    #   by the code and some analytical solutions for the test problems in the paper.
+    #   It is useful mainly for verifying results
     #
     # Inputs: None
     #
@@ -319,6 +331,7 @@ def value_test(result_arrays, params, soln_number):
     #                   of the density function
     #   l2_error    is the RMS error of the simulation, normalized to the scale
     #                   of the density function
+    
     f, x, y, z, u, v, w = result_arrays # Decompose the result_arrays structure to its base components
     
     # Define the exact solution from the formula used in each test case. Then define the error as the difference between the simulated and exact densities
@@ -327,7 +340,7 @@ def value_test(result_arrays, params, soln_number):
         exact_soln      = params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)
     elif soln_number    == 2:
         # Exact solution for a thermal plasma in electric fields
-        exact_soln      = params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2+x**2/200*4+y**2/2312*4+z**2/1058*4)
+        exact_soln      = params['p_0'] * np.exp(-0.5*((u)/params['v_therm'])**2-0.5*((v)/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2+x**2/200*4+y**2/578*4+z**2/1058*4)
     elif soln_number    == 3:
         # Exact solution for a nonthermal plasma in electromagnetic fields
         exact_soln      = params['p_0'] * np.exp( -0.5*(np.sqrt(((u - params['v_x'])/params['v_therm'])**2+((v - params['v_y'])/params['v_therm'])**2) - params['v_rad'] / params['v_therm'])**2 -0.5* ((w)/params['v_therm'])**2)
@@ -340,6 +353,7 @@ def value_test(result_arrays, params, soln_number):
                         * (0.5 * x / np.abs(x+1e-6) + 0.5) + (-0.5 * x / np.abs(x+1e-6) + 0.5) * 
                                rho_diff / (T_diff ** 1.5) * params['p_0'] * np.exp(-0.5*((u - params['v_x2'])/params['v_therm2'])**2-0.5*((v)/params['v_therm2'])**2-0.5*((w)/params['v_therm2'])**2))
     
+    # Find the difference between the exact and numerical solutions foreach point
     df                  = f - exact_soln
     
     # Calculating errors based on simulated density vs analytical density

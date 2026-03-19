@@ -2,48 +2,50 @@
 """
 This file conducts the tests needed for 6D Vlasov simulation validation, allowing
     for the generation of the results of the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
-    Multifluid Vlasov Solver," by E. Comstock & A. Romero-Calvo.
+    Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock 
+    & K. Poulios & A. Romero-Calvo.
 
 @author: Eric A. Comstock
 
-v1.3.3, Eric A. Comstock, 17-Mar-2026
-v1.3.2, Eric A. Comstock, 15-Mar-2026
-v1.3.1, Eric A. Comstock, 13-Mar-2026
-v1.3, Eric A. Comstock, 10-Mar-2026
-v1.2.3, Eric A. Comstock, 9-Mar-2026
-v1.2.2, Eric A. Comstock, 23-Feb-2026
-v1.2.1, Eric A. Comstock, 10-Feb-2026
-v1.2, Eric A. Comstock, 3-Feb-2026
-v1.1, Eric A. Comstock, 20-Nov-2025
-v1.0.1, Eric A. Comstock, 14-Oct-2025
-v1.0, Eric A. Comstock, 3-Oct-2025
-v0.4.5, Eric A. Comstock, 26-Sep-2025
-v0.4.4, Eric A. Comstock, 22-Sep-2025
-v0.4.3.1, Eric A. Comstock, 18-Sep-2025
-v0.4.3, Eric A. Comstock, 17-Sep-2025
-v0.4.2, Eric A. Comstock, 16-Sep-2025
-v0.4.1, Eric A. Comstock, 15-Sep-2025
-v0.4, Eric A. Comstock, 2-Sep-2025
-v0.3, Eric A. Comstock, 26-Aug-2025
-v0.2.7, Eric A. Comstock, 5-Aug-2025
-v0.2.6.1, Eric A. Comstock, 29-Jul-2025
-v0.2.6, Eric A. Comstock, 28-Jul-2025
-v0.2.5.3, Eric A. Comstock, 25-Jul-2025
-v0.2.5.2, Eric A. Comstock, 23-Jul-2025
-v0.2.5.1, Eric A. Comstock, 16-Jul-2025
-v0.2.5, Eric A. Comstock, 30-Jun-2025
-v0.2.4, Eric A. Comstock, 16-Jun-2025
-v0.2.3.1, Eric A. Comstock, 27-May-2025
-v0.2.3, Eric A. Comstock, 02-May-2025
-v0.2.2, Eric A. Comstock, 28-Apr-2025
-v0.2.1, Eric A. Comstock, 24-Apr-2025
-v0.2, Eric A. Comstock, 28-Feb-2025
-v0.1.4, Eric A. Comstock, 11-Feb-2025
-v0.1.3, Eric A. Comstock, 13-Dec-2024
-v0.1.2, Eric A. Comstock, 08-Dec-2024
-v0.1.1, Eric A. Comstock, 19-Nov-2024
-v0.1, Eric A. Comstock, 14-Nov-2024
-v0.0, Eric A. Comstock, 28-Oct-2024
+1.3.4, Eric A. Comstock, 19-Mar-2026
+1.3.3, Eric A. Comstock, 17-Mar-2026
+1.3.2, Eric A. Comstock, 15-Mar-2026
+1.3.1, Eric A. Comstock, 13-Mar-2026
+1.3.0, Eric A. Comstock, 10-Mar-2026
+1.2.3, Eric A. Comstock, 9-Mar-2026
+1.2.2, Eric A. Comstock, 23-Feb-2026
+1.2.1, Eric A. Comstock, 10-Feb-2026
+1.2.0, Eric A. Comstock, 3-Feb-2026
+1.1.0, Eric A. Comstock, 20-Nov-2025
+1.0.1, Eric A. Comstock, 14-Oct-2025
+1.0.0, Eric A. Comstock, 3-Oct-2025
+1.0.0-alpha.4.5, Eric A. Comstock, 26-Sep-2025
+1.0.0-alpha.4.4, Eric A. Comstock, 22-Sep-2025
+1.0.0-alpha.4.3.1, Eric A. Comstock, 18-Sep-2025
+1.0.0-alpha.4.3, Eric A. Comstock, 17-Sep-2025
+1.0.0-alpha.4.2, Eric A. Comstock, 16-Sep-2025
+1.0.0-alpha.4.1, Eric A. Comstock, 15-Sep-2025
+1.0.0-alpha.4, Eric A. Comstock, 2-Sep-2025
+1.0.0-alpha.3, Eric A. Comstock, 26-Aug-2025
+1.0.0-alpha.2.7, Eric A. Comstock, 5-Aug-2025
+1.0.0-alpha.2.6.1, Eric A. Comstock, 29-Jul-2025
+1.0.0-alpha.2.6, Eric A. Comstock, 28-Jul-2025
+1.0.0-alpha.2.5.3, Eric A. Comstock, 25-Jul-2025
+1.0.0-alpha.2.5.2, Eric A. Comstock, 23-Jul-2025
+1.0.0-alpha.2.5.1, Eric A. Comstock, 16-Jul-2025
+1.0.0-alpha.2.5, Eric A. Comstock, 30-Jun-2025
+1.0.0-alpha.2.4, Eric A. Comstock, 16-Jun-2025
+1.0.0-alpha.2.3.1, Eric A. Comstock, 27-May-2025
+1.0.0-alpha.2.3, Eric A. Comstock, 02-May-2025
+1.0.0-alpha.2.2, Eric A. Comstock, 28-Apr-2025
+1.0.0-alpha.2.1, Eric A. Comstock, 24-Apr-2025
+1.0.0-alpha.2, Eric A. Comstock, 28-Feb-2025
+1.0.0-alpha.1.4, Eric A. Comstock, 11-Feb-2025
+1.0.0-alpha.1.3, Eric A. Comstock, 13-Dec-2024
+1.0.0-alpha.1.2, Eric A. Comstock, 08-Dec-2024
+1.0.0-alpha.1.1, Eric A. Comstock, 19-Nov-2024
+1.0.0-alpha.1, Eric A. Comstock, 14-Nov-2024
+1.0.0-alpha, Eric A. Comstock, 28-Oct-2024
 """
 
 #### Import basic modules ####
@@ -67,15 +69,18 @@ from . import EB_calc
 
 #### MPI4py ####
 
+# This function is used to detect if the program is MPI or not, import mpi4py if
+#   it is, and error if it is not.
 if MPI_toggle:
     try:
         from mpi4py import MPI
     except:
         raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
     
-    comm = MPI.COMM_WORLD
-    rank = comm.Get_rank()
-    size = comm.Get_size()
+    # Only initialize MPI variables if MPI is enabled in config
+    comm = MPI.COMM_WORLD   # Initializing communciation system for MPI
+    rank = comm.Get_rank()  # Detect rank of current processor
+    size = comm.Get_size()  # Detect total number of ranks
 
 #### Add global variables and logging ####
 
@@ -97,6 +102,14 @@ logging.basicConfig(
 # Logging time at a specific event
 
 def give_time(caption):
+    # Wrapper to make getting a timestamped log more convienient
+    #
+    # Inputs:
+    #   caption is the caption before the time
+    #
+    # Outputs:
+    #   A timestamped log with a caption being added to the log file
+    
     logging.info(caption + time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime()))
 
 # Generate mesh positions
