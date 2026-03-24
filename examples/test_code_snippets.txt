@@ -3,12 +3,20 @@
 This file is a set of code snippets that can be run in the main.py file of OpenVlasov6.
 
 @author: Eric A. Comstock
+
+1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
+1.3.4, Eric A. Comstock, 19-Mar-2026
+1.3.3, Eric A. Comstock, 17-Mar-2026
+1.3.2, Eric A. Comstock, 15-Mar-2026
+1.1.0, Eric A. Comstock, 20-Nov-2025
+1.0.1, Eric A. Comstock, 14-Oct-2025
+1.0.0, Eric A. Comstock, 3-Oct-2025
 """
 
 #### Paper results - test cases 1-3 ####
 
 grids13 = Vlasov_testing_code_6D.make_grids(3, 20, 10, 11) # Shows momentum transfer better in uniform plasmas
-grids2  = Vlasov_testing_code_6D.make_grids(8, 10, 10, 11) # Balanced representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(8, 10, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
 
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example1(), grids13, 1, 1) # Test case 1
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
