@@ -7,6 +7,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
 1.3.2, Eric A. Comstock, 15-Mar-2026
@@ -478,7 +479,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
      
     # Define the 6D Vlasov equation
     #   6 dimensions are: x1, x2, x3, p1, p2, p3, in order. x is position, and p is momentum.
-    vlasov          = '([X(4); X(5); X(6); 0; 0; 0]*f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ')*f).Grad_Test_f'
+    vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
     
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)

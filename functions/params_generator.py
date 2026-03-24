@@ -8,10 +8,11 @@ This file builds the parameter structures needed for 6D Vlasov simulation solver
 
 @author: Eric A. Comstock
 
+1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
-v1.3, Eric A. Comstock, 10-Mar-2026
-v1.0.1, Eric A. Comstock, 14-Oct-2025
-v1.0, Eric A. Comstock, 3-Oct-2025
+1.3.0, Eric A. Comstock, 10-Mar-2026
+1.0.1, Eric A. Comstock, 14-Oct-2025
+1.0.0, Eric A. Comstock, 3-Oct-2025
 1.0.0-alpha.4.5, Eric A. Comstock, 26-Sep-2025
 1.0.0-alpha.4.4, Eric A. Comstock, 22-Sep-2025
 1.0.0-alpha.4.3.1, Eric A. Comstock, 18-Sep-2025
@@ -317,6 +318,61 @@ def params_example4():
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.nothing
+    return params
+
+def params_example5():
+    # Inlet example (add more comments later)
+    #
+    # Inputs: None
+    #
+    # Outputs:
+    #   params          is a structure containing all the data needed to run a
+    #                       6D Vlasov simulation
+    
+    # Convert magnetic fields from SI to mmm units
+    B_earth             = 80e-6 * 3216.178
+    
+    # Highest density of plasma input (avg velocity)
+    p_0                 = density_baseline / np.pi / 2.9 ** 2
+    
+    # Initialize params structure for input to Vlasov solver
+    params              = {}
+    
+    # getFEM assembly language for the Dirichlet condition of Earth's ionosphere
+    dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u - params['v_x'])/params['v_therm'])**2-0.5*((v - params['v_y'])/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
+    zeros = '''0'''
+    
+    # Initialize electric and magnetic fields for input into getFEM
+    params['E1']        = '''-params['B_earth'] * params['v_y']'''
+    params['E2']        = '''params['B_earth'] * params['v_x']'''
+    params['E3']        = '0'
+    params['B1']        = '0'
+    params['B2']        = '0'
+    params['B3']        = '''params['B_earth']'''
+    
+    # Initialize boundary conditions for input into getFEM
+    params['BCs']       = [[40, 'Dirichlet', dirichlet_conds],
+                           [42, 'Dirichlet', zeros],
+                           [43, 'Dirichlet', zeros],
+                           [44, 'Dirichlet', zeros],
+                           [45, 'Dirichlet', zeros],
+                           [46, 'Dirichlet', dirichlet_conds],
+                           [47, 'Dirichlet', dirichlet_conds],
+                           [48, 'Dirichlet', dirichlet_conds],
+                           [49, 'Dirichlet', dirichlet_conds],
+                           [50, 'Dirichlet', dirichlet_conds],
+                           [51, 'Dirichlet', dirichlet_conds]]
+    
+    params['E&B fields included'] = False # This is an initial problem, not a problem with plasma fields as well. Let the simulation iterate
+    
+    params['p_0']       = p_0     # Particle density at center of incoming velocity dist.
+    params['v_x']       = 7.8     # x-velocity of incoming plasma
+    params['v_y']       = 0     # y-velocity of incoming plasma
+    params['v_therm']   = 2.9 # Thermal velocity of incoming plasma
+    params['B_earth']   = B_earth # Magnetic field of Earth
+    
+    # Change grids to inlet geometry
+    params['grid_edit_function']  = nmt.inlet
     return params
 
 def value_test(result_arrays, params, soln_number):    
