@@ -380,7 +380,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #IM = "IM_NC(6,1)"
     MESH = "cartesian Q1"
     FEM = "FEM_QK(6,1)"
-    IM = "IM_GAUSS_PARALLELEPIPED(6,1)"
+    IM = "IM_GAUSS_PARALLELEPIPED(6,3)"
 
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
