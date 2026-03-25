@@ -376,39 +376,34 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momentum coordinates
     #MESH = "regular simplices"
-    #FEM = "FEM_PK"
-    #IM = "IM_NC"
+    #FEM = "FEM_PK(6,1)"
+    #IM = "IM_NC(6,1)"
     MESH = "cartesian Q1"
-    FEM = "FEM_QK"
-    IM = "IM_NC_PARALLELEPIPED"
-
+    FEM = "FEM_QK(6,1)"
+    IM = "IM_GAUSS_PARALLELEPIPED(6,1)"
 
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
     give_time('Starting Vlasov simulation, current time = ')
     start           = time.time() # Record starting time for profiling and code time measurement later
-    
+
     # Initialize problem by converting inputs to a new coordinate system:
     #   Units are m, ms, m_NO (30 amu), and e - the mmm unit system
     #   1 T = 3216.178 m_NO/(ms * e)
     #   1 V = 3.216178 m_NO * m^2/(ms^2 * e)
     # Because of this, numerical values for velocity and momentum are the same
     #   for ions in this system of units.
-    
+
     # Extract dimensions from the grids tuple
     grid_x, grid_p  = grids
-    
-    # Set FEM method order and dimension
-    order           = 1
-    dims            = 6
-    
+
     #Build GetFEM mesh using grids
     m               = gf.Mesh(MESH, grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
     mf_unmodified   = gf.MeshFem(m, 1)
-    mf_unmodified.set_fem(gf.Fem(f'{FEM}({dims},{order})'))
+    mf_unmodified.set_fem(gf.Fem(FEM))
     x,y,z,u,v,w     = mf_unmodified.basic_dof_nodes()
     del mf_unmodified
-    
+
     logging.info('Mesh points modified by params function')
     m.set_pts(params['grid_edit_function'](m.pts()))
     logging.info(str(m.pts()[:,[0,1,2,3,4,-5,-4,-3,-2,-1]]))
@@ -416,42 +411,30 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # create a MeshFem of for a field of dimension 1 (i.e. a scalar field, corresponding to f)
     mf              = gf.MeshFem(m, 1)
 
-    # assign the Q2 fem to all convexes of the MeshFem
-    mf.set_fem(gf.Fem(f'{FEM}({dims},{order})'))
+    # assign the Q1 fem to all convexes of the MeshFem
+    mf.set_fem(gf.Fem(FEM))
     
     # view the expression of its basis functions on the reference convex
-    logging.info('Basis functions per element: ' + str(gf.Fem(f'{FEM}({dims},{order})').poly_str()))
+    logging.info('Basis functions per element: ' + str(gf.Fem(FEM).poly_str()))
     
     # an exact integration will be used
-    mim             = gf.MeshIm(m, gf.Integ(f'{IM}({dims},{order})'))
+    mim             = gf.MeshIm(m, gf.Integ(IM))
     
     # detect the borders of the mesh on all 12 sides of the hypercube
-    fb0             = m.outer_faces_with_direction([ 1., 0., 0., 0., 0., 0.], 0.75)
-    fb1             = m.outer_faces_with_direction([-1., 0., 0., 0., 0., 0.], 0.75)
-    fb2             = m.outer_faces_with_direction([0.,  1., 0., 0., 0., 0.], 0.75)
-    fb3             = m.outer_faces_with_direction([0., -1., 0., 0., 0., 0.], 0.75)
-    fb4             = m.outer_faces_with_direction([0., 0.,  1., 0., 0., 0.], 0.75)
-    fb5             = m.outer_faces_with_direction([0., 0., -1., 0., 0., 0.], 0.75)
-    fb6             = m.outer_faces_with_direction([0., 0., 0.,  1., 0., 0.], 0.75)
-    fb7             = m.outer_faces_with_direction([0., 0., 0., -1., 0., 0.], 0.75)
-    fb8             = m.outer_faces_with_direction([0., 0., 0., 0.,  1., 0.], 0.75)
-    fb9             = m.outer_faces_with_direction([0., 0., 0., 0., -1., 0.], 0.75)
-    fb10            = m.outer_faces_with_direction([0., 0., 0., 0., 0.,  1.], 0.75)
-    fb11            = m.outer_faces_with_direction([0., 0., 0., 0., 0., -1.], 0.75)
-    
-    # mark and label the 12 boundaries
-    m.set_region(40, fb0)# Face the plasma is entering on
-    m.set_region(41, fb1)# Face the plasma is exiting
-    m.set_region(42, fb2)# Side face
-    m.set_region(43, fb3)# Side face
-    m.set_region(44, fb4)# Side face
-    m.set_region(45, fb5)# Side face
-    m.set_region(46, fb6)# Velocity extreme
-    m.set_region(47, fb7)# Velocity extreme
-    m.set_region(48, fb8)# Velocity extreme
-    m.set_region(49, fb9)# Velocity extreme
-    m.set_region(50, fb10)# Velocity extreme
-    m.set_region(51, fb11)# Velocity extreme
+    for rg, normal in ((40,[ 1., 0., 0., 0., 0., 0.]), # Face the plasma is entering on
+                       (41,[-1., 0., 0., 0., 0., 0.]), # Face the plasma is exiting
+                       (42,[0.,  1., 0., 0., 0., 0.]), # Side face
+                       (43,[0., -1., 0., 0., 0., 0.]), # Side face
+                       (44,[0., 0.,  1., 0., 0., 0.]), # Side face
+                       (45,[0., 0., -1., 0., 0., 0.]), # Side face
+                       (46,[0., 0., 0.,  1., 0., 0.]), # Velocity extreme
+                       (47,[0., 0., 0., -1., 0., 0.]), # Velocity extreme
+                       (48,[0., 0., 0., 0.,  1., 0.]), # Velocity extreme
+                       (49,[0., 0., 0., 0., -1., 0.]), # Velocity extreme
+                       (50,[0., 0., 0., 0., 0.,  1.]), # Velocity extreme
+                       (51,[0., 0., 0., 0., 0., -1.])): # Velocity extreme
+      # mark and label the 12 boundaries
+      m.set_region(rg, m.outer_faces_with_direction(normal, 0.75))
     
     # create an empty real model
     md              = gf.Model('real')
@@ -567,15 +550,24 @@ def eval3D3V(params, grids, mass, q, plot = True):
         logging.info('All terms built')
         
         # Extract rhs and matrix to use scipy for solving
-        rhs             = md.rhs()
-        K               = md.tangent_matrix()
-        
+#        rhs             = md.rhs()
+#        K               = md.tangent_matrix()
+
         # Scipy matrix transformation and basic diagnostics
-        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
-        
+#        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
+
         # Solve the problem using the function I created to do so
-        solution        = matrix_solve(K, rhs)
-        
+#        solution        = matrix_solve(K, rhs)
+#        solution = gf.linsolve_mumps(md.tangent_matrix(), md.rhs()).flatten()
+        ctx = gf.MumpsContext("unsymmetric")
+        ctx.set_ICNTL(4, 0) # silence MUMPS output
+        ctx.set_ICNTL(14, 200) # allocate extra memory for relatively dense matrices
+        ctx.set_matrix(md.tangent_matrix())
+        ctx.set_vector(md.rhs())
+        ctx.analyze()
+        ctx.factorize()
+        solution = ctx.solve()
+
     # Inject back into GetFEM
     md.to_variables(solution)
     
@@ -588,7 +580,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # extracted solution variables
     density           = md.variable('f')
     x2,y2,z2,u2,v2,w2 = mf.basic_dof_nodes()
-    
+
     result_arrays   = (density, x2, y2, z2, u2, v2, w2)
     
     #### Boundary integration ####
