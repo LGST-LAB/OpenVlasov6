@@ -7,7 +7,6 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
-1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
 1.3.2, Eric A. Comstock, 15-Mar-2026
@@ -376,7 +375,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #   3. result_arrays - a tuple of the coordinates and plasma component density
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momentum coordinates
-    
+    #MESH = "regular simplices"
+    #FEM = "FEM_PK"
+    #IM = "IM_NC"
+    MESH = "cartesian Q1"
+    FEM = "FEM_QK"
+    IM = "IM_NC_PARALLELEPIPED"
+
+
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
     give_time('Starting Vlasov simulation, current time = ')
@@ -393,19 +399,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     grid_x, grid_p  = grids
     
     # Set FEM method order and dimension
-    order           = '1'
+    order           = 1
     dims            = 6
     
     #Build GetFEM mesh using grids
-    m               = gf.Mesh('regular simplices', grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
-    mf_unmodified      = gf.MeshFem(m, 1)
-    mf_unmodified.set_fem(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')'))
-    x              = mf_unmodified.eval("x")
-    y              = mf_unmodified.eval("y")
-    z              = mf_unmodified.eval("z")
-    u              = mf_unmodified.eval("u")
-    v              = mf_unmodified.eval("v")
-    w              = mf_unmodified.eval("w")
+    m               = gf.Mesh(MESH, grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
+    mf_unmodified   = gf.MeshFem(m, 1)
+    mf_unmodified.set_fem(gf.Fem(f'{FEM}({dims},{order})'))
+    x,y,z,u,v,w     = mf_unmodified.basic_dof_nodes()
     del mf_unmodified
     
     logging.info('Mesh points modified by params function')
@@ -414,15 +415,15 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # create a MeshFem of for a field of dimension 1 (i.e. a scalar field, corresponding to f)
     mf              = gf.MeshFem(m, 1)
-    
+
     # assign the Q2 fem to all convexes of the MeshFem
-    mf.set_fem(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')'))
+    mf.set_fem(gf.Fem(f'{FEM}({dims},{order})'))
     
     # view the expression of its basis functions on the reference convex
-    logging.info('Basis functions per element: ' + str(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')').poly_str()))
+    logging.info('Basis functions per element: ' + str(gf.Fem(f'{FEM}({dims},{order})').poly_str()))
     
     # an exact integration will be used
-    mim             = gf.MeshIm(m, gf.Integ('IM_NC(' + str(dims) + ',' + order + ')'))
+    mim             = gf.MeshIm(m, gf.Integ(f'{IM}({dims},{order})'))
     
     # detect the borders of the mesh on all 12 sides of the hypercube
     fb0             = m.outer_faces_with_direction([ 1., 0., 0., 0., 0., 0.], 0.75)
@@ -476,37 +477,36 @@ def eval3D3V(params, grids, mass, q, plot = True):
         md.add_initialized_fem_data('B2', mf, mf.eval(params['B2'], {**locals(), **globals()}))
         md.add_initialized_fem_data('B3', mf, mf.eval(params['B3'], {**locals(), **globals()}))
         logging.info('Add only applied E & B fields, not fields from plasma')
-     
+
     # Define the 6D Vlasov equation
     #   6 dimensions are: x1, x2, x3, p1, p2, p3, in order. x is position, and p is momentum.
-    vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
-    
-    # add generic assembly brick for the bulk of the simulation
-    md.add_linear_term(mim, vlasov)
-    
-    # Loop over mesh elements
-    # Compute tau per element
+    vlasov = f'( [X(4); X(5); X(6); 0; 0; 0]*f/{mass}' +\
+              f'+{q}*( [0; 0; 0; E1; E2; E3]' +\
+                   f' +[0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/{mass})*f' +\
+              ').Grad_Test_f'
+
+    # SUPG
     A_mag = 1.0
+    # Loop over mesh elements and compute tau per element
     #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
+    #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))
     h_elem=max(m.convex_radius(m.cvid()))
-    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
-    md.add_initialized_fem_data('tau', mf, tau_vals)
-    
+    md.add_initialized_data('tau', h_elem / (2 * A_mag))
+
     A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
         ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
         ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
-
-    vlasov_SUPG = 'tau * (' + A_vec + '.Grad_f) * (' + A_vec + '.Grad_Test_f)'
-    
-    md.add_linear_term(mim, vlasov_SUPG)
+    vlasov += ' + tau * (' + A_vec + '.Grad_f) * (' + A_vec + '.Grad_Test_f)'
+    md.add_linear_term(mim, vlasov)
     
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
     for i in params['BCs']:
         if i[1]     == 'Dirichlet':
-            md.add_initialized_fem_data('DirichletData' + str(i[0]), mf, mf.eval(i[2], {**locals(), **globals()}))
-            md.add_filtered_fem_variable("mult" + str(i[0]), mf, i[0])
-            md.add_linear_term(mim, 'mult' + str(i[0]) + ' * (DirichletData' + str(i[0]) + ' - f)', i[0])
+            md.add_initialized_fem_data(f'DirichletData{i[0]}', mf,
+                                        mf.eval(i[2], {**locals(), **globals()}))
+            md.add_filtered_fem_variable(f"mult{i[0]}", mf, i[0])
+            md.add_linear_term(mim, f'mult{i[0]}*(DirichletData{i[0]} - f)', i[0])
         elif i[1]   == 'Neumann':
             md.add_source_term_brick(mim, 'f', i[2], i[0])
             
@@ -586,13 +586,8 @@ def eval3D3V(params, grids, mass, q, plot = True):
         logging.info('Solution injected to GetFEM')
     
     # extracted solution variables
-    density         = md.variable('f')
-    x2              = mf.eval("x")
-    y2              = mf.eval("y")
-    z2              = mf.eval("z")
-    u2              = mf.eval("u")
-    v2              = mf.eval("v")
-    w2              = mf.eval("w")
+    density           = md.variable('f')
+    x2,y2,z2,u2,v2,w2 = mf.basic_dof_nodes()
     
     result_arrays   = (density, x2, y2, z2, u2, v2, w2)
     
