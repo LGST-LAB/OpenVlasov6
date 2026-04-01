@@ -37,9 +37,11 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-# Sample code for your initial run of a plasma in an EM field - feel free to delete this
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(4, 4, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(8, 8, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids2, 1, 1)  # Test case 2
+#grids5  = Vlasov_testing_code_6D.make_grids(7, 6, 10, 11)
+#force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids5, 1, 1)  # Test case 2
 
 #### Shelving all data for potential later use ####
 
