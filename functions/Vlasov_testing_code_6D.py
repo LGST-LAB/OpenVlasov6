@@ -7,6 +7,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+1.3.5, Eric A. Comstock, 1-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
@@ -486,7 +487,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     
     # Loop over mesh elements
     # Compute tau per element
-    A_mag = 1.0
+    A_mag = 1
     #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
     h_elem=max(m.convex_radius(m.cvid()))
     tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
@@ -509,7 +510,11 @@ def eval3D3V(params, grids, mass, q, plot = True):
             md.add_linear_term(mim, 'mult' + str(i[0]) + ' * (DirichletData' + str(i[0]) + ' - f)', i[0])
         elif i[1]   == 'Neumann':
             md.add_source_term_brick(mim, 'f', i[2], i[0])
-            
+        elif i[1]   == 'Reflective':
+            mfR     = gf.MeshFem("partial", mf, mf.basic_dof_on_region(i[0]))
+            md.add_interpolate_transformation_from_expression("R2L" + str(i[0]), m, m, i[2])
+            md.add_fem_variable("multR" + str(i[0]), mfR)
+            md.add_linear_term(mim, "multR" + str(i[0]) + ".(f-Interpolate(f,R2L" + str(i[0]) + "))", i[0])
     # List variables
     md.variable_list()
     
