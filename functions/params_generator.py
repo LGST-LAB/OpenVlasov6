@@ -8,6 +8,7 @@ This file builds the parameter structures needed for 6D Vlasov simulation solver
 
 @author: Eric A. Comstock
 
+1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.0, Eric A. Comstock, 10-Mar-2026
@@ -118,6 +119,9 @@ def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density,
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.nothing
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def params_example1():
@@ -165,6 +169,9 @@ def params_example1():
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.nothing
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def params_example2():
@@ -211,6 +218,9 @@ def params_example2():
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.corners_concentrate
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def params_example3():
@@ -259,6 +269,9 @@ def params_example3():
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.nothing
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def params_example4():
@@ -318,6 +331,9 @@ def params_example4():
     
     # No change to the grids - maintain hyperrectangular
     params['grid_edit_function']  = nmt.nothing
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def params_example5():
@@ -373,6 +389,9 @@ def params_example5():
     
     # Change grids to inlet geometry
     params['grid_edit_function']  = nmt.inlet
+    
+    # Use simplices
+    params['mesh'] = "regular simplices"
     return params
 
 def value_test(result_arrays, params, soln_number):    

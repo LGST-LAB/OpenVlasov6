@@ -7,7 +7,10 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
  
 @author: Eric A. Comstock
 
-1.3.5-hex, Konstantinos Poulios, 9-Apr-2026
+1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
+1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
+1.4.0-hex.2, Eric A. Comstock, 12-Apr-2026
+1.4.0-hex.1, Konstantinos Poulios, 9-Apr-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
 1.3.2, Eric A. Comstock, 15-Mar-2026
@@ -53,6 +56,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
  
 import numpy as np                # Used for vector algebra and for getFEM
 import getfem as gf               # Main FEM assembly package used in this code
+gf.util_warning_level(1)
 import time                       # Used for getting time for logging and file names
 import scipy                      # Used for matrix operations - most customizable than getFEM
 import scipy.interpolate          # Used for interpolation of EM fields for more accurate FEA
@@ -352,14 +356,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #   3. result_arrays - a tuple of the coordinates and plasma component density
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momentum coordinates
-    MESH = "regular simplices"
-    FEM = "FEM_PK(6,1)"
-    #IM = "IM_NC(6,1)"
-    IM = "IM_SIMPLEX6D(1)"
-    #MESH = "cartesian Q1"
-    #FEM = "FEM_QK(6,1)"
-    #IM = "IM_NC_PARALLELEPIPED(6,1)"
-    #IM = "IM_GAUSS_PARALLELEPIPED(6,3)"
+    
+    MESH = params['mesh']
+    if MESH == "regular simplices":
+        FEM = "FEM_PK(6,1)"
+        IM = "IM_NC(6,1)"
+    elif MESH == "cartesian Q1":
+        FEM = "FEM_QK(6,1)"
+        IM = "IM_GAUSS_PARALLELEPIPED(6,3)"
  
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
