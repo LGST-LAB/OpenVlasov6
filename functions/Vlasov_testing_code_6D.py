@@ -448,19 +448,22 @@ def eval3D3V(params, grids, mass, q, plot = True):
  
     # Define the 6D Vlasov equation
     #   6 dimensions are: x1, x2, x3, p1, p2, p3, in order. x is position, and p is momentum.
- 
-    # SUPG
-    A_mag = 1.0
-    # Loop over mesh elements and compute tau per element
-
-    #vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
-    #
-    ## add generic assembly brick for the bulk of the simulation
-    #md.add_linear_term(mim, vlasov)
-    #
-    ## Loop over mesh elements
-    ## Compute tau per element
-    #A_mag = 1
+    vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
+    
+    # add generic assembly brick for the bulk of the simulation
+    md.add_linear_term(mim, vlasov)
+    
+    # Loop over mesh elements
+    # Compute tau per element
+    A_mag = 1
+    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
+    h_elem=max(m.convex_radius(m.cvid()))
+    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
+    md.add_initialized_fem_data('tau', mf, tau_vals)
+    
+    A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
+        ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
+        ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
     
     #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
     #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))

@@ -43,9 +43,11 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(6, 6, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(8, 8, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
 
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids2, 1, 1)  # Test case 2
+#grids5  = Vlasov_testing_code_6D.make_grids(7, 6, 10, 11)
+#force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids5, 1, 1)  # Test case 2
 
 a, b    = params_generator.value_test(result_arrays, params_generator.params_example2(), 2)
 print('RMS Error =',b)
