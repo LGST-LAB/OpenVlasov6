@@ -8,7 +8,9 @@ This file builds the parameter structures needed for 6D Vlasov simulation solver
 
 @author: Eric A. Comstock
 
+1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
+1.3.5, Eric A. Comstock, 1-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.0, Eric A. Comstock, 10-Mar-2026
@@ -356,7 +358,14 @@ def params_example5():
     
     # getFEM assembly language for the Dirichlet condition of Earth's ionosphere
     dirichlet_conds     = '''params['p_0'] * np.exp(-0.5*((u - params['v_x'])/params['v_therm'])**2-0.5*((v - params['v_y'])/params['v_therm'])**2-0.5*((w)/params['v_therm'])**2)'''
-    zeros = '''0'''
+    #sides = '(' + dirichlet_conds + ') * max(0, np.sign('
+    
+    # Used 3/7 and 4/7 instead of 3/5 and 4/5 to 
+    side2 = "[X(1);X(2);X(3);0;0;X(6)]"#"[X(1);X(2);X(3);3/8*X(4);4/8*X(4);X(6)]+[0;0;0;4/8*X(5);-3/8*X(5);0]"#
+    side4 = "[X(1);X(2);X(3);0;X(5);0]"#"[X(1);X(2);X(3);3/8*X(4);X(5);4/8*X(4)]+[0;0;0;4/8*X(6);0;-3/8*X(6)]"#
+    
+    side3 = "[X(1);X(2);X(3);0;0;X(6)]"#"[X(1);X(2);X(3);3/8*X(4);-4/8*X(4);X(6)]+[0;0;0;-4/8*X(5);-3/8*X(5);0]"#
+    side5 = "[X(1);X(2);X(3);0;X(5);0]"#"[X(1);X(2);X(3);3/8*X(4);X(5);-4/8*X(4)]+[0;0;0;-4/8*X(6);0;-3/8*X(6)]"#
     
     # Initialize electric and magnetic fields for input into getFEM
     params['E1']        = '''-params['B_earth'] * params['v_y']'''
@@ -368,16 +377,16 @@ def params_example5():
     
     # Initialize boundary conditions for input into getFEM
     params['BCs']       = [[40, 'Dirichlet', dirichlet_conds],
-                           [42, 'Dirichlet', zeros],
-                           [43, 'Dirichlet', zeros],
-                           [44, 'Dirichlet', zeros],
-                           [45, 'Dirichlet', zeros],
-                           [46, 'Dirichlet', dirichlet_conds],
-                           [47, 'Dirichlet', dirichlet_conds],
-                           [48, 'Dirichlet', dirichlet_conds],
-                           [49, 'Dirichlet', dirichlet_conds],
-                           [50, 'Dirichlet', dirichlet_conds],
-                           [51, 'Dirichlet', dirichlet_conds]]
+                           [42, 'Reflective', side2],
+                           [43, 'Reflective', side3],
+                           [44, 'Reflective', side4],
+                           [45, 'Reflective', side5]]#,
+                           #[46, 'Dirichlet', dirichlet_conds],
+                           #[47, 'Dirichlet', dirichlet_conds],
+                           #[48, 'Dirichlet', dirichlet_conds],
+                           #[49, 'Dirichlet', dirichlet_conds],
+                           #[50, 'Dirichlet', dirichlet_conds],
+                           #[51, 'Dirichlet', dirichlet_conds]]
     
     params['E&B fields included'] = False # This is an initial problem, not a problem with plasma fields as well. Let the simulation iterate
     

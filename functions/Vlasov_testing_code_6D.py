@@ -7,10 +7,14 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
  
 @author: Eric A. Comstock
 
+1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
 1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
 1.4.0-hex.2, Eric A. Comstock, 12-Apr-2026
 1.4.0-hex.1, Konstantinos Poulios, 9-Apr-2026
+1.4.0-dev.1, Eric A. Comstock, 9-Apr-2026
+1.3.5, Eric A. Comstock, 1-Apr-2026
+1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
 1.3.2, Eric A. Comstock, 15-Mar-2026
@@ -448,6 +452,16 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # SUPG
     A_mag = 1.0
     # Loop over mesh elements and compute tau per element
+
+    #vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
+    #
+    ## add generic assembly brick for the bulk of the simulation
+    #md.add_linear_term(mim, vlasov)
+    #
+    ## Loop over mesh elements
+    ## Compute tau per element
+    #A_mag = 1
+    
     #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
     #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))
     #h_elem=max(m.convex_radius(m.cvid()))
@@ -469,6 +483,12 @@ def eval3D3V(params, grids, mass, q, plot = True):
             md.add_linear_term(mim, f'1e6*Test_f*(DirichletData{i[0]} - f)', i[0])
         elif i[1]   == 'Neumann':
             md.add_source_term_brick(mim, 'f', i[2], i[0])
+        elif i[1]   == 'Reflective':
+            mfR     = gf.MeshFem("partial", mf, mf.basic_dof_on_region(i[0]))
+            md.add_interpolate_transformation_from_expression("R2L" + str(i[0]), m, m, i[2])
+            md.add_fem_variable("multR" + str(i[0]), mfR)
+            md.add_linear_term(mim, "multR" + str(i[0]) + ".(f-Interpolate(f,R2L" + str(i[0]) + "))", i[0])
+
     # List variables
     md.variable_list()
     print("# dofs:", md.nbdof())
