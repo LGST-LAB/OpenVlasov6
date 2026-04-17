@@ -1,7 +1,25 @@
-# OpenVlasov6 1.3.5
+# OpenVlasov6 1.4.0-rc.1
 3D-3V GetFEM-based Vlasov solver
 
 This solver depends on the software package GetFEM (which can be found at [getfem.org](getfem.org)) to function - specifically its Python interface. Instructions to find and install it can be found at [getfem.org/download.html](getfem.org/download.html). OpenVlasov6 works on python versions 3.7 to 3.13 and GetFEM version 5.4, and both prebuilt GetFEM interfaces (such as the version of GetFEM 5.4 with Python 3.7 on Anaconda given on getfem.org/download.html) and custom-built ones will work.
+
+### Changes in 1.4.0-rc.1
+Merged together the edits of 1.4.0-hex.4 and 1.4.0-dev.1, which were in different branches.
+
+### Changes in 1.4.0-hex.4
+Verified results and enabled toggling capability in parameter generation. Simplex-based evaluation is the default, while hexeract-based evaluation is still faster, but does not show superconvergence on simple problems like the simplices do.
+
+### Changes in 1.4.0-hex.3
+Switched from 3rd order hexeracts to 1st order hexeracts to prevent MPI assembly issue. A future update will fix the issue and allow >2GB objects to be sent between tasks.
+
+### Changes in 1.4.0-hex.2
+Fixed instability on some machines.
+
+### Changes in 1.4.0-hex.1
+Added capability to run a hexeractal mesh using a new GetFEM distribution designed to prevent previous errors (https://cgit.git.savannah.nongnu.org/cgit/getfem.git/log/?h=devel-higher-dimension-optimizations) when we used it. 
+
+### Changes in 1.4.0-dev.1
+Stabilized remaining code as a preparation for major code additions.
 
 ### Changes in 1.3.5
 Added a fifth default params structure for a new paper example corresponding to the inlet of a large atmosphere-breathing electric propulsion system, and made minor modifications to various internals.
