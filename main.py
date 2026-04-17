@@ -8,6 +8,10 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
+1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
+1.4.0-hex.2, Eric A. Comstock, 12-Apr-2026
+1.4.0-hex.1, Konstantinos Poulios, 9-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.3, Eric A. Comstock, 17-Mar-2026
@@ -37,9 +41,12 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-# Sample code for your initial run of a plasma in an EM field - feel free to delete this
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(4, 4, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(6, 6, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+
 force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
+
+a, b    = params_generator.value_test(result_arrays, params_generator.params_example2(), 2)
+print('RMS Error =',b)
 
 #### Shelving all data for potential later use ####
 
