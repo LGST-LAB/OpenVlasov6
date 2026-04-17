@@ -7,6 +7,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 
 @author: Eric A. Comstock
 
+1.4.0-dev.1, Eric A. Comstock, 9-Apr-2026
 1.3.5, Eric A. Comstock, 1-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
