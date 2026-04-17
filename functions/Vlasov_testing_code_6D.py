@@ -3,10 +3,15 @@
 This file conducts the tests needed for 6D Vlasov simulation validation, allowing
     for the generation of the results of the journal article "OpenVlasov6: A 3D-3V Fully Kinetic
     Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock 
-    & K. Poulios & A. Romero-Calvo.
-
+& K. Poulios & A. Romero-Calvo.
+ 
 @author: Eric A. Comstock
 
+1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
+1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
+1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
+1.4.0-hex.2, Eric A. Comstock, 12-Apr-2026
+1.4.0-hex.1, Konstantinos Poulios, 9-Apr-2026
 1.4.0-dev.1, Eric A. Comstock, 9-Apr-2026
 1.3.5, Eric A. Comstock, 1-Apr-2026
 1.3.5-dev.1, Eric A. Comstock, 24-Mar-2026
@@ -50,11 +55,12 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
 1.0.0-alpha.1, Eric A. Comstock, 14-Nov-2024
 1.0.0-alpha, Eric A. Comstock, 28-Oct-2024
 """
-
+ 
 #### Import basic modules ####
-
+ 
 import numpy as np                # Used for vector algebra and for getFEM
 import getfem as gf               # Main FEM assembly package used in this code
+gf.util_warning_level(1)
 import time                       # Used for getting time for logging and file names
 import scipy                      # Used for matrix operations - most customizable than getFEM
 import scipy.interpolate          # Used for interpolation of EM fields for more accurate FEA
@@ -63,15 +69,15 @@ import scipy.sparse.linalg        # See above - if these are not imported the co
 import logging                    # Used for logging and the logger for code
 import multiprocessing            # Used for multithreading when running multiple sims at once
 from config.MPI_config import *   # Used for controlling configuration parameters
-
+ 
 #### Import other files ####
-
+ 
 from . import plotting_6D
 from . import params_generator
 from . import EB_calc
-
+ 
 #### MPI4py ####
-
+ 
 # This function is used to detect if the program is MPI or not, import mpi4py if
 #   it is, and error if it is not.
 if MPI_toggle:
@@ -79,18 +85,17 @@ if MPI_toggle:
         from mpi4py import MPI
     except:
         raise Exception("MPI not installed on this device. Either install MPI4py, or disable MPI using config/MPI_config.py by setting MPI_toggle to False.")
-    
     # Only initialize MPI variables if MPI is enabled in config
     comm = MPI.COMM_WORLD   # Initializing communciation system for MPI
     rank = comm.Get_rank()  # Detect rank of current processor
     size = comm.Get_size()  # Detect total number of ranks
-
+ 
 #### Add global variables and logging ####
-
+ 
 # Remove all handlers associated with the root logger
 for handler in logging.root.handlers[:]:
     logging.root.removeHandler(handler)
-
+ 
 # Add logger for INFO priority for detailed descriptions of code operations
 #     Note that matplotlib tends to spit out 100s of kB of nonsense at the debug
 #     level, so only change this if you have some issue with the plots
@@ -99,11 +104,11 @@ logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
     handlers=[logging.FileHandler("test6D_INFO.log")]
 )
-
+ 
 #### Define functions ####
-
+ 
 # Logging time at a specific event
-
+ 
 def give_time(caption):
     # Wrapper to make getting a timestamped log more convienient
     #
@@ -112,11 +117,9 @@ def give_time(caption):
     #
     # Outputs:
     #   A timestamped log with a caption being added to the log file
-    
     logging.info(caption + time.strftime("%Y-%m-%d %H-%M-%S", time.gmtime()))
-
+ 
 # Generate mesh positions
-        
 def make_grids(Nx, Np, x_size, p_size):
     # This function generates the position and momentum grids to integrate
     #   the problem on.
@@ -130,17 +133,15 @@ def make_grids(Nx, Np, x_size, p_size):
     # Outputs:
     #   grids   is a tuple of the position and momentum grids to be used
     #               for the rectangular elements of the FEM mesh.
-    
     # Define a grid of the right size to distort everything else from
     orig_gridx = np.linspace(-1,1,Nx)
     orig_gridp = np.linspace(-1,1,Np)
-    
     # Both grids are given as linear based on the position and velocity sizes requested
     grid_x = orig_gridx * x_size
     grid_p = orig_gridp * p_size
     grids = (grid_x, grid_p)
     return grids
-
+ 
 def make_grids_sinh(Nx, Np, x_size, p_size, xfactor, pfactor):
     # This function is a new model that generates the position and momentum grids
     #   to integrate the problem on. It uses sinh to make the grids more dense at
@@ -161,17 +162,15 @@ def make_grids_sinh(Nx, Np, x_size, p_size, xfactor, pfactor):
     # Outputs:
     #   grids   is a tuple of the position and momentum grids to be used
     #               for the rectangular elements of the FEM mesh.
-    
     # Define a grid of the right size to distort everything else from
     orig_gridx = np.linspace(-1,1,Nx)
     orig_gridp = np.linspace(-1,1,Np)
-    
     # Both grids are given as linear based on the position and velocity sizes requested
     grid_x = np.sinh(orig_gridx * xfactor) * x_size / np.sinh(xfactor)
     grid_p = np.sinh(orig_gridp * pfactor) * p_size / np.sinh(pfactor)
     grids = (grid_x, grid_p)
     return grids
-
+ 
 def check_simulation_stability(mins):
     # This function makes a qualitative assessment of simulation stability from
     #   the normalized density minimum.
@@ -182,7 +181,6 @@ def check_simulation_stability(mins):
     #
     # Outputs:
     #   diag    is the diagnosis of simulation stability level
-    
     diag        = 'Stable'
     if mins < -100:
         diag    = 'Extremely unstable'
@@ -195,7 +193,7 @@ def check_simulation_stability(mins):
     elif mins < -0.01:
         diag    = 'Mild local instability, globally stable'
     return diag
-
+ 
 def parfor_loop_internals(args):
     # This function calculates the error between an analytical and real solution
     #   for the gyrokinetic example in the paper.
@@ -215,7 +213,6 @@ def parfor_loop_internals(args):
     #   l2e     is the RMS error of the simulation, normalized to the scale
     #               of the density function
     #   dof     is the number of degrees of freedom
-    
     i, Nx_list, Np_list, params = args                                      # Decompose arguments into the inputs
     grids       = make_grids(Nx_list[i], Np_list[i], 10, 11)                # Make the grids of the current size
     force, stability, result_arrays = eval3D3V(params, grids, 1, 1, False)        # Evaluate Vlasov simulation
@@ -223,7 +220,7 @@ def parfor_loop_internals(args):
     dof         = 7 * 308 * (Nx_list[i] - 1) ** 3 * (Np_list[i] - 1) ** 3   # Because each hexarract has >= 308 heptapetons inside,
                                                                             # which each have 7 DoF (one for each vertex)                                                                
     return l2e, dof # Returns the RMS error and degrees of freedom (DoF)
-
+ 
 def conv_data(Nx_list, Np_list, params, procs):
     # This function calculates the convergence plot between an analytical and real solution
     #   for the shock example in the paper.
@@ -237,25 +234,20 @@ def conv_data(Nx_list, Np_list, params, procs):
     #
     # Outputs:
     #   plots       Convergence plots
-    
     N                   = len(Nx_list)
-    
     # Initialize parallel processing to get the RMS error for each simulation
     l2_list             = []
     dof_list            = []
     pool                = multiprocessing.Pool(procs) # Initialize parallelization
     args                = []
-    
     # Arguments for parallel for loop initialized as their own for loop
     for i in range(N):
         args.append((i, Nx_list, Np_list, params))
-        
     # Parallel for loop
     l2_list, dof_list   = zip(*pool.map(parfor_loop_internals, args))
-    
     # Plotting
     plotting_6D.plot_conv([[dof_list, l2_list]], ['Convergence'])
-
+ 
 def parfor_loop_internals_em_feedback(args):
     # This function calculates the error between an analytical and real solution
     #   for the shock example in the paper.
@@ -282,7 +274,6 @@ def parfor_loop_internals_em_feedback(args):
     #   l2e     is the RMS error of the simulation, normalized to the scale
     #               of the density function
     #   dof     is the number of degrees of freedom
-    
     i, Nx_list, Np_list, params, fluids = args                              # Decompose arguments into the inputs
     grids       = make_grids(Nx_list[i], Np_list[i], 10, 11)                # Make the grids of the current size
     force, stability, result_arrays, params2 = iterateEB_until_result(params, grids, fluids) # Evaluate Vlasov simulation
@@ -290,7 +281,7 @@ def parfor_loop_internals_em_feedback(args):
     dof         = 7 * 308 * (Nx_list[i] - 1) ** 3 * (Np_list[i] - 1) ** 3   # Because each hexeract has >= 308 heptapetons inside,
                                                                             # which each have 7 DoF (one for each vertex)  
     return l2e, dof
-
+ 
 def conv_data_em_feedback(Nx_list, Np_list, params, procs, fluids):
     # This function calculates the convergence plot between an analytical and real solution
     #   for the shock example in the paper.
@@ -311,27 +302,21 @@ def conv_data_em_feedback(Nx_list, Np_list, params, procs, fluids):
     #
     # Outputs:
     #   plots       Convergence plots
-    
     N                   = len(Nx_list)
-    
     # Initialize parallel processing to get the RMS error for each simulation
     l2_list             = []
     dof_list            = []
     pool                = multiprocessing.Pool(procs) # Initialize parallelization
     args                = []
-    
     # Arguments for parallel for loop initialized as their own for loop
     for i in range(N):
         args.append((i, Nx_list, Np_list, params, fluids))
-        
     # Parallel for loop
     l2_list, dof_list   = zip(*pool.map(parfor_loop_internals_em_feedback, args))
-    
     # Plotting
     plotting_6D.plot_conv([[dof_list, l2_list]], ['Convergence'])
-    
 #### Function used to solve the matrix ####
-
+ 
 def matrix_solve(K, rhs):
     # This function calculates the solution of K * solution = rhs. It uses a custom
     #   procedure to solve it, using biconjugate gradient
@@ -342,24 +327,21 @@ def matrix_solve(K, rhs):
     #
     # Outputs:
     #   solution    Vector solution
-    
     # Routine diagnostics
     logging.info('Stiffness matrix nonzero values: ' + str(K.getnnz()))
     logging.info('Stiffness matrix size: ' + str(K.shape))
-    
     # Scipy matrix solving
     K_shifted       = K + 1e-10 * scipy.sparse.identity(K.shape[0], format='csc') # Diagonal shift to add stability
     ilu             = scipy.sparse.linalg.spilu(K_shifted, drop_tol=1e-4, fill_factor=10) # Adding ilu preconditioner
     M               = scipy.sparse.linalg.LinearOperator(K.shape, matvec=ilu.solve) # Creating preconditioning matrix
     solution, exit_code = scipy.sparse.linalg.bicgstab(K_shifted, rhs, M=M, atol=1e-8) # Matrix solving using biconjugate gradient
     logging.info('SciPy solve, exit code ' + str(exit_code)) # Return exit code (should be 0)
-    
     solution        = np.array(solution) # Convert solution to numpy if it wasn't already
     logging.info('Solution converted to numpy')
     return solution
-
+ 
 #### Main calculation function ####
-
+ 
 def eval3D3V(params, grids, mass, q, plot = True):
     # This function calculates the forces induced to a 3D volume of plasma by electromagnetic
     #   fields applied to it usinf the Vlasov equation. It generates a force, density
@@ -379,88 +361,73 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #       at the FEM evaluation nodes, arranged as (f, x, y, z, u, v, w), with u, v, w
     #       being the plasma momentum coordinates
     
+    MESH = params['mesh']
+    if MESH == "regular simplices":
+        FEM = "FEM_PK(6,1)"
+        IM = "IM_NC(6,1)"
+    elif MESH == "cartesian Q1":
+        FEM = "FEM_QK(6,1)"
+        IM = "IM_GAUSS_PARALLELEPIPED(6,3)"
+ 
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
     give_time('Starting Vlasov simulation, current time = ')
     start           = time.time() # Record starting time for profiling and code time measurement later
-    
+ 
     # Initialize problem by converting inputs to a new coordinate system:
     #   Units are m, ms, m_NO (30 amu), and e - the mmm unit system
     #   1 T = 3216.178 m_NO/(ms * e)
     #   1 V = 3.216178 m_NO * m^2/(ms^2 * e)
     # Because of this, numerical values for velocity and momentum are the same
     #   for ions in this system of units.
-    
+ 
     # Extract dimensions from the grids tuple
     grid_x, grid_p  = grids
-    
-    # Set FEM method order and dimension
-    order           = '1'
-    dims            = 6
-    
+ 
     #Build GetFEM mesh using grids
-    m               = gf.Mesh('regular simplices', grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
-    mf_unmodified      = gf.MeshFem(m, 1)
-    mf_unmodified.set_fem(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')'))
-    x              = mf_unmodified.eval("x")
-    y              = mf_unmodified.eval("y")
-    z              = mf_unmodified.eval("z")
-    u              = mf_unmodified.eval("u")
-    v              = mf_unmodified.eval("v")
-    w              = mf_unmodified.eval("w")
+    print('Creating mesh')
+    m               = gf.Mesh(MESH, grid_x, grid_x, grid_x, grid_p + params['v_x'], grid_p + params['v_y'], grid_p)
+    print('Extract umorphed nodal coordinates')
+    mf_unmodified   = gf.MeshFem(m, 1)
+    mf_unmodified.set_fem(gf.Fem(FEM))
+    x,y,z,u,v,w     = mf_unmodified.basic_dof_nodes()
     del mf_unmodified
-    
+ 
     logging.info('Mesh points modified by params function')
+    print('Morph mesh')
     m.set_pts(params['grid_edit_function'](m.pts()))
     logging.info(str(m.pts()[:,[0,1,2,3,4,-5,-4,-3,-2,-1]]))
-    
     # create a MeshFem of for a field of dimension 1 (i.e. a scalar field, corresponding to f)
     mf              = gf.MeshFem(m, 1)
-    
-    # assign the Q2 fem to all convexes of the MeshFem
-    mf.set_fem(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')'))
-    
+ 
+    # assign the Q1 fem to all convexes of the MeshFem
+    mf.set_fem(gf.Fem(FEM))
     # view the expression of its basis functions on the reference convex
-    logging.info('Basis functions per element: ' + str(gf.Fem('FEM_PK(' + str(dims) + ',' + order + ')').poly_str()))
-    
+    logging.info('Basis functions per element: ' + str(gf.Fem(FEM).poly_str()))
     # an exact integration will be used
-    mim             = gf.MeshIm(m, gf.Integ('IM_NC(' + str(dims) + ',' + order + ')'))
-    
+    mim             = gf.MeshIm(m, gf.Integ(IM))
+    print("# integration points:", mim.im_nodes().shape[1])
+ 
     # detect the borders of the mesh on all 12 sides of the hypercube
-    fb0             = m.outer_faces_with_direction([ 1., 0., 0., 0., 0., 0.], 0.75)
-    fb1             = m.outer_faces_with_direction([-1., 0., 0., 0., 0., 0.], 0.75)
-    fb2             = m.outer_faces_with_direction([0.,  1., 0., 0., 0., 0.], 0.75)
-    fb3             = m.outer_faces_with_direction([0., -1., 0., 0., 0., 0.], 0.75)
-    fb4             = m.outer_faces_with_direction([0., 0.,  1., 0., 0., 0.], 0.75)
-    fb5             = m.outer_faces_with_direction([0., 0., -1., 0., 0., 0.], 0.75)
-    fb6             = m.outer_faces_with_direction([0., 0., 0.,  1., 0., 0.], 0.75)
-    fb7             = m.outer_faces_with_direction([0., 0., 0., -1., 0., 0.], 0.75)
-    fb8             = m.outer_faces_with_direction([0., 0., 0., 0.,  1., 0.], 0.75)
-    fb9             = m.outer_faces_with_direction([0., 0., 0., 0., -1., 0.], 0.75)
-    fb10            = m.outer_faces_with_direction([0., 0., 0., 0., 0.,  1.], 0.75)
-    fb11            = m.outer_faces_with_direction([0., 0., 0., 0., 0., -1.], 0.75)
-    
-    # mark and label the 12 boundaries
-    m.set_region(40, fb0)# Face the plasma is entering on
-    m.set_region(41, fb1)# Face the plasma is exiting
-    m.set_region(42, fb2)# Side face
-    m.set_region(43, fb3)# Side face
-    m.set_region(44, fb4)# Side face
-    m.set_region(45, fb5)# Side face
-    m.set_region(46, fb6)# Velocity extreme
-    m.set_region(47, fb7)# Velocity extreme
-    m.set_region(48, fb8)# Velocity extreme
-    m.set_region(49, fb9)# Velocity extreme
-    m.set_region(50, fb10)# Velocity extreme
-    m.set_region(51, fb11)# Velocity extreme
-    
+    for rg, normal in ((40,[ 1., 0., 0., 0., 0., 0.]), # Face the plasma is entering on
+                       (41,[-1., 0., 0., 0., 0., 0.]), # Face the plasma is exiting
+                       (42,[0.,  1., 0., 0., 0., 0.]), # Side face
+                       (43,[0., -1., 0., 0., 0., 0.]), # Side face
+                       (44,[0., 0.,  1., 0., 0., 0.]), # Side face
+                       (45,[0., 0., -1., 0., 0., 0.]), # Side face
+                       (46,[0., 0., 0.,  1., 0., 0.]), # Velocity extreme
+                       (47,[0., 0., 0., -1., 0., 0.]), # Velocity extreme
+                       (48,[0., 0., 0., 0.,  1., 0.]), # Velocity extreme
+                       (49,[0., 0., 0., 0., -1., 0.]), # Velocity extreme
+                       (50,[0., 0., 0., 0., 0.,  1.]), # Velocity extreme
+                       (51,[0., 0., 0., 0., 0., -1.])): # Velocity extreme
+      # mark and label the 12 boundaries
+      m.set_region(rg, m.outer_faces_with_direction(normal, 0.75))
     # create an empty real model
     md              = gf.Model('real')
-    
     # declare that "f" is an unknown of the system, representing density in
     #    particles / (m_NO^3 * m^6 / ms^3) on the finite element method `mf`
     md.add_fem_variable('f', mf)
-    
     # Define electric and magnetic fields - this varies based on problem.
     if params['E&B fields included']: # Add both applied E & B fields and fields generated by plasma
         md.add_initialized_fem_data('E1', mf, mf.eval(params['E1'] + ' + params["fE1"](np.transpose(np.array([[x],[y],[z]])))', {**locals(), **globals()}))
@@ -478,37 +445,42 @@ def eval3D3V(params, grids, mass, q, plot = True):
         md.add_initialized_fem_data('B2', mf, mf.eval(params['B2'], {**locals(), **globals()}))
         md.add_initialized_fem_data('B3', mf, mf.eval(params['B3'], {**locals(), **globals()}))
         logging.info('Add only applied E & B fields, not fields from plasma')
-     
+ 
     # Define the 6D Vlasov equation
     #   6 dimensions are: x1, x2, x3, p1, p2, p3, in order. x is position, and p is momentum.
-    vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
-    
-    # add generic assembly brick for the bulk of the simulation
-    md.add_linear_term(mim, vlasov)
-    
-    # Loop over mesh elements
-    # Compute tau per element
-    A_mag = 1
-    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
-    h_elem=max(m.convex_radius(m.cvid()))
-    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
-    md.add_initialized_fem_data('tau', mf, tau_vals)
-    
-    A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
-        ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
-        ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
+ 
+    # SUPG
+    A_mag = 1.0
+    # Loop over mesh elements and compute tau per element
 
-    vlasov_SUPG = 'tau * (' + A_vec + '.Grad_f) * (' + A_vec + '.Grad_Test_f)'
+    #vlasov          = '([X(4); X(5); X(6); 0; 0; 0].Grad_f/' + str(mass) + ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3] + [0; 0; 0; X(5) * B3 - X(6) * B2; X(6) * B1 - X(4) * B3; X(4) * B2 - X(5) * B1]/' + str(mass) + ').Grad_f)*Test_f'
+    #
+    ## add generic assembly brick for the bulk of the simulation
+    #md.add_linear_term(mim, vlasov)
+    #
+    ## Loop over mesh elements
+    ## Compute tau per element
+    #A_mag = 1
     
-    md.add_linear_term(mim, vlasov_SUPG)
-    
+    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
+    #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))
+    #h_elem=max(m.convex_radius(m.cvid()))
+    md.add_initialized_data('tau', 1 / (2 * A_mag))
+ 
+    A_vec = f'([X(4); X(5); X(6); 0; 0; 0]/{mass}' + \
+            f' + {q}*([0; 0; 0; E1; E2; E3]' + \
+            f' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/{mass}))'
+    vlasov = f'(Test_f + tau * element_size * ({A_vec}.Grad(Test_f))) * ({A_vec}.Grad(f))'
+    md.add_linear_term(mim, vlasov)
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
     for i in params['BCs']:
         if i[1]     == 'Dirichlet':
-            md.add_initialized_fem_data('DirichletData' + str(i[0]), mf, mf.eval(i[2], {**locals(), **globals()}))
-            md.add_filtered_fem_variable("mult" + str(i[0]), mf, i[0])
-            md.add_linear_term(mim, 'mult' + str(i[0]) + ' * (DirichletData' + str(i[0]) + ' - f)', i[0])
+            md.add_initialized_fem_data(f'DirichletData{i[0]}', mf,
+                                        mf.eval(i[2], {**locals(), **globals()}))
+#            md.add_filtered_fem_variable(f"mult{i[0]}", mf, i[0])
+#            md.add_linear_term(mim, f'mult{i[0]}*(DirichletData{i[0]} - f)', i[0])
+            md.add_linear_term(mim, f'1e6*Test_f*(DirichletData{i[0]} - f)', i[0])
         elif i[1]   == 'Neumann':
             md.add_source_term_brick(mim, 'f', i[2], i[0])
         elif i[1]   == 'Reflective':
@@ -516,28 +488,25 @@ def eval3D3V(params, grids, mass, q, plot = True):
             md.add_interpolate_transformation_from_expression("R2L" + str(i[0]), m, m, i[2])
             md.add_fem_variable("multR" + str(i[0]), mfR)
             md.add_linear_term(mim, "multR" + str(i[0]) + ".(f-Interpolate(f,R2L" + str(i[0]) + "))", i[0])
+
     # List variables
     md.variable_list()
-    
+    print("# dofs:", md.nbdof())
     # Build
     md.assembly("build_all")
     md.assembly("build_rhs")
     #md.assembly("finalize")
-    
     if MPI_toggle:
         if rank == 0:
             logging.info('All terms built')
-        
         rhs_local = md.rhs()          # local RHS vector
         K_dist = md.tangent_matrix()  # local distributed matrix (Spmat)
-        
         # ------------------------------
         # Step 0: local Spmat and RHS
         # ------------------------------
         vals_local = K_dist.csc_val()
         indptr_local, indices_local = K_dist.csc_ind()  # indices are global
         rhs_local = rhs_local  # already local to this rank
-        
         # ------------------------------
         # Step 1: gather all CSC pieces to rank 0
         # ------------------------------
@@ -545,7 +514,6 @@ def eval3D3V(params, grids, mass, q, plot = True):
         gathered_indices = comm.gather(indices_local, root=0)
         gathered_indptr = comm.gather(indptr_local, root=0)
         gathered_rhs = comm.gather(rhs_local, root=0)
-        
         # ------------------------------
         # Step 2: assemble global CSC on rank 0
         # ------------------------------
@@ -553,70 +521,61 @@ def eval3D3V(params, grids, mass, q, plot = True):
             # Initialize empty global CSC matrix
             n_dofs = md.nbdof()  # total DOFs in model
             K = scipy.sparse.csc_matrix((n_dofs, n_dofs), dtype=np.float64)
-        
             # Sum all ranks’ CSCs (works because shapes match)
             for vals, indices, indptr in zip(gathered_vals, gathered_indices, gathered_indptr):
                 K += scipy.sparse.csc_matrix((vals, indices, indptr), shape=(n_dofs, n_dofs))
-        
             # Assemble RHS
             rhs = np.sum(gathered_rhs, axis=0)
-            
             # Solve the problem using the function I created to do so
             solution = matrix_solve(K, rhs)
-        
         else:
             solution = None
-        
         # Broadcast solution to all ranks
         solution = comm.bcast(solution, root=0)
     else:
         logging.info('All terms built')
-        
         # Extract rhs and matrix to use scipy for solving
-        rhs             = md.rhs()
-        K               = md.tangent_matrix()
-        
+#        rhs             = md.rhs()
+#        K               = md.tangent_matrix()
+ 
         # Scipy matrix transformation and basic diagnostics
-        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
-        
+#        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
+ 
         # Solve the problem using the function I created to do so
-        solution        = matrix_solve(K, rhs)
-        
+#        solution        = matrix_solve(K, rhs)
+#        solution = gf.linsolve_mumps(md.tangent_matrix(), md.rhs()).flatten()
+        ctx = gf.MumpsContext("unsymmetric")
+        ctx.set_ICNTL(4, 0) # silence MUMPS output
+        ctx.set_ICNTL(14, 0) # allocate extra memory for relatively dense matrices
+        #ctx.set_ICNTL(14, 1500) # allocate extra memory for relatively dense matrices
+        ctx.set_matrix(md.tangent_matrix())
+        ctx.set_vector(md.rhs())
+        ctx.analyze()
+        ctx.factorize()
+        solution = ctx.solve()
+ 
     # Inject back into GetFEM
     md.to_variables(solution)
-    
     if MPI_toggle:
         if rank == 0:
             logging.info('Solution injected to GetFEM')
     else:
         logging.info('Solution injected to GetFEM')
-    
     # extracted solution variables
-    density         = md.variable('f')
-    x2              = mf.eval("x")
-    y2              = mf.eval("y")
-    z2              = mf.eval("z")
-    u2              = mf.eval("u")
-    v2              = mf.eval("v")
-    w2              = mf.eval("w")
-    
+    density           = md.variable('f')
+    x2,y2,z2,u2,v2,w2 = mf.basic_dof_nodes()
+ 
     result_arrays   = (density, x2, y2, z2, u2, v2, w2)
-    
     #### Boundary integration ####
-    
     #Boundaries that connect to external space: 41, 42, 43, 44
-    
     x1force         = gf.asm_generic(mim, 0, '[X(4); X(5); X(6)] * X(4) * f', 40, model = md)
     x9force         = gf.asm_generic(mim, 0, '-1 * [X(4); X(5); X(6)] * X(4) * f', 41, model = md)
     y1force         = gf.asm_generic(mim, 0, '[X(4); X(5); X(6)] * X(5) * f', 42, model = md)
     y9force         = gf.asm_generic(mim, 0, '-1 * [X(4); X(5); X(6)] * X(5) * f', 43, model = md)
     z1force         = gf.asm_generic(mim, 0, '[X(4); X(5); X(6)] * X(6) * f', 44, model = md)
     z9force         = gf.asm_generic(mim, 0, '-1 * [X(4); X(5); X(6)] * X(6) * f', 45, model = md)
-    
     total_force     = x1force + x9force + y1force + y9force + z1force + z9force
-    
     #### Density extraction as a function of position and momentum ####
-    
     x_uniq, x_inv   = np.unique(x, return_inverse = True)
     y_uniq, y_inv   = np.unique(y, return_inverse = True)
     z_uniq, z_inv   = np.unique(z, return_inverse = True)
@@ -626,14 +585,10 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('x unique elements: ' + str(x_uniq))
     logging.info('y unique elements: ' + str(y_uniq))
     logging.info('z unique elements: ' + str(z_uniq))
-    
     #### Plotting ####
-    
     if plot:
         plotting_6D.plot_slice_density_maps(grid_x, grid_p, density, x_inv, y_inv, z_inv, u_inv, v_inv, w_inv, params['v_x'], params['v_y'], params['grid_edit_function'])
-    
     #### Finishing ####
-    
     # Print results
     logging.info('Forces in +x (m_NO*m/ms^2): '+str( x1force))
     logging.info('Forces in -x (m_NO*m/ms^2): '+str( x9force))
@@ -642,17 +597,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Forces in +z (m_NO*m/ms^2): '+str( z1force))
     logging.info('Forces in -z (m_NO*m/ms^2): '+str( z9force))
     logging.info('Total force (m_NO*m/ms^2): '+str( total_force))
-    
     # Log stability result
     logging.info('Simulation is ' + check_simulation_stability(min(density) / params['p_0']))
     logging.info('Stability is ' + str(min(density) / params['p_0']))
-    
     # Because each hexeract has >= 308 heptapetons inside, which each have 7 DoF (one for each vertex)
     logging.info('Total degrees of freedom >= ' + str(7 * 308 * (len(grid_x) - 1) ** 3 * (len(grid_p) - 1) ** 3))
-    
     logging.info('Time = '+str( time.time() - start) + '\n')
     return total_force*4.9816*(10**-20), [max(density) / params['p_0'], min(density) / params['p_0']], result_arrays
-
+ 
 def iterateEB(params, grids, mass, q):
     # This function iterates a Vlasov simulation once for all fluids given, giving
     #   the total EM fields generated, as well as the total force applied by the particles.
@@ -680,7 +632,6 @@ def iterateEB(params, grids, mass, q):
     #       being the plasma momenta coordinates
     #   4. params - contains key parameters needed for the simulation, now updated with
     #       the new electromagnetic fields generated by the plasma.
-    
     # Define the E & B field variables, before they are calculated at each point.
     #   While they start as scalars, vectors of the size of the number of FEM mesh
     #   points (not total DoFs - just the mesh points, which are ~2000x lower) are added.
@@ -692,21 +643,17 @@ def iterateEB(params, grids, mass, q):
     B1tot           = 0
     B2tot           = 0
     B3tot           = 0
-    
     # Define the total force, for calculation and usage later. This is an output,
     #   and eventually falls out of the iterateEB_until_result function
     forcetot        = 0
-    
     # This for loop iterates over every fluid in the plasma, calculating its density
     #   from the Vlasov equation (through the eval3D3V function) and using it to
     #   get its contribution to both the force and the electromagnetic fields
     for i in range(len(mass)):
         # Find force, sim stability, and densities from each fluid
         force, stability, result_arrays = eval3D3V(params, grids, mass[i], q[i])
-        
         # Calculate electromagnetic field from densities
         E1, E2, E3, B1, B2, B3, uniqs   = EB_calc.EB_compute(result_arrays, q[i], grids, False)
-        
         # Add up force and EM field contributions for each fluid.
         E1tot       += E1
         E2tot       += E2
@@ -715,7 +662,6 @@ def iterateEB(params, grids, mass, q):
         B2tot       += B2
         B3tot       += B3
         forcetot    += force
-        
     # Define SciPy interpolations for the E & B field values at the gridpoints.
     #   This allows for the GetFEM interface to treat them as continuous fields
     #   over the FEM mesh on the next simulation iteration. This also allows the
@@ -729,13 +675,11 @@ def iterateEB(params, grids, mass, q):
     params['fB1']   = scipy.interpolate.RegularGridInterpolator(uniqs, B1tot, method='linear')
     params['fB2']   = scipy.interpolate.RegularGridInterpolator(uniqs, B2tot, method='linear')
     params['fB3']   = scipy.interpolate.RegularGridInterpolator(uniqs, B3tot, method='linear')
-    
     # Using params as the communication channel, let the code know that the EM fields
     #   are now included.
     params['E&B fields included'] = True
-    
     return forcetot, stability, result_arrays, params
-
+ 
 def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     # This function iterates a Vlasov simulation for all fluids given, giving
     #   the total EM fields generated, as well as the total force applied by the particles.
@@ -766,30 +710,24 @@ def iterateEB_until_result(params, grids, fluids, rmserrormax = 1e-6):
     #       being the plasma momenta coordinates
     #   4. params - contains key parameters needed for the simulation, now updated with
     #       the new electromagnetic fields generated by the plasma.
-    
     # Perform an initial iteration to get a baseline of the EM fields and density.
     force, stability, result_arrays, params = iterateEB(params, grids, fluids[0], fluids[1])
-    
     # Initialize loop to be used during the simulation
     prev_sim        = result_arrays[0] # Previous simulation results for comparison
     N               = len(prev_sim) # Number of FEM nodes (not DoF, but nodes in the simulation)
     error           = 1 # Initial error estimate is 100% - must come down to converge.
                         # As a side note, technically if you set rmserrormax > 1 then
                         #   only one iteration would happen.
-    
     # Main while loop governing the code iteration
     while error     > rmserrormax:
         # Perform one iteration
         force, stability, result_arrays, params = iterateEB(params, grids, fluids[0], fluids[1])
-        
         now_sim     = result_arrays[0] # Update current simulation for error calculation
         error       = np.linalg.norm(prev_sim - now_sim) / np.sqrt(N) / np.linalg.norm(prev_sim) # Calculate error
         logging.info('error: '+str( error)) # Log error for this iteration
         prev_sim    = now_sim # Update previous simulation for error calculation
-        
     # Output forces and log the final results
     logging.info('Total force (N): '+str( np.linalg.norm(force)))
     logging.info('Total force (kg*m/s/yr): '+str( np.linalg.norm(force*31557600))) # Multiplied by # of seconds in a year
-
+ 
     return force, stability, result_arrays, params
-
