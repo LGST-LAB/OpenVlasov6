@@ -8,6 +8,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
 1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
@@ -43,15 +44,11 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(8, 8, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+grids2  = Vlasov_testing_code_6D.make_grids(6, 6, 10, 11)
 
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids2, 1, 1)  # Test case 2
-#grids5  = Vlasov_testing_code_6D.make_grids(7, 6, 10, 11)
-#force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids5, 1, 1)  # Test case 2
-
-a, b    = params_generator.value_test(result_arrays, params_generator.params_example2(), 2)
-print('RMS Error =',b)
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 5
 
 #### Shelving all data for potential later use ####
 
-utils.save_everything()
+# Fix this later before 1.4 comes out
+#utils.save_everything()
