@@ -8,6 +8,7 @@ This file builds the parameter structures needed for 6D Vlasov simulation solver
 
 @author: Eric A. Comstock
 
+1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
 1.3.5, Eric A. Comstock, 1-Apr-2026

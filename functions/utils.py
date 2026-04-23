@@ -8,6 +8,7 @@ Multifluid Vlasov Solver" in Computer Physics Communications, by E. A. Comstock
 
 @author: Eric A. Comstock
 
+1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.3.2, Eric A. Comstock, 15-Mar-2026
 """
