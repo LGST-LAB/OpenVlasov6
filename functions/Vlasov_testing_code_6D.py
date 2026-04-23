@@ -7,6 +7,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
  
 @author: Eric A. Comstock
 
+1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
 1.4.0-hex.3, Eric A. Comstock, 13-Apr-2026
@@ -367,7 +368,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
         IM = "IM_NC(6,1)"
     elif MESH == "cartesian Q1":
         FEM = "FEM_QK(6,1)"
-        IM = "IM_GAUSS_PARALLELEPIPED(6,3)"
+        IM = "IM_GAUSS_PARALLELEPIPED(6,1)"
  
     ##  Record starting time and basic information in log file
     logging.info('\n\n\nScript run: ' + __file__)
@@ -468,7 +469,6 @@ def eval3D3V(params, grids, mass, q, plot = True):
     #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
     #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))
     #h_elem=max(m.convex_radius(m.cvid()))
-    md.add_initialized_data('tau', 1 / (2 * A_mag))
  
     A_vec = f'([X(4); X(5); X(6); 0; 0; 0]/{mass}' + \
             f' + {q}*([0; 0; 0; E1; E2; E3]' + \
