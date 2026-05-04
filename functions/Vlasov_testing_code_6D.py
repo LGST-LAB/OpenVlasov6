@@ -407,7 +407,7 @@ def eval3D3V(params, grids, mass, q, plot = True):
     logging.info('Basis functions per element: ' + str(gf.Fem(FEM).poly_str()))
     # an exact integration will be used
     mim             = gf.MeshIm(m, gf.Integ(IM))
-    print("# integration points:", mim.im_nodes().shape[1])
+    #print("# integration points:", mim.im_nodes().shape[1])
  
     # detect the borders of the mesh on all 12 sides of the hypercube
     for rg, normal in ((40,[ 1., 0., 0., 0., 0., 0.]), # Face the plasma is entering on
@@ -538,24 +538,14 @@ def eval3D3V(params, grids, mass, q, plot = True):
     else:
         logging.info('All terms built')
         # Extract rhs and matrix to use scipy for solving
-#        rhs             = md.rhs()
-#        K               = md.tangent_matrix()
- 
+        rhs             = md.rhs()
+        K               = md.tangent_matrix()
+        
         # Scipy matrix transformation and basic diagnostics
-#        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
- 
+        K               = scipy.sparse.csc_matrix((K.csc_val(),*(K.csc_ind()[::-1])))
+        
         # Solve the problem using the function I created to do so
-#        solution        = matrix_solve(K, rhs)
-#        solution = gf.linsolve_mumps(md.tangent_matrix(), md.rhs()).flatten()
-        ctx = gf.MumpsContext("unsymmetric")
-        ctx.set_ICNTL(4, 0) # silence MUMPS output
-        ctx.set_ICNTL(14, 0) # allocate extra memory for relatively dense matrices
-        #ctx.set_ICNTL(14, 1500) # allocate extra memory for relatively dense matrices
-        ctx.set_matrix(md.tangent_matrix())
-        ctx.set_vector(md.rhs())
-        ctx.analyze()
-        ctx.factorize()
-        solution = ctx.solve()
+        solution        = matrix_solve(K, rhs)
  
     # Inject back into GetFEM
     md.to_variables(solution)

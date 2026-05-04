@@ -99,5 +99,5 @@ def inlet(in_pts, custom_bounds = False):
         max_x = min_x + 1
         
     rel_x = (x - min_x) / (max_x - min_x)           # Relative x, so that the function's effects do not change based on grid size
-    out_pts[1:3] = in_pts[1:3] * (1 - 0.8 * rel_x)  # Modified points to extend in x2 and x3 at lower x
+    out_pts[1:3] = in_pts[1:3] * (1 - 0.6 * rel_x ** 2 - 0.2 * rel_x)  # Modified points to extend in x2 and x3 at lower x
     return out_pts
