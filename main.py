@@ -8,6 +8,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+1.4.1, Eric A. Comstock, 10-May-2026
 1.4.0, Eric A. Comstock, 30-Apr-2026
 1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
@@ -45,9 +46,9 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-grids2  = Vlasov_testing_code_6D.make_grids(10, 10, 4, 11)
+grids2  = Vlasov_testing_code_6D.make_grids_sinh(4, 4, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
 
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example5(), grids2, 1, 1)  # Test case 5
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
 
 #### Shelving all data for potential later use ####
 
