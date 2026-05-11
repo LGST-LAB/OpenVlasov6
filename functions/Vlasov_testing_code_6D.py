@@ -7,6 +7,7 @@ This file conducts the tests needed for 6D Vlasov simulation validation, allowin
  
 @author: Eric A. Comstock
 
+1.4.2, Eric A. Comstock, 11-May-2026
 1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
@@ -70,7 +71,9 @@ import scipy.sparse.linalg        # See above - if these are not imported the co
 import logging                    # Used for logging and the logger for code
 import multiprocessing            # Used for multithreading when running multiple sims at once
 from config.MPI_config import *   # Used for controlling configuration parameters
- 
+import psutil
+process = psutil.Process()
+
 #### Import other files ####
  
 from . import plotting_6D
@@ -581,6 +584,9 @@ def eval3D3V(params, grids, mass, q, plot = True, print_force = False):
     # Because each hexeract has >= 308 heptapetons inside, which each have 7 DoF (one for each vertex)
     logging.info('Total degrees of freedom >= ' + str(7 * 308 * (len(grid_x) - 1) ** 3 * (len(grid_p) - 1) ** 3))
     logging.info('Time = '+str( time.time() - start) + '\n')
+    
+    ram_used = process.memory_info().rss / (1024 * 1024)  # in MB
+    logging.info(f"RAM used: {round(ram_used, 2)} MB")
     
     if print_force:
         logging.info('Total force (N): '+str( np.linalg.norm(total_force*4.9816*(10**-20))))
