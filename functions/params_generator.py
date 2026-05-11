@@ -8,6 +8,7 @@ This file builds the parameter structures needed for 6D Vlasov simulation solver
 
 @author: Eric A. Comstock
 
+1.4.1, Eric A. Comstock, 10-May-2026
 1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
 1.4.0-rc.1, Eric A. Comstock, 17-Apr-2026
 1.4.0-hex.4, Eric A. Comstock, 16-Apr-2026
@@ -44,7 +45,7 @@ density_baseline = 9e10 # Density of plasma in test cases, m^-3
 
 #### Define functions ####
 
-def generate_Earth_params(Earth_field, B_dipole, Q, E_dipole, v_x, v_y, density, v_therm, grids):
+def generate_Earth_params(Earth_field, B_dipole, v_x, v_y, density, v_therm, grids):
     # This function calculates the parameters needed for the full 6D Vlasov simulation
     #   of a region in Earth's orbit.
     #
