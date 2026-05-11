@@ -343,7 +343,7 @@ def matrix_solve(K, rhs):
  
 #### Main calculation function ####
  
-def eval3D3V(params, grids, mass, q, plot = True):
+def eval3D3V(params, grids, mass, q, plot = True, print_force = False):
     # This function calculates the forces induced to a 3D volume of plasma by electromagnetic
     #   fields applied to it usinf the Vlasov equation. It generates a force, density
     #   plots, and 
@@ -454,26 +454,11 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # add generic assembly brick for the bulk of the simulation
     md.add_linear_term(mim, vlasov)
     
-    # Loop over mesh elements
-    # Compute tau per element
-    A_mag = 1
-    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
-    h_elem=max(m.convex_radius(m.cvid()))
-    tau_vals = np.full(mf.nbdof(), h_elem / (2 * A_mag))
-    md.add_initialized_fem_data('tau', mf, tau_vals)
-    
-    A_vec = '([X(4); X(5); X(6); 0; 0; 0]/' + str(mass) + \
-        ' + ' + str(q) + '*([0; 0; 0; E1; E2; E3]' + \
-        ' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/' + str(mass) + '))'
-    
-    #h_elem = [m.convex_radius(k) for k in range(m.nbcvs())]  # or choose some representative element
-    #md.add_initialized_fem_data('tau', mf, h_elem / (2 * A_mag))
-    #h_elem=max(m.convex_radius(m.cvid()))
  
     A_vec = f'([X(4); X(5); X(6); 0; 0; 0]/{mass}' + \
             f' + {q}*([0; 0; 0; E1; E2; E3]' + \
             f' + [0; 0; 0; X(5)*B3 - X(6)*B2; X(6)*B1 - X(4)*B3; X(4)*B2 - X(5)*B1]/{mass}))'
-    vlasov = f'(Test_f + tau * element_size * ({A_vec}.Grad(Test_f))) * ({A_vec}.Grad(f))'
+    vlasov = f'(Test_f + element_size * ({A_vec}.Grad(Test_f))) * ({A_vec}.Grad(f))'
     md.add_linear_term(mim, vlasov)
     # Use linear terms with multiplier preconditioning for Dirichlet BCs in position space setting f = DirichletData on the edges
     #   Note that the momentum-space boundary conditions must be Neumann, as their fluxes are assumed to be zero by FEM by default.
@@ -596,6 +581,10 @@ def eval3D3V(params, grids, mass, q, plot = True):
     # Because each hexeract has >= 308 heptapetons inside, which each have 7 DoF (one for each vertex)
     logging.info('Total degrees of freedom >= ' + str(7 * 308 * (len(grid_x) - 1) ** 3 * (len(grid_p) - 1) ** 3))
     logging.info('Time = '+str( time.time() - start) + '\n')
+    
+    if print_force:
+        logging.info('Total force (N): '+str( np.linalg.norm(total_force*4.9816*(10**-20))))
+        logging.info('Total force (kg*m/s/yr): '+str( np.linalg.norm(total_force*4.9816*(10**-20)*31557600))) # Multiplied by # of seconds in a year
     return total_force*4.9816*(10**-20), [max(density) / params['p_0'], min(density) / params['p_0']], result_arrays
  
 def iterateEB(params, grids, mass, q):
