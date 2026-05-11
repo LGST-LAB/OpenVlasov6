@@ -8,6 +8,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+1.4.2, Eric A. Comstock, 11-May-2026
 1.4.1, Eric A. Comstock, 10-May-2026
 1.4.0, Eric A. Comstock, 30-Apr-2026
 1.4.0-rc.2, Eric A. Comstock, 23-Apr-2026
@@ -46,9 +47,16 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-grids2  = Vlasov_testing_code_6D.make_grids_sinh(4, 4, 10, 11, 1e-4, 2) # Rough representation of nonuniformity in position and momentum space
+grids1  = Vlasov_testing_code_6D.make_grids(6, 6, 10, 11) # Rough representation of nonuniformity in position and momentum space
 
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example2(), grids2, 1, 1)  # Test case 2
+force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example1(), grids1, 1, 1)  # Test case 2
+
+#Nx, Np, Instructions Retried, MB RAM, elements
+#3, 3, 60,800,662,000 , 149.28, 263,169
+#4, 4, 516,727,744,000 , 365.32, 1,478,656
+#5, 5, 2,925,505,150,000 , 1356.41, 5,640,625
+#6, 6, 11,480,519,351,000 , 4642.97, 16,842,816
+#8, 8,  , , 94,633,984
 
 #### Shelving all data for potential later use ####
 
