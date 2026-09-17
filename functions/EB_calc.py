@@ -11,6 +11,7 @@ This file included the framework for getting the electromagnetic fields from a p
 
 @author: Eric A. Comstock
 
+1.5-beta.1, Eric A. Comstock, 17-Sep-2026
 1.3.4, Eric A. Comstock, 19-Mar-2026
 1.1, Eric A. Comstock, 20-Nov-2025
 1.0.1, Eric A. Comstock, 14-Oct-2025
@@ -61,21 +62,71 @@ def find_element_size(gridlist, N, i):
         esize   = (gridlist[i + 1] - gridlist[i - 1]) / 2
     return esize
 
+def J_compute(result_arrays, q, grids):
+    density, x, y, z, u, v, w = result_arrays
+    
+    N               = len(density) # Number of FEM grid points
+    
+    # Get unique and inverse points for reconstructing the 6D mesh from the 1D density
+    #   and coordinate lists
+    x_uniq, x_inv   = np.unique(x, return_inverse = True)
+    y_uniq, y_inv   = np.unique(y, return_inverse = True)
+    z_uniq, z_inv   = np.unique(z, return_inverse = True)
+    u_uniq, u_inv   = np.unique(u, return_inverse = True)
+    v_uniq, v_inv   = np.unique(v, return_inverse = True)
+    w_uniq, w_inv   = np.unique(w, return_inverse = True)
+    
+    ## Compute 3D charge density and current
+    
+    # Extract dimensions from the grids tuple
+    grid_x, grid_p  = grids
+    
+    Nx              = len(grid_x) # Number of points in the position grid
+    
+    # Initializing outputs and intermediate variables to save memory operations
+    J1_xyz          = np.zeros([Nx, Nx, Nx]) # Magnetic x-pole strength per cell (e * m / ms)
+    J2_xyz          = np.zeros([Nx, Nx, Nx]) # Magnetic y-pole strength per cell (e * m / ms)
+    J3_xyz          = np.zeros([Nx, Nx, Nx]) # Magnetic z-pole strength per cell (e * m / ms)
+    
+    # Iterate through every FEM point, numerically integrating their densities together
+    for i in range(N):
+        #
+        xi                      = x_inv[i]
+        yi                      = y_inv[i]
+        zi                      = z_inv[i]
+        
+        # Find current for every 6D fEM cell, and add to the 3D point we are interested in
+        J1_xyz[xi][yi][zi]      += density[i] * u[i] * q
+        J2_xyz[xi][yi][zi]      += density[i] * v[i] * q
+        J3_xyz[xi][yi][zi]      += density[i] * w[i] * q
+    return J1_xyz, J2_xyz, J3_xyz
+
+def sigma_compute(E, B, J):
+    Bhat = B / np.linalg.norm(B, axis = 0)
+    Epar =  np.sum(E * Bhat, axis=0) * Bhat
+    Eperp = E - Epar
+    Jpar =  np.sum(J * Bhat, axis=0) * Bhat
+    Jperp = J - Jpar
+    sigma_P = np.sum(Jperp * Eperp, axis=0) / np.linalg.norm(Eperp, axis = 0) ** 2
+    return sigma_P
+
 def EB_compute(result_arrays, q, grids, FEM_data = True, return_potential = False):
     # This function calculates the electric and magnetic field from the plasma density
     #   and velocity distribution for the current fluid. If plasma has more than 1 fluid,
     #   use this function once for each fluid density distribution, and sum the results.
     #
     # Inputs:
-    #   result_arrays   is the fluid density distribution on the FEM mesh, and the
-    #                       values of the six coordinates (x, y, z, u, v, w) on that
-    #                       mesh. x, y, z are position, u, v, w are velocity.
-    #   q               is the charge of the particles being analysed in the current
-    #                       fluid, in standard electron charges. Electrons should be -1.
-    #   grids           is a tuple of the position and momentum grids to be used
-    #                       for the rectangular elements of the FEM mesh.
-    #   FEM_data        is True if the data needs to be output indexed per FEM node
-    #                       and False if it needs to be output as 3D arrays
+    #   result_arrays       is the fluid density distribution on the FEM mesh, and the
+    #                           values of the six coordinates (x, y, z, u, v, w) on that
+    #                           mesh. x, y, z are position, u, v, w are velocity.
+    #   q                   is the charge of the particles being analysed in the current
+    #                           fluid, in standard electron charges. Electrons should be -1.
+    #   grids               is a tuple of the position and momentum grids to be used
+    #                           for the rectangular elements of the FEM mesh.
+    #   FEM_data            is True if the data needs to be output indexed per FEM node
+    #                           and False if it needs to be output as 3D arrays
+    #   return_potential    is True if the data needs to output electric potential instead of the others
+    #                           and False if not
     #
     # Outputs:
     #   E1              is the electric field in the x-direction
@@ -84,14 +135,14 @@ def EB_compute(result_arrays, q, grids, FEM_data = True, return_potential = Fals
     #   B1              is the magnetic field in the x-direction
     #   B2              is the magnetic field in the y-direction
     #   B3              is the magnetic field in the z-direction
-    
+    #
     # Initialize problem by converting inputs to a new coordinate system:
     #   Units are m, ms, m_NO (30 amu), and e - the mmm unit system
     #   1 T = 3216.178 m_NO/(ms * e)
     #   1 V = 3.216178 m_NO * m^2/(ms^2 * e)
     # Because of this, numerical values for velocity and momentum are the same
     #   for ions in this system of units.
-    
+    #
     # Unpack the result arrays. Density is particle density in m^-6 ms^3
     density, x, y, z, u, v, w = result_arrays
     

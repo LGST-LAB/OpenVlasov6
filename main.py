@@ -8,6 +8,7 @@ To run the code under set parameters, modify the part of the code that says "Mod
 
 @author: Eric A. Comstock
 
+1.5-beta.1, Eric A. Comstock, 17-Sep-2026
 1.4.2, Eric A. Comstock, 11-May-2026
 1.4.1, Eric A. Comstock, 10-May-2026
 1.4.0, Eric A. Comstock, 30-Apr-2026
@@ -47,16 +48,15 @@ from functions import utils                     # general utility functions
 
 #### Running code with specifics - Modify this part! ####
 
-grids1  = Vlasov_testing_code_6D.make_grids(6, 6, 10, 11) # Rough representation of nonuniformity in position and momentum space
+grids  = Vlasov_testing_code_6D.make_grids_sinh(5, 8, 10, 11, 0.2, 1.5)
 
-force, stability, result_arrays = Vlasov_testing_code_6D.eval3D3V(params_generator.params_example1(), grids1, 1, 1)  # Test case 2
+mag_mass_kg =0
 
-#Nx, Np, Instructions Retried, MB RAM, elements
-#3, 3, 60,800,662,000 , 149.28, 263,169
-#4, 4, 516,727,744,000 , 365.32, 1,478,656
-#5, 5, 2,925,505,150,000 , 1356.41, 5,640,625
-#6, 6, 11,480,519,351,000 , 4642.97, 16,842,816
-#8, 8,  , , 94,633,984
+params = params_generator.params_example3()#params_generator.generate_Earth_params(80e-6, [0, 0, mag_mass_kg*1e-3*1.48/7.8], -7.8, 0, 1e6, 1.5, grids)
+
+fluids  = [[1, 1/1800/30], [1, -1]] # NO+ and electrons
+
+force, stability, params = Vlasov_testing_code_6D.iterateEB_until_result(params, grids, fluids, True, rmserrormax=1e-2)
 
 #### Shelving all data for potential later use ####
 

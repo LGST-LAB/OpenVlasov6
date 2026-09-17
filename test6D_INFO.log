@@ -1,0 +1,2547 @@
+2026-09-04 07:27:20,828 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-04 07:27:20,829 [INFO] Starting Vlasov simulation, current time = 2026-09-04 11-27-20
+2026-09-04 07:29:47,079 [INFO] Mesh points modified by params function
+2026-09-04 07:29:47,084 [INFO] [[-10.  -6. -10.  -6. -10.  -6.  -2.   2.   6.  10.]
+ [-10. -10.  -6.  -6. -10.  10.  10.  10.  10.  10.]
+ [-10. -10. -10. -10.  -6.  10.  10.  10.  10.  10.]
+ [-11. -11. -11. -11. -11.  11.  11.  11.  11.  11.]
+ [-11. -11. -11. -11. -11.  11.  11.  11.  11.  11.]
+ [-11. -11. -11. -11. -11.  11.  11.  11.  11.  11.]]
+2026-09-04 07:29:47,425 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-04 07:38:46,224 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-04 07:42:13,166 [INFO] All terms built
+2026-09-04 07:42:13,912 [INFO] Stiffness matrix nonzero values: 4073511
+2026-09-04 07:42:13,912 [INFO] Stiffness matrix size: (46656, 46656)
+2026-09-04 07:42:16,897 [INFO] SciPy solve, exit code 0
+2026-09-04 07:42:16,897 [INFO] Solution converted to numpy
+2026-09-04 07:42:16,900 [INFO] Solution injected to GetFEM
+2026-09-04 07:42:26,876 [INFO] x unique elements: [-10.  -6.  -2.   2.   6.  10.]
+2026-09-04 07:42:26,877 [INFO] y unique elements: [-10.  -6.  -2.   2.   6.  10.]
+2026-09-04 07:42:26,877 [INFO] z unique elements: [-10.  -6.  -2.   2.   6.  10.]
+2026-09-04 07:42:27,774 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.18151332e+16  1.19783179e+10 -1.08798621e+09]
+2026-09-04 07:42:27,775 [INFO] Forces in -x (m_NO*m/ms^2): [-2.18151207e+16  2.70465310e+09  1.02940140e+09]
+2026-09-04 07:42:27,775 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.30474811e+10  2.15223129e+16 -1.19665654e+10]
+2026-09-04 07:42:27,775 [INFO] Forces in -y (m_NO*m/ms^2): [ 2.90652884e+09 -2.15222986e+16  1.69496688e+10]
+2026-09-04 07:42:27,775 [INFO] Forces in +z (m_NO*m/ms^2): [-4.94678438e+08 -1.20273036e+10  2.18151280e+16]
+2026-09-04 07:42:27,775 [INFO] Forces in -z (m_NO*m/ms^2): [ 1.50327661e+09  1.72867021e+10 -2.18151197e+16]
+2026-09-04 07:42:27,775 [INFO] Total force (m_NO*m/ms^2): [2.94608663e+10 3.42223027e+10 1.32529327e+10]
+2026-09-04 07:42:27,777 [INFO] Simulation is Stable
+2026-09-04 07:42:27,778 [INFO] Stability is 3.843612946259153e-10
+2026-09-04 07:42:27,778 [INFO] Total degrees of freedom >= 33687500
+2026-09-04 07:42:27,778 [INFO] Time = 906.9495620727539
+
+2026-09-04 07:42:27,778 [INFO] RAM used: 4659.21 MB
+2026-09-04 08:39:18,291 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-04 08:39:18,291 [INFO] Starting Vlasov simulation, current time = 2026-09-04 12-39-18
+2026-09-04 08:39:52,203 [INFO] Mesh points modified by params function
+2026-09-04 08:39:52,205 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-04 08:39:52,290 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-04 08:41:54,327 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-04 08:42:54,660 [INFO] All terms built
+2026-09-04 08:42:54,757 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-04 08:42:54,757 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-04 08:42:55,202 [INFO] SciPy solve, exit code 0
+2026-09-04 08:42:55,202 [INFO] Solution converted to numpy
+2026-09-04 08:42:55,204 [INFO] Solution injected to GetFEM
+2026-09-04 08:42:57,925 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:42:57,925 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:42:57,926 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:43:06,082 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-04 08:43:06,082 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-04 08:43:06,082 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-04 08:43:06,082 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-04 08:43:06,082 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-04 08:43:06,082 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-04 08:43:06,082 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-04 08:43:06,083 [INFO] Simulation is Stable
+2026-09-04 08:43:06,084 [INFO] Stability is -2.4027543971082425e-06
+2026-09-04 08:43:06,084 [INFO] Total degrees of freedom >= 8830976
+2026-09-04 08:43:06,084 [INFO] Time = 227.79264283180237
+
+2026-09-04 08:43:06,084 [INFO] RAM used: 1759.38 MB
+2026-09-04 08:43:06,535 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-04 08:43:06,535 [INFO] Starting Vlasov simulation, current time = 2026-09-04 12-43-06
+2026-09-04 08:43:39,626 [INFO] Mesh points modified by params function
+2026-09-04 08:43:39,629 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-04 08:43:39,716 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-04 08:45:54,549 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-04 08:46:49,228 [INFO] All terms built
+2026-09-04 08:46:49,330 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-04 08:46:49,330 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-04 08:47:46,417 [INFO] SciPy solve, exit code 0
+2026-09-04 08:47:46,417 [INFO] Solution converted to numpy
+2026-09-04 08:47:46,421 [INFO] Solution injected to GetFEM
+2026-09-04 08:47:49,103 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:47:49,103 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:47:49,103 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 08:47:49,646 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59854604e+18  3.00747133e+16 -8.06538014e+13]
+2026-09-04 08:47:49,646 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60540229e+18  1.83236393e+16  1.03644180e+14]
+2026-09-04 08:47:49,646 [INFO] Forces in +y (m_NO*m/ms^2): [3.13469890e+16 1.09825473e+18 2.02517335e+12]
+2026-09-04 08:47:49,647 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73911382e+16 -1.09885021e+18 -9.09656154e+12]
+2026-09-04 08:47:49,647 [INFO] Forces in +z (m_NO*m/ms^2): [-8.15617514e+13  2.30037707e+13  1.98498242e+16]
+2026-09-04 08:47:49,647 [INFO] Forces in -z (m_NO*m/ms^2): [ 1.01446787e+14  1.74027629e+13 -1.98257676e+16]
+2026-09-04 08:47:49,647 [INFO] Total force (m_NO*m/ms^2): [4.19017600e+16 4.78432812e+16 3.99756423e+13]
+2026-09-04 08:47:49,647 [INFO] Simulation is Stable
+2026-09-04 08:47:49,648 [INFO] Stability is -8.26255303989243e-05
+2026-09-04 08:47:49,648 [INFO] Total degrees of freedom >= 8830976
+2026-09-04 08:47:49,648 [INFO] Time = 283.1119792461395
+
+2026-09-04 08:47:49,648 [INFO] RAM used: 2581.3 MB
+2026-09-04 08:47:50,105 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-04 08:47:50,105 [INFO] Starting Vlasov simulation, current time = 2026-09-04 12-47-50
+2026-09-04 08:48:24,041 [INFO] Mesh points modified by params function
+2026-09-04 08:48:24,044 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-04 08:48:24,136 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-04 08:50:45,445 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-04 08:51:37,965 [INFO] All terms built
+2026-09-04 08:51:38,060 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-04 08:51:38,061 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-04 09:33:25,915 [INFO] SciPy solve, exit code 156250
+2026-09-04 09:33:25,916 [INFO] Solution converted to numpy
+2026-09-04 09:33:25,920 [INFO] Solution injected to GetFEM
+2026-09-04 09:33:28,587 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:33:28,588 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:33:28,588 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:33:32,244 [INFO] Forces in +x (m_NO*m/ms^2): [ 3.61345229e+96 -1.92251666e+95 -2.70660958e+91]
+2026-09-04 09:33:32,245 [INFO] Forces in -x (m_NO*m/ms^2): [ 3.41095981e+97 -1.60908322e+95 -4.75908820e+91]
+2026-09-04 09:33:32,245 [INFO] Forces in +y (m_NO*m/ms^2): [-1.05497832e+96 -4.79285422e+96 -5.09814308e+90]
+2026-09-04 09:33:32,245 [INFO] Forces in -y (m_NO*m/ms^2): [ 2.94240135e+95  9.02971388e+96 -1.36123204e+91]
+2026-09-04 09:33:32,245 [INFO] Forces in +z (m_NO*m/ms^2): [-4.49200446e+91 -2.46548553e+91 -6.32111015e+96]
+2026-09-04 09:33:32,245 [INFO] Forces in -z (m_NO*m/ms^2): [-5.77987820e+91 -2.91344821e+91  7.57243846e+96]
+2026-09-04 09:33:32,245 [INFO] Total force (m_NO*m/ms^2): [3.69622095e+97 3.88364588e+96 1.25123494e+96]
+2026-09-04 09:33:32,246 [INFO] Simulation is Extremely unstable
+2026-09-04 09:33:32,246 [INFO] Stability is -5.709121925750478e+78
+2026-09-04 09:33:32,246 [INFO] Total degrees of freedom >= 8830976
+2026-09-04 09:33:32,246 [INFO] Time = 2742.1395547389984
+
+2026-09-04 09:33:32,246 [INFO] RAM used: 1767.87 MB
+2026-09-04 09:33:32,734 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-04 09:33:32,734 [INFO] Starting Vlasov simulation, current time = 2026-09-04 13-33-32
+2026-09-04 09:34:06,130 [INFO] Mesh points modified by params function
+2026-09-04 09:34:06,133 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-04 09:34:06,218 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-04 09:36:32,482 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-04 09:37:27,212 [INFO] All terms built
+2026-09-04 09:37:27,312 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-04 09:37:27,312 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-04 09:37:49,367 [INFO] SciPy solve, exit code 0
+2026-09-04 09:37:49,368 [INFO] Solution converted to numpy
+2026-09-04 09:37:49,372 [INFO] Solution injected to GetFEM
+2026-09-04 09:37:52,056 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:37:52,057 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:37:52,057 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-04 09:37:53,673 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.35999893e+18  3.23536682e+16 -5.66813096e+11]
+2026-09-04 09:37:53,673 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425442e+18  1.26456341e+16  4.36830674e+11]
+2026-09-04 09:37:53,674 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449541e+16  1.03078361e+18 -6.82135300e+11]
+2026-09-04 09:37:53,674 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283503e+15 -1.03073788e+18  7.07981423e+11]
+2026-09-04 09:37:53,674 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60694481e+11 -6.55936739e+11  1.00943108e+18]
+2026-09-04 09:37:53,674 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45665462e+11  6.79133502e+11 -1.00939500e+18]
+2026-09-04 09:37:53,674 [INFO] Total force (m_NO*m/ms^2): [4.17621910e+16 4.50450532e+16 3.59752748e+13]
+2026-09-04 09:37:53,675 [INFO] Simulation is Stable
+2026-09-04 09:37:53,675 [INFO] Stability is 9.266415998295763e-36
+2026-09-04 09:37:53,675 [INFO] Total degrees of freedom >= 8830976
+2026-09-04 09:37:53,675 [INFO] Time = 260.9401800632477
+
+2026-09-04 09:37:53,675 [INFO] RAM used: 1807.62 MB
+2026-09-06 04:28:03,231 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-06 04:28:03,232 [INFO] Starting Vlasov simulation, current time = 2026-09-06 08-28-03
+2026-09-06 04:28:36,723 [INFO] Mesh points modified by params function
+2026-09-06 04:28:36,726 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-06 04:28:36,813 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-06 04:30:53,865 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-06 04:31:48,191 [INFO] All terms built
+2026-09-06 04:31:48,292 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-06 04:31:48,292 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-06 04:31:48,719 [INFO] SciPy solve, exit code 0
+2026-09-06 04:31:48,719 [INFO] Solution converted to numpy
+2026-09-06 04:31:48,720 [INFO] Solution injected to GetFEM
+2026-09-06 04:31:51,403 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:31:51,404 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:31:51,404 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:31:51,960 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-06 04:31:51,960 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-06 04:31:51,960 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-06 04:31:51,960 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-06 04:31:51,960 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-06 04:31:51,960 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-06 04:31:51,961 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-06 04:31:51,961 [INFO] Simulation is Stable
+2026-09-06 04:31:51,962 [INFO] Stability is -2.4027543971082425e-06
+2026-09-06 04:31:51,962 [INFO] Total degrees of freedom >= 8830976
+2026-09-06 04:31:51,962 [INFO] Time = 228.72885012626648
+
+2026-09-06 04:31:51,962 [INFO] RAM used: 3106.88 MB
+2026-09-06 04:31:52,423 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-06 04:31:52,423 [INFO] Starting Vlasov simulation, current time = 2026-09-06 08-31-52
+2026-09-06 04:32:27,049 [INFO] Mesh points modified by params function
+2026-09-06 04:32:27,053 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-06 04:32:27,141 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-06 04:34:38,547 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-06 04:35:33,502 [INFO] All terms built
+2026-09-06 04:35:33,603 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-06 04:35:33,603 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-06 04:36:31,460 [INFO] SciPy solve, exit code 0
+2026-09-06 04:36:31,460 [INFO] Solution converted to numpy
+2026-09-06 04:36:31,465 [INFO] Solution injected to GetFEM
+2026-09-06 04:36:34,162 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:36:34,163 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:36:34,163 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 04:36:39,813 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59854604e+18  3.00747133e+16 -8.06538014e+13]
+2026-09-06 04:36:39,813 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60540229e+18  1.83236393e+16  1.03644180e+14]
+2026-09-06 04:36:39,813 [INFO] Forces in +y (m_NO*m/ms^2): [3.13469890e+16 1.09825473e+18 2.02517335e+12]
+2026-09-06 04:36:39,814 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73911382e+16 -1.09885021e+18 -9.09656154e+12]
+2026-09-06 04:36:39,814 [INFO] Forces in +z (m_NO*m/ms^2): [-8.15617514e+13  2.30037707e+13  1.98498242e+16]
+2026-09-06 04:36:39,814 [INFO] Forces in -z (m_NO*m/ms^2): [ 1.01446787e+14  1.74027629e+13 -1.98257676e+16]
+2026-09-06 04:36:39,814 [INFO] Total force (m_NO*m/ms^2): [4.19017600e+16 4.78432812e+16 3.99756423e+13]
+2026-09-06 04:36:39,814 [INFO] Simulation is Stable
+2026-09-06 04:36:39,815 [INFO] Stability is -8.26255303989243e-05
+2026-09-06 04:36:39,815 [INFO] Total degrees of freedom >= 8830976
+2026-09-06 04:36:39,815 [INFO] Time = 287.39120078086853
+
+2026-09-06 04:36:39,815 [INFO] RAM used: 1857.91 MB
+2026-09-06 04:36:40,276 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-06 04:36:40,276 [INFO] Starting Vlasov simulation, current time = 2026-09-06 08-36-40
+2026-09-06 04:37:13,777 [INFO] Mesh points modified by params function
+2026-09-06 04:37:13,781 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-06 04:37:13,868 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-06 04:39:40,032 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-06 04:40:34,518 [INFO] All terms built
+2026-09-06 04:40:34,620 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-06 04:40:34,620 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-06 05:22:31,896 [INFO] SciPy solve, exit code 156250
+2026-09-06 05:22:31,896 [INFO] Solution converted to numpy
+2026-09-06 05:22:31,901 [INFO] Solution injected to GetFEM
+2026-09-06 05:22:34,658 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:22:34,658 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:22:34,658 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:22:36,507 [INFO] Forces in +x (m_NO*m/ms^2): [ 3.61345229e+96 -1.92251666e+95 -2.70660958e+91]
+2026-09-06 05:22:36,507 [INFO] Forces in -x (m_NO*m/ms^2): [ 3.41095981e+97 -1.60908322e+95 -4.75908820e+91]
+2026-09-06 05:22:36,507 [INFO] Forces in +y (m_NO*m/ms^2): [-1.05497832e+96 -4.79285422e+96 -5.09814308e+90]
+2026-09-06 05:22:36,507 [INFO] Forces in -y (m_NO*m/ms^2): [ 2.94240135e+95  9.02971388e+96 -1.36123204e+91]
+2026-09-06 05:22:36,507 [INFO] Forces in +z (m_NO*m/ms^2): [-4.49200446e+91 -2.46548553e+91 -6.32111015e+96]
+2026-09-06 05:22:36,507 [INFO] Forces in -z (m_NO*m/ms^2): [-5.77987820e+91 -2.91344821e+91  7.57243846e+96]
+2026-09-06 05:22:36,508 [INFO] Total force (m_NO*m/ms^2): [3.69622095e+97 3.88364588e+96 1.25123494e+96]
+2026-09-06 05:22:36,508 [INFO] Simulation is Extremely unstable
+2026-09-06 05:22:36,509 [INFO] Stability is -5.709121925750478e+78
+2026-09-06 05:22:36,509 [INFO] Total degrees of freedom >= 8830976
+2026-09-06 05:22:36,509 [INFO] Time = 2756.2328448295593
+
+2026-09-06 05:22:36,509 [INFO] RAM used: 1759.02 MB
+2026-09-06 05:22:36,998 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-06 05:22:36,998 [INFO] Starting Vlasov simulation, current time = 2026-09-06 09-22-36
+2026-09-06 05:23:10,694 [INFO] Mesh points modified by params function
+2026-09-06 05:23:10,698 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-06 05:23:10,783 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-06 05:25:37,037 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-06 05:26:31,693 [INFO] All terms built
+2026-09-06 05:26:31,790 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-06 05:26:31,790 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-06 05:26:52,668 [INFO] SciPy solve, exit code 0
+2026-09-06 05:26:52,669 [INFO] Solution converted to numpy
+2026-09-06 05:26:52,674 [INFO] Solution injected to GetFEM
+2026-09-06 05:26:55,346 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:26:55,346 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:26:55,347 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-06 05:26:57,140 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.35999893e+18  3.23536682e+16 -5.66813096e+11]
+2026-09-06 05:26:57,140 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425442e+18  1.26456341e+16  4.36830674e+11]
+2026-09-06 05:26:57,140 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449541e+16  1.03078361e+18 -6.82135300e+11]
+2026-09-06 05:26:57,141 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283503e+15 -1.03073788e+18  7.07981423e+11]
+2026-09-06 05:26:57,141 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60694481e+11 -6.55936739e+11  1.00943108e+18]
+2026-09-06 05:26:57,141 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45665462e+11  6.79133502e+11 -1.00939500e+18]
+2026-09-06 05:26:57,141 [INFO] Total force (m_NO*m/ms^2): [4.17621910e+16 4.50450532e+16 3.59752748e+13]
+2026-09-06 05:26:57,141 [INFO] Simulation is Stable
+2026-09-06 05:26:57,142 [INFO] Stability is 9.266415998295763e-36
+2026-09-06 05:26:57,142 [INFO] Total degrees of freedom >= 8830976
+2026-09-06 05:26:57,142 [INFO] Time = 260.1438307762146
+
+2026-09-06 05:26:57,142 [INFO] RAM used: 2948.63 MB
+2026-09-08 09:08:34,667 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 09:08:34,667 [INFO] Starting Vlasov simulation, current time = 2026-09-08 13-08-34
+2026-09-08 09:09:07,665 [INFO] Mesh points modified by params function
+2026-09-08 09:09:07,668 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 09:09:07,752 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 09:11:13,830 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 09:12:07,504 [INFO] All terms built
+2026-09-08 09:12:07,614 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-08 09:12:07,615 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 09:12:08,063 [INFO] SciPy solve, exit code 0
+2026-09-08 09:12:08,063 [INFO] Solution converted to numpy
+2026-09-08 09:12:08,064 [INFO] Solution injected to GetFEM
+2026-09-08 09:12:10,662 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:12:10,662 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:12:10,662 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:12:11,454 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-08 09:12:11,454 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-08 09:12:11,454 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-08 09:12:11,454 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-08 09:12:11,454 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-08 09:12:11,454 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-08 09:12:11,455 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-08 09:12:11,455 [INFO] Simulation is Stable
+2026-09-08 09:12:11,456 [INFO] Stability is -2.4027543971082425e-06
+2026-09-08 09:12:11,456 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 09:12:11,456 [INFO] Time = 216.78854370117188
+
+2026-09-08 09:12:11,456 [INFO] RAM used: 1403.38 MB
+2026-09-08 09:12:11,906 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 09:12:11,907 [INFO] Starting Vlasov simulation, current time = 2026-09-08 13-12-11
+2026-09-08 09:12:44,709 [INFO] Mesh points modified by params function
+2026-09-08 09:12:44,712 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 09:12:44,797 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 09:14:51,891 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 09:15:44,593 [INFO] All terms built
+2026-09-08 09:15:44,697 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-08 09:15:44,697 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 09:16:41,959 [INFO] SciPy solve, exit code 0
+2026-09-08 09:16:41,959 [INFO] Solution converted to numpy
+2026-09-08 09:16:41,963 [INFO] Solution injected to GetFEM
+2026-09-08 09:16:44,530 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:16:44,531 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:16:44,531 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 09:16:45,088 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59854604e+18  3.00747133e+16 -8.06538014e+13]
+2026-09-08 09:16:45,088 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60540229e+18  1.83236393e+16  1.03644180e+14]
+2026-09-08 09:16:45,088 [INFO] Forces in +y (m_NO*m/ms^2): [3.13469890e+16 1.09825473e+18 2.02517335e+12]
+2026-09-08 09:16:45,088 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73911382e+16 -1.09885021e+18 -9.09656154e+12]
+2026-09-08 09:16:45,088 [INFO] Forces in +z (m_NO*m/ms^2): [-8.15617514e+13  2.30037707e+13  1.98498242e+16]
+2026-09-08 09:16:45,089 [INFO] Forces in -z (m_NO*m/ms^2): [ 1.01446787e+14  1.74027629e+13 -1.98257676e+16]
+2026-09-08 09:16:45,089 [INFO] Total force (m_NO*m/ms^2): [4.19017600e+16 4.78432812e+16 3.99756423e+13]
+2026-09-08 09:16:45,089 [INFO] Simulation is Stable
+2026-09-08 09:16:45,090 [INFO] Stability is -8.26255303989243e-05
+2026-09-08 09:16:45,090 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 09:16:45,090 [INFO] Time = 273.18215775489807
+
+2026-09-08 09:16:45,090 [INFO] RAM used: 2896.61 MB
+2026-09-08 09:16:45,547 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 09:16:45,547 [INFO] Starting Vlasov simulation, current time = 2026-09-08 13-16-45
+2026-09-08 09:17:18,873 [INFO] Mesh points modified by params function
+2026-09-08 09:17:18,875 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 09:17:18,961 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 09:19:34,829 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 09:20:27,062 [INFO] All terms built
+2026-09-08 09:20:27,160 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 09:20:27,160 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:02:20,866 [INFO] SciPy solve, exit code 156250
+2026-09-08 10:02:20,866 [INFO] Solution converted to numpy
+2026-09-08 10:02:20,872 [INFO] Solution injected to GetFEM
+2026-09-08 10:02:23,469 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:02:23,470 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:02:23,470 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:02:26,639 [INFO] Forces in +x (m_NO*m/ms^2): [ 3.61345229e+96 -1.92251666e+95 -2.70660958e+91]
+2026-09-08 10:02:26,640 [INFO] Forces in -x (m_NO*m/ms^2): [ 3.41095981e+97 -1.60908322e+95 -4.75908820e+91]
+2026-09-08 10:02:26,640 [INFO] Forces in +y (m_NO*m/ms^2): [-1.05497832e+96 -4.79285422e+96 -5.09814308e+90]
+2026-09-08 10:02:26,640 [INFO] Forces in -y (m_NO*m/ms^2): [ 2.94240135e+95  9.02971388e+96 -1.36123204e+91]
+2026-09-08 10:02:26,640 [INFO] Forces in +z (m_NO*m/ms^2): [-4.49200446e+91 -2.46548553e+91 -6.32111015e+96]
+2026-09-08 10:02:26,641 [INFO] Forces in -z (m_NO*m/ms^2): [-5.77987820e+91 -2.91344821e+91  7.57243846e+96]
+2026-09-08 10:02:26,641 [INFO] Total force (m_NO*m/ms^2): [3.69622095e+97 3.88364588e+96 1.25123494e+96]
+2026-09-08 10:02:26,641 [INFO] Simulation is Extremely unstable
+2026-09-08 10:02:26,642 [INFO] Stability is -5.709121925750478e+78
+2026-09-08 10:02:26,642 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:02:26,642 [INFO] Time = 2741.0948565006256
+
+2026-09-08 10:02:26,642 [INFO] RAM used: 1745.58 MB
+2026-09-08 10:02:27,133 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:02:27,134 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-02-27
+2026-09-08 10:03:00,155 [INFO] Mesh points modified by params function
+2026-09-08 10:03:00,158 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:03:00,245 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:05:23,987 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:06:17,048 [INFO] All terms built
+2026-09-08 10:06:17,148 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 10:06:17,149 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:06:38,490 [INFO] SciPy solve, exit code 0
+2026-09-08 10:06:38,491 [INFO] Solution converted to numpy
+2026-09-08 10:06:38,495 [INFO] Solution injected to GetFEM
+2026-09-08 10:06:41,113 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:06:41,114 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:06:41,114 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:06:42,546 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.35999893e+18  3.23536682e+16 -5.66813096e+11]
+2026-09-08 10:06:42,546 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425442e+18  1.26456341e+16  4.36830674e+11]
+2026-09-08 10:06:42,547 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449541e+16  1.03078361e+18 -6.82135300e+11]
+2026-09-08 10:06:42,547 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283503e+15 -1.03073788e+18  7.07981423e+11]
+2026-09-08 10:06:42,547 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60694481e+11 -6.55936739e+11  1.00943108e+18]
+2026-09-08 10:06:42,547 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45665462e+11  6.79133502e+11 -1.00939500e+18]
+2026-09-08 10:06:42,548 [INFO] Total force (m_NO*m/ms^2): [4.17621910e+16 4.50450532e+16 3.59752748e+13]
+2026-09-08 10:06:42,548 [INFO] Simulation is Stable
+2026-09-08 10:06:42,549 [INFO] Stability is 9.266415998295763e-36
+2026-09-08 10:06:42,549 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:06:42,549 [INFO] Time = 255.41565871238708
+
+2026-09-08 10:06:42,549 [INFO] RAM used: 1792.39 MB
+2026-09-08 10:06:43,038 [INFO] error: 0.006687205895502256
+2026-09-08 10:06:43,038 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:06:43,039 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-06-43
+2026-09-08 10:07:16,096 [INFO] Mesh points modified by params function
+2026-09-08 10:07:16,099 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:07:16,184 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:09:40,715 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:10:34,048 [INFO] All terms built
+2026-09-08 10:10:34,147 [INFO] Stiffness matrix nonzero values: 1144029
+2026-09-08 10:10:34,147 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:11:03,629 [INFO] SciPy solve, exit code -11
+2026-09-08 10:11:03,629 [INFO] Solution converted to numpy
+2026-09-08 10:11:03,633 [INFO] Solution injected to GetFEM
+2026-09-08 10:11:06,212 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:11:06,213 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:11:06,213 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:11:06,753 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 1.15376939e-01]
+2026-09-08 10:11:06,753 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.30467059e+00]
+2026-09-08 10:11:06,754 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -1.94753942e-02]
+2026-09-08 10:11:06,754 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  5.87209856e-03]
+2026-09-08 10:11:06,754 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.85081299e+00 -2.37408273e-02  1.43887820e+14]
+2026-09-08 10:11:06,754 [INFO] Forces in -z (m_NO*m/ms^2): [-3.35865218e+00  8.88256477e-03 -1.07168402e+14]
+2026-09-08 10:11:06,755 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 10:11:06,755 [INFO] Simulation is Stable
+2026-09-08 10:11:06,756 [INFO] Stability is 2.312838176279169e-150
+2026-09-08 10:11:06,756 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:11:06,756 [INFO] Time = 263.7175624370575
+
+2026-09-08 10:11:06,756 [INFO] RAM used: 3083.62 MB
+2026-09-08 10:11:07,245 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:11:07,245 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-11-07
+2026-09-08 10:11:41,156 [INFO] Mesh points modified by params function
+2026-09-08 10:11:41,160 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:11:41,247 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:14:00,265 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:14:54,170 [INFO] All terms built
+2026-09-08 10:14:54,269 [INFO] Stiffness matrix nonzero values: 1144035
+2026-09-08 10:14:54,269 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:18:14,707 [INFO] SciPy solve, exit code -11
+2026-09-08 10:18:14,708 [INFO] Solution converted to numpy
+2026-09-08 10:18:14,712 [INFO] Solution injected to GetFEM
+2026-09-08 10:18:17,323 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:18:17,324 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:18:17,324 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:18:21,552 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 2.74671811e-02]
+2026-09-08 10:18:21,552 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.24168160e+00]
+2026-09-08 10:18:21,553 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -3.35756180e-02]
+2026-09-08 10:18:21,553 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  1.65371576e-02]
+2026-09-08 10:18:21,553 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.84092315e+00 -3.48903529e-02  1.43887820e+14]
+2026-09-08 10:18:21,553 [INFO] Forces in -z (m_NO*m/ms^2): [-3.29410500e+00  1.90594022e-02 -1.07168402e+14]
+2026-09-08 10:18:21,553 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 10:18:21,554 [INFO] Simulation is Stable
+2026-09-08 10:18:21,554 [INFO] Stability is 5.226436486940402e-133
+2026-09-08 10:18:21,554 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:18:21,554 [INFO] Time = 434.3086242675781
+
+2026-09-08 10:18:21,554 [INFO] RAM used: 1830.75 MB
+2026-09-08 10:18:22,061 [INFO] error: 0.00604415356270517
+2026-09-08 10:18:22,062 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:18:22,062 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-18-22
+2026-09-08 10:18:55,062 [INFO] Mesh points modified by params function
+2026-09-08 10:18:55,066 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:18:55,152 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:21:18,979 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:22:12,965 [INFO] All terms built
+2026-09-08 10:22:13,068 [INFO] Stiffness matrix nonzero values: 1154640
+2026-09-08 10:22:13,068 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:22:13,499 [INFO] SciPy solve, exit code 0
+2026-09-08 10:22:13,500 [INFO] Solution converted to numpy
+2026-09-08 10:22:13,501 [INFO] Solution injected to GetFEM
+2026-09-08 10:22:16,082 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:22:16,083 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:22:16,083 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:22:16,639 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-08 10:22:16,640 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-08 10:22:16,640 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-08 10:22:16,640 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-08 10:22:16,640 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-08 10:22:16,640 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-08 10:22:16,641 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-08 10:22:16,641 [INFO] Simulation is Stable
+2026-09-08 10:22:16,642 [INFO] Stability is -2.4027543971091696e-06
+2026-09-08 10:22:16,642 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:22:16,642 [INFO] Time = 234.57992243766785
+
+2026-09-08 10:22:16,642 [INFO] RAM used: 3161.42 MB
+2026-09-08 10:22:17,135 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:22:17,135 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-22-17
+2026-09-08 10:22:50,845 [INFO] Mesh points modified by params function
+2026-09-08 10:22:50,849 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:22:50,937 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:25:10,391 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:26:04,982 [INFO] All terms built
+2026-09-08 10:26:05,083 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-08 10:26:05,083 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 10:27:39,423 [INFO] SciPy solve, exit code 0
+2026-09-08 10:27:39,424 [INFO] Solution converted to numpy
+2026-09-08 10:27:39,428 [INFO] Solution injected to GetFEM
+2026-09-08 10:27:42,035 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:27:42,036 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:27:42,036 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 10:27:46,098 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59854560e+18  3.00742390e+16 -7.93773922e+13]
+2026-09-08 10:27:46,098 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60540208e+18  1.83241042e+16  1.02367847e+14]
+2026-09-08 10:27:46,098 [INFO] Forces in +y (m_NO*m/ms^2): [3.13465106e+16 1.09825470e+18 2.03712817e+12]
+2026-09-08 10:27:46,099 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73916114e+16 -1.09885015e+18 -9.10851545e+12]
+2026-09-08 10:27:46,099 [INFO] Forces in +z (m_NO*m/ms^2): [-8.02851855e+13  2.30012837e+13  1.98500979e+16]
+2026-09-08 10:27:46,099 [INFO] Forces in -z (m_NO*m/ms^2): [ 1.00170566e+14  1.74053771e+13 -1.98260414e+16]
+2026-09-08 10:27:46,099 [INFO] Total force (m_NO*m/ms^2): [4.19015292e+16 4.78432916e+16 3.99756365e+13]
+2026-09-08 10:27:46,100 [INFO] Simulation is Stable
+2026-09-08 10:27:46,100 [INFO] Stability is -8.261267482230175e-05
+2026-09-08 10:27:46,100 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 10:27:46,101 [INFO] Time = 328.9657566547394
+
+2026-09-08 10:27:46,101 [INFO] RAM used: 1837.89 MB
+2026-09-08 10:27:46,583 [INFO] error: 0.022410962655152546
+2026-09-08 10:27:46,583 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 10:27:46,583 [INFO] Starting Vlasov simulation, current time = 2026-09-08 14-27-46
+2026-09-08 10:28:19,564 [INFO] Mesh points modified by params function
+2026-09-08 10:28:19,567 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 10:28:19,653 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 10:30:43,965 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 10:31:37,836 [INFO] All terms built
+2026-09-08 10:31:37,934 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 10:31:37,934 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:13:30,001 [INFO] SciPy solve, exit code 156250
+2026-09-08 11:13:30,002 [INFO] Solution converted to numpy
+2026-09-08 11:13:30,006 [INFO] Solution injected to GetFEM
+2026-09-08 11:13:32,604 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:13:32,605 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:13:32,605 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:13:33,193 [INFO] Forces in +x (m_NO*m/ms^2): [-1.76330014e+126 -5.55605866e+124  1.08940812e+120]
+2026-09-08 11:13:33,194 [INFO] Forces in -x (m_NO*m/ms^2): [-5.68834568e+126  1.37783847e+124 -1.83680421e+121]
+2026-09-08 11:13:33,194 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.93445392e+125  1.21740113e+126 -1.52568392e+120]
+2026-09-08 11:13:33,194 [INFO] Forces in -y (m_NO*m/ms^2): [-5.08181639e+124 -4.55928405e+125 -8.96741403e+120]
+2026-09-08 11:13:33,195 [INFO] Forces in +z (m_NO*m/ms^2): [4.32163282e+120 2.22515886e+120 7.31317120e+125]
+2026-09-08 11:13:33,195 [INFO] Forces in -z (m_NO*m/ms^2): [-1.52406820e+121 -4.08307300e+120 -1.10040291e+126]
+2026-09-08 11:13:33,195 [INFO] Total force (m_NO*m/ms^2): [-7.30902951e+126  7.19688669e+125 -3.69113559e+125]
+2026-09-08 11:13:33,196 [INFO] Simulation is Extremely unstable
+2026-09-08 11:13:33,196 [INFO] Stability is -5.56938568526483e+107
+2026-09-08 11:13:33,196 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 11:13:33,196 [INFO] Time = 2746.6131768226624
+
+2026-09-08 11:13:33,197 [INFO] RAM used: 3160.34 MB
+2026-09-08 11:13:33,680 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 11:13:33,680 [INFO] Starting Vlasov simulation, current time = 2026-09-08 15-13-33
+2026-09-08 11:14:07,734 [INFO] Mesh points modified by params function
+2026-09-08 11:14:07,738 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 11:14:07,825 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 11:16:27,793 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 11:17:22,568 [INFO] All terms built
+2026-09-08 11:17:22,666 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 11:17:22,666 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:17:43,631 [INFO] SciPy solve, exit code 0
+2026-09-08 11:17:43,632 [INFO] Solution converted to numpy
+2026-09-08 11:17:43,636 [INFO] Solution injected to GetFEM
+2026-09-08 11:17:46,273 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:17:46,273 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:17:46,273 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:17:46,800 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.35999883e+18  3.23536667e+16 -5.66835588e+11]
+2026-09-08 11:17:46,800 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425431e+18  1.26456336e+16  4.36830891e+11]
+2026-09-08 11:17:46,801 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449521e+16  1.03078356e+18 -6.82144580e+11]
+2026-09-08 11:17:46,801 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283496e+15 -1.03073783e+18  7.07979311e+11]
+2026-09-08 11:17:46,801 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60707663e+11 -6.55936914e+11  1.00943104e+18]
+2026-09-08 11:17:46,801 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45674582e+11  6.79140079e+11 -1.00939496e+18]
+2026-09-08 11:17:46,801 [INFO] Total force (m_NO*m/ms^2): [4.17621889e+16 4.50450511e+16 3.59754608e+13]
+2026-09-08 11:17:46,802 [INFO] Simulation is Stable
+2026-09-08 11:17:46,802 [INFO] Stability is 9.266415998295766e-36
+2026-09-08 11:17:46,802 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 11:17:46,802 [INFO] Time = 253.121031999588
+
+2026-09-08 11:17:46,802 [INFO] RAM used: 4181.95 MB
+2026-09-08 11:17:47,291 [INFO] error: 0.006687205798695081
+2026-09-08 11:17:47,292 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 11:17:47,292 [INFO] Starting Vlasov simulation, current time = 2026-09-08 15-17-47
+2026-09-08 11:18:21,412 [INFO] Mesh points modified by params function
+2026-09-08 11:18:21,417 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 11:18:21,506 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 11:20:34,921 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 11:21:27,859 [INFO] All terms built
+2026-09-08 11:21:27,961 [INFO] Stiffness matrix nonzero values: 1144027
+2026-09-08 11:21:27,961 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:28:50,972 [INFO] SciPy solve, exit code -11
+2026-09-08 11:28:50,972 [INFO] Solution converted to numpy
+2026-09-08 11:28:50,977 [INFO] Solution injected to GetFEM
+2026-09-08 11:28:53,563 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:28:53,563 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:28:53,563 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:29:00,042 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 8.40170580e-02]
+2026-09-08 11:29:00,042 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.26702668e+00]
+2026-09-08 11:29:00,042 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -3.44802079e-02]
+2026-09-08 11:29:00,042 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  1.69950405e-02]
+2026-09-08 11:29:00,042 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.81445571e+00 -3.47684018e-02  1.43887820e+14]
+2026-09-08 11:29:00,043 [INFO] Forces in -z (m_NO*m/ms^2): [-3.30034596e+00  1.98225205e-02 -1.07168402e+14]
+2026-09-08 11:29:00,043 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 11:29:00,043 [INFO] Simulation is Stable
+2026-09-08 11:29:00,044 [INFO] Stability is -8.209385299500706e-205
+2026-09-08 11:29:00,044 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 11:29:00,044 [INFO] Time = 672.7523908615112
+
+2026-09-08 11:29:00,044 [INFO] RAM used: 1831.14 MB
+2026-09-08 11:29:00,537 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 11:29:00,537 [INFO] Starting Vlasov simulation, current time = 2026-09-08 15-29-00
+2026-09-08 11:29:33,412 [INFO] Mesh points modified by params function
+2026-09-08 11:29:33,415 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 11:29:33,500 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 11:31:56,806 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 11:32:50,559 [INFO] All terms built
+2026-09-08 11:32:50,658 [INFO] Stiffness matrix nonzero values: 1144024
+2026-09-08 11:32:50,659 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:51:12,852 [INFO] SciPy solve, exit code -11
+2026-09-08 11:51:12,853 [INFO] Solution converted to numpy
+2026-09-08 11:51:12,857 [INFO] Solution injected to GetFEM
+2026-09-08 11:51:15,464 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:51:15,465 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:51:15,465 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:51:16,012 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 8.90833038e-02]
+2026-09-08 11:51:16,012 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.26945295e+00]
+2026-09-08 11:51:16,013 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -4.04545901e-02]
+2026-09-08 11:51:16,013 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  2.22441832e-02]
+2026-09-08 11:51:16,013 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.82775029e+00 -4.21677224e-02  1.43887820e+14]
+2026-09-08 11:51:16,013 [INFO] Forces in -z (m_NO*m/ms^2): [-3.30422187e+00  2.52699678e-02 -1.07168402e+14]
+2026-09-08 11:51:16,013 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 11:51:16,013 [INFO] Simulation is Stable
+2026-09-08 11:51:16,014 [INFO] Stability is -6.817545331018634e-163
+2026-09-08 11:51:16,014 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 11:51:16,014 [INFO] Time = 1335.4772515296936
+
+2026-09-08 11:51:16,014 [INFO] RAM used: 3126.73 MB
+2026-09-08 11:51:16,503 [INFO] error: 0.006044153446110831
+2026-09-08 11:51:16,503 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 11:51:16,503 [INFO] Starting Vlasov simulation, current time = 2026-09-08 15-51-16
+2026-09-08 11:51:50,351 [INFO] Mesh points modified by params function
+2026-09-08 11:51:50,355 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 11:51:50,442 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 11:54:09,735 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 11:55:04,521 [INFO] All terms built
+2026-09-08 11:55:04,619 [INFO] Stiffness matrix nonzero values: 1154640
+2026-09-08 11:55:04,620 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:55:05,052 [INFO] SciPy solve, exit code 0
+2026-09-08 11:55:05,052 [INFO] Solution converted to numpy
+2026-09-08 11:55:05,054 [INFO] Solution injected to GetFEM
+2026-09-08 11:55:07,660 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:55:07,661 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:55:07,661 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:55:08,218 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-08 11:55:08,218 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-08 11:55:08,218 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-08 11:55:08,219 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-08 11:55:08,219 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-08 11:55:08,219 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-08 11:55:08,219 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-08 11:55:08,220 [INFO] Simulation is Stable
+2026-09-08 11:55:08,221 [INFO] Stability is -2.402754397115624e-06
+2026-09-08 11:55:08,221 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 11:55:08,221 [INFO] Time = 231.71790051460266
+
+2026-09-08 11:55:08,221 [INFO] RAM used: 4166.04 MB
+2026-09-08 11:55:08,700 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 11:55:08,700 [INFO] Starting Vlasov simulation, current time = 2026-09-08 15-55-08
+2026-09-08 11:55:42,511 [INFO] Mesh points modified by params function
+2026-09-08 11:55:42,515 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 11:55:42,604 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 11:57:55,678 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 11:58:50,334 [INFO] All terms built
+2026-09-08 11:58:50,432 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-08 11:58:50,433 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 11:59:55,394 [INFO] SciPy solve, exit code 0
+2026-09-08 11:59:55,394 [INFO] Solution converted to numpy
+2026-09-08 11:59:55,399 [INFO] Solution injected to GetFEM
+2026-09-08 11:59:57,983 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:59:57,983 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 11:59:57,984 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:00:05,010 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59853917e+18  3.00759331e+16 -6.21573885e+13]
+2026-09-08 12:00:05,011 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60539479e+18  1.83222186e+16  8.51479816e+13]
+2026-09-08 12:00:05,011 [INFO] Forces in +y (m_NO*m/ms^2): [3.13482373e+16 1.09825435e+18 2.17647537e+12]
+2026-09-08 12:00:05,012 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73897072e+16 -1.09884937e+18 -9.24856507e+12]
+2026-09-08 12:00:05,012 [INFO] Forces in +z (m_NO*m/ms^2): [-6.30649734e+13  2.29735457e+13  1.98609845e+16]
+2026-09-08 12:00:05,012 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.29509589e+13  1.74325754e+13 -1.98369280e+16]
+2026-09-08 12:00:05,012 [INFO] Total force (m_NO*m/ms^2): [4.19022106e+16 4.78435385e+16 3.99749673e+13]
+2026-09-08 12:00:05,013 [INFO] Simulation is Stable
+2026-09-08 12:00:05,014 [INFO] Stability is -8.237315942133184e-05
+2026-09-08 12:00:05,014 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 12:00:05,014 [INFO] Time = 296.31385016441345
+
+2026-09-08 12:00:05,015 [INFO] RAM used: 1914.61 MB
+2026-09-08 12:00:05,590 [INFO] error: 0.022410950594156397
+2026-09-08 12:00:05,591 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 12:00:05,591 [INFO] Starting Vlasov simulation, current time = 2026-09-08 16-00-05
+2026-09-08 12:00:44,186 [INFO] Mesh points modified by params function
+2026-09-08 12:00:44,189 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 12:00:44,273 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 12:03:08,494 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 12:04:02,528 [INFO] All terms built
+2026-09-08 12:04:02,623 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 12:04:02,623 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 12:46:27,920 [INFO] SciPy solve, exit code 156250
+2026-09-08 12:46:27,921 [INFO] Solution converted to numpy
+2026-09-08 12:46:27,925 [INFO] Solution injected to GetFEM
+2026-09-08 12:46:30,574 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:46:30,575 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:46:30,575 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:46:31,173 [INFO] Forces in +x (m_NO*m/ms^2): [ 3.11794795e+85  7.37858780e+83 -3.44819163e+79]
+2026-09-08 12:46:31,174 [INFO] Forces in -x (m_NO*m/ms^2): [ 2.88996206e+85 -8.35355102e+83  3.35242929e+79]
+2026-09-08 12:46:31,174 [INFO] Forces in +y (m_NO*m/ms^2): [-4.56685751e+83  4.97376029e+84 -3.18032210e+77]
+2026-09-08 12:46:31,174 [INFO] Forces in -y (m_NO*m/ms^2): [4.0657867e+83 3.3867093e+84 3.4509069e+78]
+2026-09-08 12:46:31,175 [INFO] Forces in +z (m_NO*m/ms^2): [-1.22226598e+79  4.27981002e+78 -6.26731393e+84]
+2026-09-08 12:46:31,175 [INFO] Forces in -z (m_NO*m/ms^2): [ 5.31702269e+79  4.90680213e+78 -7.44257467e+84]
+2026-09-08 12:46:31,175 [INFO] Total force (m_NO*m/ms^2): [ 6.00290339e+85  8.26298245e+84 -1.37098864e+85]
+2026-09-08 12:46:31,176 [INFO] Simulation is Extremely unstable
+2026-09-08 12:46:31,176 [INFO] Stability is -1.2971718748764125e+66
+2026-09-08 12:46:31,176 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 12:46:31,177 [INFO] Time = 2785.5862443447113
+
+2026-09-08 12:46:31,177 [INFO] RAM used: 3221.27 MB
+2026-09-08 12:46:31,666 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 12:46:31,667 [INFO] Starting Vlasov simulation, current time = 2026-09-08 16-46-31
+2026-09-08 12:47:05,857 [INFO] Mesh points modified by params function
+2026-09-08 12:47:05,860 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 12:47:05,947 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 12:49:27,830 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 12:50:22,803 [INFO] All terms built
+2026-09-08 12:50:22,904 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 12:50:22,904 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 12:50:43,928 [INFO] SciPy solve, exit code 0
+2026-09-08 12:50:43,928 [INFO] Solution converted to numpy
+2026-09-08 12:50:43,933 [INFO] Solution injected to GetFEM
+2026-09-08 12:50:46,595 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:50:46,595 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:50:46,596 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:50:47,125 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000173e+18  3.23537069e+16 -5.66097930e+11]
+2026-09-08 12:50:47,125 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425721e+18  1.26456486e+16  4.36801014e+11]
+2026-09-08 12:50:47,125 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44450077e+16  1.03078484e+18 -6.81837198e+11]
+2026-09-08 12:50:47,125 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283680e+15 -1.03073911e+18  7.08060919e+11]
+2026-09-08 12:50:47,125 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60362674e+11 -6.55941131e+11  1.00943229e+18]
+2026-09-08 12:50:47,125 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45289961e+11  6.78918845e+11 -1.00939622e+18]
+2026-09-08 12:50:47,126 [INFO] Total force (m_NO*m/ms^2): [4.17622475e+16 4.50451106e+16 3.59690885e+13]
+2026-09-08 12:50:47,126 [INFO] Simulation is Stable
+2026-09-08 12:50:47,127 [INFO] Stability is 9.266415998295763e-36
+2026-09-08 12:50:47,127 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 12:50:47,127 [INFO] Time = 255.459947347641
+
+2026-09-08 12:50:47,127 [INFO] RAM used: 4248.28 MB
+2026-09-08 12:50:47,618 [INFO] error: 0.0066872016516323855
+2026-09-08 12:50:47,618 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 12:50:47,619 [INFO] Starting Vlasov simulation, current time = 2026-09-08 16-50-47
+2026-09-08 12:51:22,021 [INFO] Mesh points modified by params function
+2026-09-08 12:51:22,026 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 12:51:22,114 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 12:53:36,989 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 12:54:30,345 [INFO] All terms built
+2026-09-08 12:54:30,444 [INFO] Stiffness matrix nonzero values: 1144028
+2026-09-08 12:54:30,445 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 12:59:28,537 [INFO] SciPy solve, exit code -11
+2026-09-08 12:59:28,537 [INFO] Solution converted to numpy
+2026-09-08 12:59:28,543 [INFO] Solution injected to GetFEM
+2026-09-08 12:59:31,143 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:59:31,144 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:59:31,144 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 12:59:31,684 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 9.57362848e-02]
+2026-09-08 12:59:31,684 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.25726130e+00]
+2026-09-08 12:59:31,684 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -1.98331413e-02]
+2026-09-08 12:59:31,686 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  5.76481020e-03]
+2026-09-08 12:59:31,686 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.81445654e+00 -2.30504863e-02  1.43887820e+14]
+2026-09-08 12:59:31,686 [INFO] Forces in -z (m_NO*m/ms^2): [-3.30718226e+00  8.10388969e-03 -1.07168402e+14]
+2026-09-08 12:59:31,686 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 12:59:31,687 [INFO] Simulation is Stable
+2026-09-08 12:59:31,687 [INFO] Stability is -9.95860905343384e-127
+2026-09-08 12:59:31,687 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 12:59:31,687 [INFO] Time = 524.0675430297852
+
+2026-09-08 12:59:31,688 [INFO] RAM used: 5240.53 MB
+2026-09-08 12:59:32,170 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 12:59:32,171 [INFO] Starting Vlasov simulation, current time = 2026-09-08 16-59-32
+2026-09-08 13:00:06,717 [INFO] Mesh points modified by params function
+2026-09-08 13:00:06,722 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:00:06,811 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:02:21,392 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 13:03:21,700 [INFO] All terms built
+2026-09-08 13:03:21,801 [INFO] Stiffness matrix nonzero values: 1144023
+2026-09-08 13:03:21,802 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:06:14,161 [INFO] SciPy solve, exit code -11
+2026-09-08 13:06:14,162 [INFO] Solution converted to numpy
+2026-09-08 13:06:14,168 [INFO] Solution injected to GetFEM
+2026-09-08 13:06:16,820 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:06:16,820 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:06:16,820 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:06:25,632 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 9.10513597e-02]
+2026-09-08 13:06:25,632 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.24021699e+00]
+2026-09-08 13:06:25,632 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -1.94731889e-02]
+2026-09-08 13:06:25,632 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  6.36729395e-03]
+2026-09-08 13:06:25,633 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.8147399e+00 -2.2779762e-02  1.4388782e+14]
+2026-09-08 13:06:25,633 [INFO] Forces in -z (m_NO*m/ms^2): [-3.27466542e+00  9.37787936e-03 -1.07168402e+14]
+2026-09-08 13:06:25,633 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 13:06:25,634 [INFO] Simulation is Stable
+2026-09-08 13:06:25,634 [INFO] Stability is -4.5762030149158266e-120
+2026-09-08 13:06:25,635 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 13:06:25,635 [INFO] Time = 413.46480894088745
+
+2026-09-08 13:06:25,635 [INFO] RAM used: 1902.37 MB
+2026-09-08 13:06:26,140 [INFO] error: 0.006044156669561452
+2026-09-08 13:06:26,141 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:06:26,141 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-06-26
+2026-09-08 13:06:59,355 [INFO] Mesh points modified by params function
+2026-09-08 13:06:59,358 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:06:59,446 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:09:21,975 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 13:10:16,298 [INFO] All terms built
+2026-09-08 13:10:16,399 [INFO] Stiffness matrix nonzero values: 1154640
+2026-09-08 13:10:16,400 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:10:16,827 [INFO] SciPy solve, exit code 0
+2026-09-08 13:10:16,827 [INFO] Solution converted to numpy
+2026-09-08 13:10:16,828 [INFO] Solution injected to GetFEM
+2026-09-08 13:10:19,454 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:10:19,454 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:10:19,454 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:10:20,001 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51134672e+13 -3.73144240e+10]
+2026-09-08 13:10:20,002 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891430e+13  2.46564041e+10]
+2026-09-08 13:10:20,002 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878073e+13  1.58106822e+16 -2.36055082e+09]
+2026-09-08 13:10:20,002 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994092e+13 -1.58080301e+16  1.63520509e+09]
+2026-09-08 13:10:20,002 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65862164e+10 -2.05440996e+09  1.60109231e+16]
+2026-09-08 13:10:20,003 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00451446e+10  2.20260950e+09 -1.60083122e+16]
+2026-09-08 13:10:20,003 [INFO] Total force (m_NO*m/ms^2): [3.39457518e+13 1.18765974e+13 2.59748403e+12]
+2026-09-08 13:10:20,004 [INFO] Simulation is Stable
+2026-09-08 13:10:20,004 [INFO] Stability is -2.4027543971110127e-06
+2026-09-08 13:10:20,004 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 13:10:20,004 [INFO] Time = 233.86303782463074
+
+2026-09-08 13:10:20,005 [INFO] RAM used: 3255.78 MB
+2026-09-08 13:10:20,501 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:10:20,502 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-10-20
+2026-09-08 13:10:54,233 [INFO] Mesh points modified by params function
+2026-09-08 13:10:54,237 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:10:54,322 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:13:25,059 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 13:14:19,944 [INFO] All terms built
+2026-09-08 13:14:20,043 [INFO] Stiffness matrix nonzero values: 1154624
+2026-09-08 13:14:20,044 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:15:36,942 [INFO] SciPy solve, exit code 0
+2026-09-08 13:15:36,943 [INFO] Solution converted to numpy
+2026-09-08 13:15:36,947 [INFO] Solution injected to GetFEM
+2026-09-08 13:15:39,558 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:15:39,559 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:15:39,559 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:15:40,115 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852542e+18  3.00751966e+16 -2.41878067e+13]
+2026-09-08 13:15:40,115 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60538131e+18  1.83225736e+16  4.71795744e+13]
+2026-09-08 13:15:40,115 [INFO] Forces in +y (m_NO*m/ms^2): [3.13475227e+16 1.09825354e+18 2.49799157e+12]
+2026-09-08 13:15:40,115 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73900946e+16 -1.09884770e+18 -9.57166366e+12]
+2026-09-08 13:15:40,115 [INFO] Forces in +z (m_NO*m/ms^2): [-2.50951690e+13  2.29114779e+13  1.98804530e+16]
+2026-09-08 13:15:40,115 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.49827498e+13  1.74941956e+13 -1.98563978e+16]
+2026-09-08 13:15:40,115 [INFO] Total force (m_NO*m/ms^2): [4.19016194e+16 4.78440215e+16 3.99733212e+13]
+2026-09-08 13:15:40,117 [INFO] Simulation is Stable
+2026-09-08 13:15:40,118 [INFO] Stability is -8.188989498292105e-05
+2026-09-08 13:15:40,118 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 13:15:40,118 [INFO] Time = 319.61603689193726
+
+2026-09-08 13:15:40,118 [INFO] RAM used: 4282.82 MB
+2026-09-08 13:15:40,611 [INFO] error: 0.02241092629142681
+2026-09-08 13:15:40,611 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:15:40,611 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-15-40
+2026-09-08 13:16:14,853 [INFO] Mesh points modified by params function
+2026-09-08 13:16:14,857 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:16:14,944 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:18:28,552 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 13:19:22,944 [INFO] All terms built
+2026-09-08 13:19:23,046 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 13:19:23,046 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:27:26,668 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:27:26,669 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-27-26
+2026-09-08 13:28:00,186 [INFO] Mesh points modified by params function
+2026-09-08 13:28:00,191 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:28:00,281 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:30:03,809 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 13:30:55,898 [INFO] All terms built
+2026-09-08 13:30:55,996 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 13:30:55,996 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:30:56,482 [INFO] SciPy solve, exit code 0
+2026-09-08 13:30:56,482 [INFO] Solution converted to numpy
+2026-09-08 13:30:56,484 [INFO] Solution injected to GetFEM
+2026-09-08 13:30:59,083 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:30:59,084 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:30:59,084 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:30:59,639 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-08 13:30:59,639 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-08 13:30:59,639 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-08 13:30:59,639 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-08 13:30:59,639 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-08 13:30:59,640 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-08 13:30:59,640 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-08 13:30:59,640 [INFO] Simulation is Stable
+2026-09-08 13:30:59,641 [INFO] Stability is -2.601466614639472e-07
+2026-09-08 13:30:59,641 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 13:30:59,641 [INFO] Time = 212.97177910804749
+
+2026-09-08 13:30:59,641 [INFO] RAM used: 5282.18 MB
+2026-09-08 13:31:00,102 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:31:00,102 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-31-00
+2026-09-08 13:31:34,323 [INFO] Mesh points modified by params function
+2026-09-08 13:31:34,326 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:31:34,416 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:33:38,433 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 13:34:31,469 [INFO] All terms built
+2026-09-08 13:34:31,575 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 13:34:31,575 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 13:35:31,502 [INFO] SciPy solve, exit code 0
+2026-09-08 13:35:31,502 [INFO] Solution converted to numpy
+2026-09-08 13:35:31,507 [INFO] Solution injected to GetFEM
+2026-09-08 13:35:34,105 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:35:34,106 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:35:34,106 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 13:35:43,418 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852956e+18  3.01896678e+16 -6.03693735e+13]
+2026-09-08 13:35:43,418 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60533139e+18  1.82119325e+16  8.35274120e+13]
+2026-09-08 13:35:43,418 [INFO] Forces in +y (m_NO*m/ms^2): [3.14747784e+16 1.09830834e+18 2.67369515e+12]
+2026-09-08 13:35:43,419 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72667248e+16 -1.09889754e+18 -9.35261263e+12]
+2026-09-08 13:35:43,419 [INFO] Forces in +z (m_NO*m/ms^2): [-5.98922622e+13  2.29700898e+13  2.01647599e+16]
+2026-09-08 13:35:43,419 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.26897836e+13  1.68558947e+13 -2.01411336e+16]
+2026-09-08 13:35:43,419 [INFO] Total force (m_NO*m/ms^2): [4.19624637e+16 4.78522259e+16 4.01054099e+13]
+2026-09-08 13:35:43,420 [INFO] Simulation is Stable
+2026-09-08 13:35:43,421 [INFO] Stability is -8.311545614051545e-05
+2026-09-08 13:35:43,421 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 13:35:43,421 [INFO] Time = 283.31893587112427
+
+2026-09-08 13:35:43,421 [INFO] RAM used: 1841.01 MB
+2026-09-08 13:35:43,884 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 13:35:43,885 [INFO] Starting Vlasov simulation, current time = 2026-09-08 17-35-43
+2026-09-08 13:36:16,711 [INFO] Mesh points modified by params function
+2026-09-08 13:36:16,714 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 13:36:16,798 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 13:38:38,447 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 13:39:30,763 [INFO] All terms built
+2026-09-08 13:39:30,865 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 13:39:30,865 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:21:24,982 [INFO] SciPy solve, exit code 156250
+2026-09-08 14:21:24,982 [INFO] Solution converted to numpy
+2026-09-08 14:21:24,987 [INFO] Solution injected to GetFEM
+2026-09-08 14:21:27,596 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:21:27,597 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:21:27,597 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:21:28,191 [INFO] Forces in +x (m_NO*m/ms^2): [4.40233751e+68 3.80617319e+67 3.33585244e+63]
+2026-09-08 14:21:28,191 [INFO] Forces in -x (m_NO*m/ms^2): [-2.95459530e+69  3.44903835e+67 -4.85383142e+63]
+2026-09-08 14:21:28,192 [INFO] Forces in +y (m_NO*m/ms^2): [ 6.63050951e+67  2.09542380e+68 -1.07732108e+63]
+2026-09-08 14:21:28,192 [INFO] Forces in -y (m_NO*m/ms^2): [-1.88319268e+67 -1.19474318e+69  4.80371793e+62]
+2026-09-08 14:21:28,192 [INFO] Forces in +z (m_NO*m/ms^2): [ 2.56094484e+63 -2.43293638e+63  7.07659114e+68]
+2026-09-08 14:21:28,192 [INFO] Forces in -z (m_NO*m/ms^2): [-5.37286738e+63 -8.62556016e+62 -6.99721111e+68]
+2026-09-08 14:21:28,192 [INFO] Total force (m_NO*m/ms^2): [-2.46689120e+69 -9.12651978e+68  7.93588811e+66]
+2026-09-08 14:21:28,193 [INFO] Simulation is Extremely unstable
+2026-09-08 14:21:28,193 [INFO] Stability is -1.7801453488646299e+50
+2026-09-08 14:21:28,193 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:21:28,193 [INFO] Time = 2744.3080055713654
+
+2026-09-08 14:21:28,193 [INFO] RAM used: 3095.55 MB
+2026-09-08 14:21:28,697 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:21:28,697 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-21-28
+2026-09-08 14:22:02,584 [INFO] Mesh points modified by params function
+2026-09-08 14:22:02,587 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:22:02,674 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:24:21,828 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:25:16,398 [INFO] All terms built
+2026-09-08 14:25:16,499 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 14:25:16,500 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:25:37,457 [INFO] SciPy solve, exit code 0
+2026-09-08 14:25:37,458 [INFO] Solution converted to numpy
+2026-09-08 14:25:37,462 [INFO] Solution injected to GetFEM
+2026-09-08 14:25:40,066 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:25:40,067 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:25:40,067 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:25:43,719 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000024e+18  3.23536865e+16 -5.66411024e+11]
+2026-09-08 14:25:43,719 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425572e+18  1.26456407e+16  4.36837372e+11]
+2026-09-08 14:25:43,720 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449793e+16  1.03078418e+18 -6.82093058e+11]
+2026-09-08 14:25:43,720 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283577e+15 -1.03073845e+18  7.08175475e+11]
+2026-09-08 14:25:43,720 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60502328e+11 -6.56087002e+11  1.00943165e+18]
+2026-09-08 14:25:43,720 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45485459e+11  6.79135122e+11 -1.00939557e+18]
+2026-09-08 14:25:43,721 [INFO] Total force (m_NO*m/ms^2): [4.17622205e+16 4.50450819e+16 3.59710607e+13]
+2026-09-08 14:25:43,722 [INFO] Simulation is Stable
+2026-09-08 14:25:43,722 [INFO] Stability is 9.266415998295769e-36
+2026-09-08 14:25:43,722 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:25:43,723 [INFO] Time = 255.02513432502747
+
+2026-09-08 14:25:43,723 [INFO] RAM used: 1842.6 MB
+2026-09-08 14:25:44,209 [INFO] error: 0.006685043429894866
+2026-09-08 14:25:44,209 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:25:44,209 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-25-44
+2026-09-08 14:26:17,321 [INFO] Mesh points modified by params function
+2026-09-08 14:26:17,324 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:26:17,408 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:28:42,017 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:29:33,431 [INFO] All terms built
+2026-09-08 14:29:33,533 [INFO] Stiffness matrix nonzero values: 1144027
+2026-09-08 14:29:33,533 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:30:50,358 [INFO] SciPy solve, exit code -11
+2026-09-08 14:30:50,358 [INFO] Solution converted to numpy
+2026-09-08 14:30:50,363 [INFO] Solution injected to GetFEM
+2026-09-08 14:30:52,936 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:30:52,936 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:30:52,937 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:30:53,474 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 1.21226092e-01]
+2026-09-08 14:30:53,474 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.28111841e+00]
+2026-09-08 14:30:53,475 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -2.72527275e-02]
+2026-09-08 14:30:53,475 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  1.56105438e-02]
+2026-09-08 14:30:53,475 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.83513602e+00 -2.90729396e-02  1.43887820e+14]
+2026-09-08 14:30:53,476 [INFO] Forces in -z (m_NO*m/ms^2): [-3.33905787e+00  1.96013872e-02 -1.07168402e+14]
+2026-09-08 14:30:53,476 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 14:30:53,476 [INFO] Simulation is Stable
+2026-09-08 14:30:53,477 [INFO] Stability is -2.348576003189198e-93
+2026-09-08 14:30:53,477 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:30:53,477 [INFO] Time = 309.2677192687988
+
+2026-09-08 14:30:53,478 [INFO] RAM used: 3184.1 MB
+2026-09-08 14:30:53,971 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:30:53,972 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-30-53
+2026-09-08 14:31:27,739 [INFO] Mesh points modified by params function
+2026-09-08 14:31:27,742 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:31:27,828 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:33:47,205 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:34:39,408 [INFO] All terms built
+2026-09-08 14:34:39,506 [INFO] Stiffness matrix nonzero values: 1144031
+2026-09-08 14:34:39,506 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:36:36,023 [INFO] SciPy solve, exit code -11
+2026-09-08 14:36:36,023 [INFO] Solution converted to numpy
+2026-09-08 14:36:36,028 [INFO] Solution injected to GetFEM
+2026-09-08 14:36:38,612 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:36:38,612 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:36:38,612 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:36:42,905 [INFO] Forces in +x (m_NO*m/ms^2): [2.45235731e+16 2.11609303e+13 1.03642930e-01]
+2026-09-08 14:36:42,905 [INFO] Forces in -x (m_NO*m/ms^2): [-2.87807710e+16 -2.02939584e+13 -3.25730731e+00]
+2026-09-08 14:36:42,905 [INFO] Forces in +y (m_NO*m/ms^2): [ 1.82920302e+13  1.46624324e+14 -1.84415219e-02]
+2026-09-08 14:36:42,905 [INFO] Forces in -y (m_NO*m/ms^2): [-2.07699042e+13 -1.01872533e+14  4.33084165e-03]
+2026-09-08 14:36:42,905 [INFO] Forces in +z (m_NO*m/ms^2): [ 1.81455811e+00 -2.31742255e-02  1.43887820e+14]
+2026-09-08 14:36:42,905 [INFO] Forces in -z (m_NO*m/ms^2): [-3.29215438e+00  8.31792997e-03 -1.07168402e+14]
+2026-09-08 14:36:42,906 [INFO] Total force (m_NO*m/ms^2): [-4.25967573e+15  4.56187623e+13  3.67194178e+13]
+2026-09-08 14:36:42,906 [INFO] Simulation is Stable
+2026-09-08 14:36:42,907 [INFO] Stability is 3.0687632963746366e-83
+2026-09-08 14:36:42,907 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:36:42,907 [INFO] Time = 348.93576765060425
+
+2026-09-08 14:36:42,907 [INFO] RAM used: 1869.98 MB
+2026-09-08 14:36:43,389 [INFO] error: 0.006044155011806848
+2026-09-08 14:36:43,389 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:36:43,389 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-36-43
+2026-09-08 14:37:16,676 [INFO] Mesh points modified by params function
+2026-09-08 14:37:16,680 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:37:16,763 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:39:41,879 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:40:35,050 [INFO] All terms built
+2026-09-08 14:40:35,147 [INFO] Stiffness matrix nonzero values: 1154445
+2026-09-08 14:40:35,147 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:40:35,572 [INFO] SciPy solve, exit code 0
+2026-09-08 14:40:35,572 [INFO] Solution converted to numpy
+2026-09-08 14:40:35,574 [INFO] Solution injected to GetFEM
+2026-09-08 14:40:38,118 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:40:38,119 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:40:38,119 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:40:38,677 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003871e+18  3.51134727e+13 -3.73050827e+10]
+2026-09-08 14:40:38,677 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001413e+18 -2.58891460e+13  2.46452294e+10]
+2026-09-08 14:40:38,677 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49878129e+13  1.58106822e+16 -2.36059427e+09]
+2026-09-08 14:40:38,677 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55994124e+13 -1.58080301e+16  1.63518182e+09]
+2026-09-08 14:40:38,678 [INFO] Forces in +z (m_NO*m/ms^2): [-3.65762983e+10 -2.05443438e+09  1.60109231e+16]
+2026-09-08 14:40:38,678 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.00337416e+10  2.20261421e+09 -1.60083122e+16]
+2026-09-08 14:40:38,678 [INFO] Total force (m_NO*m/ms^2): [3.39456542e+13 1.18765993e+13 2.59748335e+12]
+2026-09-08 14:40:38,678 [INFO] Simulation is Stable
+2026-09-08 14:40:38,679 [INFO] Stability is -2.402758031470633e-06
+2026-09-08 14:40:38,679 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:40:38,679 [INFO] Time = 235.29074454307556
+
+2026-09-08 14:40:38,679 [INFO] RAM used: 3195.88 MB
+2026-09-08 14:40:39,169 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:40:39,169 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-40-39
+2026-09-08 14:41:12,913 [INFO] Mesh points modified by params function
+2026-09-08 14:41:12,917 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:41:13,002 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:43:35,157 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:44:30,066 [INFO] All terms built
+2026-09-08 14:44:30,166 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 14:44:30,166 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 14:45:06,899 [INFO] SciPy solve, exit code 0
+2026-09-08 14:45:06,900 [INFO] Solution converted to numpy
+2026-09-08 14:45:06,905 [INFO] Solution injected to GetFEM
+2026-09-08 14:45:09,531 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:45:09,531 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:45:09,532 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 14:45:10,074 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59846650e+18  3.01083862e+16 -6.10201703e+13]
+2026-09-08 14:45:10,075 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60530703e+18  1.82918721e+16  8.41772942e+13]
+2026-09-08 14:45:10,075 [INFO] Forces in +y (m_NO*m/ms^2): [3.13927592e+16 1.09830702e+18 2.65789508e+12]
+2026-09-08 14:45:10,075 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.73481255e+16 -1.09889296e+18 -9.33664791e+12]
+2026-09-08 14:45:10,075 [INFO] Forces in +z (m_NO*m/ms^2): [-6.05426014e+13  2.29716002e+13  2.01957537e+16]
+2026-09-08 14:45:10,076 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.33400960e+13  1.68554886e+13 -2.01721267e+16]
+2026-09-08 14:45:10,076 [INFO] Total force (m_NO*m/ms^2): [4.19231556e+16 4.78541417e+16 4.01053443e+13]
+2026-09-08 14:45:10,076 [INFO] Simulation is Stable
+2026-09-08 14:45:10,077 [INFO] Stability is -8.320187689622712e-05
+2026-09-08 14:45:10,077 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 14:45:10,077 [INFO] Time = 270.90713596343994
+
+2026-09-08 14:45:10,077 [INFO] RAM used: 4209.34 MB
+2026-09-08 14:45:10,557 [INFO] error: 0.022388687705519807
+2026-09-08 14:45:10,557 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 14:45:10,557 [INFO] Starting Vlasov simulation, current time = 2026-09-08 18-45-10
+2026-09-08 14:45:45,048 [INFO] Mesh points modified by params function
+2026-09-08 14:45:45,053 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 14:45:45,143 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 14:47:58,429 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 14:48:58,795 [INFO] All terms built
+2026-09-08 14:48:58,897 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 14:48:58,897 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 15:01:34,338 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 15:01:34,338 [INFO] Starting Vlasov simulation, current time = 2026-09-08 19-01-34
+2026-09-08 15:02:08,057 [INFO] Mesh points modified by params function
+2026-09-08 15:02:08,063 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 15:02:08,155 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 15:04:12,191 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 15:05:06,171 [INFO] All terms built
+2026-09-08 15:05:06,281 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 15:05:06,281 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 15:05:06,744 [INFO] SciPy solve, exit code 0
+2026-09-08 15:05:06,744 [INFO] Solution converted to numpy
+2026-09-08 15:05:06,747 [INFO] Solution injected to GetFEM
+2026-09-08 15:05:09,361 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:05:09,362 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:05:09,362 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:05:17,218 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-08 15:05:17,218 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-08 15:05:17,218 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-08 15:05:17,219 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-08 15:05:17,219 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-08 15:05:17,219 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-08 15:05:17,219 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-08 15:05:17,220 [INFO] Simulation is Stable
+2026-09-08 15:05:17,220 [INFO] Stability is -2.601466614639472e-07
+2026-09-08 15:05:17,220 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 15:05:17,220 [INFO] Time = 222.88048005104065
+
+2026-09-08 15:05:17,220 [INFO] RAM used: 1901.09 MB
+2026-09-08 15:07:21,595 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 15:07:21,595 [INFO] Starting Vlasov simulation, current time = 2026-09-08 19-07-21
+2026-09-08 15:07:54,898 [INFO] Mesh points modified by params function
+2026-09-08 15:07:54,902 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 15:07:54,986 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 15:10:09,515 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 15:11:03,512 [INFO] All terms built
+2026-09-08 15:11:03,616 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 15:11:03,617 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 15:11:04,069 [INFO] SciPy solve, exit code 0
+2026-09-08 15:11:04,070 [INFO] Solution converted to numpy
+2026-09-08 15:11:04,071 [INFO] Solution injected to GetFEM
+2026-09-08 15:11:06,688 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:11:06,689 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:11:06,689 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:11:08,328 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-08 15:11:08,329 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-08 15:11:08,329 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-08 15:11:08,329 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-08 15:11:08,330 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-08 15:11:08,330 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-08 15:11:08,330 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-08 15:11:08,331 [INFO] Simulation is Stable
+2026-09-08 15:11:08,332 [INFO] Stability is -2.601466614639472e-07
+2026-09-08 15:11:08,332 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 15:11:08,332 [INFO] Time = 226.7372281551361
+
+2026-09-08 15:11:08,332 [INFO] RAM used: 1835.8 MB
+2026-09-08 15:11:08,795 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 15:11:08,795 [INFO] Starting Vlasov simulation, current time = 2026-09-08 19-11-08
+2026-09-08 15:11:42,090 [INFO] Mesh points modified by params function
+2026-09-08 15:11:42,094 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 15:11:42,180 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 15:14:03,065 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 15:14:57,420 [INFO] All terms built
+2026-09-08 15:14:57,521 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 15:14:57,522 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 15:15:57,567 [INFO] SciPy solve, exit code 0
+2026-09-08 15:15:57,568 [INFO] Solution converted to numpy
+2026-09-08 15:15:57,572 [INFO] Solution injected to GetFEM
+2026-09-08 15:16:00,193 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:16:00,194 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:16:00,195 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 15:16:01,847 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852956e+18  3.01896678e+16 -6.03693735e+13]
+2026-09-08 15:16:01,848 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60533139e+18  1.82119325e+16  8.35274120e+13]
+2026-09-08 15:16:01,848 [INFO] Forces in +y (m_NO*m/ms^2): [3.14747784e+16 1.09830834e+18 2.67369515e+12]
+2026-09-08 15:16:01,848 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72667248e+16 -1.09889754e+18 -9.35261263e+12]
+2026-09-08 15:16:01,849 [INFO] Forces in +z (m_NO*m/ms^2): [-5.98922622e+13  2.29700898e+13  2.01647599e+16]
+2026-09-08 15:16:01,849 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.26897836e+13  1.68558947e+13 -2.01411336e+16]
+2026-09-08 15:16:01,849 [INFO] Total force (m_NO*m/ms^2): [4.19624637e+16 4.78522259e+16 4.01054099e+13]
+2026-09-08 15:16:01,850 [INFO] Simulation is Stable
+2026-09-08 15:16:01,851 [INFO] Stability is -8.311545614051545e-05
+2026-09-08 15:16:01,851 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 15:16:01,851 [INFO] Time = 293.056432723999
+
+2026-09-08 15:16:01,851 [INFO] RAM used: 3000.21 MB
+2026-09-08 15:16:02,327 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 15:16:02,327 [INFO] Starting Vlasov simulation, current time = 2026-09-08 19-16-02
+2026-09-08 15:16:35,561 [INFO] Mesh points modified by params function
+2026-09-08 15:16:35,564 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 15:16:35,654 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 15:19:03,787 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 15:19:57,849 [INFO] All terms built
+2026-09-08 15:19:57,949 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 15:19:57,949 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 16:02:04,149 [INFO] SciPy solve, exit code 156250
+2026-09-08 16:02:04,150 [INFO] Solution converted to numpy
+2026-09-08 16:02:04,155 [INFO] Solution injected to GetFEM
+2026-09-08 16:02:06,795 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:02:06,795 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:02:06,796 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:02:07,388 [INFO] Forces in +x (m_NO*m/ms^2): [4.40233751e+68 3.80617319e+67 3.33585244e+63]
+2026-09-08 16:02:07,389 [INFO] Forces in -x (m_NO*m/ms^2): [-2.95459530e+69  3.44903835e+67 -4.85383142e+63]
+2026-09-08 16:02:07,389 [INFO] Forces in +y (m_NO*m/ms^2): [ 6.63050951e+67  2.09542380e+68 -1.07732108e+63]
+2026-09-08 16:02:07,389 [INFO] Forces in -y (m_NO*m/ms^2): [-1.88319268e+67 -1.19474318e+69  4.80371793e+62]
+2026-09-08 16:02:07,389 [INFO] Forces in +z (m_NO*m/ms^2): [ 2.56094484e+63 -2.43293638e+63  7.07659114e+68]
+2026-09-08 16:02:07,390 [INFO] Forces in -z (m_NO*m/ms^2): [-5.37286738e+63 -8.62556016e+62 -6.99721111e+68]
+2026-09-08 16:02:07,390 [INFO] Total force (m_NO*m/ms^2): [-2.46689120e+69 -9.12651978e+68  7.93588811e+66]
+2026-09-08 16:02:07,390 [INFO] Simulation is Extremely unstable
+2026-09-08 16:02:07,391 [INFO] Stability is -1.7801453488646299e+50
+2026-09-08 16:02:07,391 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 16:02:07,391 [INFO] Time = 2765.0627794265747
+
+2026-09-08 16:02:07,392 [INFO] RAM used: 3119.77 MB
+2026-09-08 16:02:07,886 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 16:02:07,886 [INFO] Starting Vlasov simulation, current time = 2026-09-08 20-02-07
+2026-09-08 16:02:41,995 [INFO] Mesh points modified by params function
+2026-09-08 16:02:41,998 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 16:02:42,085 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 16:05:02,980 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 16:05:57,851 [INFO] All terms built
+2026-09-08 16:05:57,954 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 16:05:57,955 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 16:06:19,130 [INFO] SciPy solve, exit code 0
+2026-09-08 16:06:19,131 [INFO] Solution converted to numpy
+2026-09-08 16:06:19,136 [INFO] Solution injected to GetFEM
+2026-09-08 16:06:21,793 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:06:21,793 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:06:21,793 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:06:26,259 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000024e+18  3.23536865e+16 -5.66411024e+11]
+2026-09-08 16:06:26,259 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425572e+18  1.26456407e+16  4.36837372e+11]
+2026-09-08 16:06:26,259 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449793e+16  1.03078418e+18 -6.82093058e+11]
+2026-09-08 16:06:26,259 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283577e+15 -1.03073845e+18  7.08175475e+11]
+2026-09-08 16:06:26,259 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60502328e+11 -6.56087002e+11  1.00943165e+18]
+2026-09-08 16:06:26,259 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45485459e+11  6.79135122e+11 -1.00939557e+18]
+2026-09-08 16:06:26,259 [INFO] Total force (m_NO*m/ms^2): [4.17622205e+16 4.50450819e+16 3.59710607e+13]
+2026-09-08 16:06:26,261 [INFO] Simulation is Stable
+2026-09-08 16:06:26,261 [INFO] Stability is 9.266415998295769e-36
+2026-09-08 16:06:26,261 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 16:06:26,261 [INFO] Time = 258.3736491203308
+
+2026-09-08 16:06:26,262 [INFO] RAM used: 1884.95 MB
+2026-09-08 16:06:26,746 [INFO] error: 0.006685043429894866
+2026-09-08 16:06:26,746 [INFO] Total force (N): 1.3103169424158408e+50
+2026-09-08 16:06:26,746 [INFO] Total force (kg*m/s/yr): 4.135045794198214e+57
+2026-09-08 16:51:40,764 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 16:51:40,765 [INFO] Starting Vlasov simulation, current time = 2026-09-08 20-51-40
+2026-09-08 16:52:14,064 [INFO] Mesh points modified by params function
+2026-09-08 16:52:14,068 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 16:52:14,154 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 16:54:30,561 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 16:55:24,569 [INFO] All terms built
+2026-09-08 16:55:24,672 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 16:55:24,672 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 16:55:25,128 [INFO] SciPy solve, exit code 0
+2026-09-08 16:55:25,128 [INFO] Solution converted to numpy
+2026-09-08 16:55:25,130 [INFO] Solution injected to GetFEM
+2026-09-08 16:55:27,725 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:55:27,726 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:55:27,726 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 16:55:28,279 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-08 16:55:28,279 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-08 16:55:28,280 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-08 16:55:28,280 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-08 16:55:28,280 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-08 16:55:28,280 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-08 16:55:28,280 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-08 16:55:28,281 [INFO] Simulation is Stable
+2026-09-08 16:55:28,281 [INFO] Stability is -2.601466614639472e-07
+2026-09-08 16:55:28,281 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 16:55:28,281 [INFO] Time = 227.51634097099304
+
+2026-09-08 16:55:28,282 [INFO] RAM used: 3188.36 MB
+2026-09-08 16:55:28,745 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 16:55:28,745 [INFO] Starting Vlasov simulation, current time = 2026-09-08 20-55-28
+2026-09-08 16:56:02,685 [INFO] Mesh points modified by params function
+2026-09-08 16:56:02,689 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 16:56:02,775 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 16:58:26,219 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-08 16:59:20,665 [INFO] All terms built
+2026-09-08 16:59:20,766 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-08 16:59:20,766 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 17:00:20,822 [INFO] SciPy solve, exit code 0
+2026-09-08 17:00:20,822 [INFO] Solution converted to numpy
+2026-09-08 17:00:20,827 [INFO] Solution injected to GetFEM
+2026-09-08 17:00:23,448 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:00:23,448 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:00:23,449 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:00:28,043 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852956e+18  3.01896678e+16 -6.03693735e+13]
+2026-09-08 17:00:28,043 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60533139e+18  1.82119325e+16  8.35274120e+13]
+2026-09-08 17:00:28,043 [INFO] Forces in +y (m_NO*m/ms^2): [3.14747784e+16 1.09830834e+18 2.67369515e+12]
+2026-09-08 17:00:28,044 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72667248e+16 -1.09889754e+18 -9.35261263e+12]
+2026-09-08 17:00:28,044 [INFO] Forces in +z (m_NO*m/ms^2): [-5.98922622e+13  2.29700898e+13  2.01647599e+16]
+2026-09-08 17:00:28,044 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.26897836e+13  1.68558947e+13 -2.01411336e+16]
+2026-09-08 17:00:28,044 [INFO] Total force (m_NO*m/ms^2): [4.19624637e+16 4.78522259e+16 4.01054099e+13]
+2026-09-08 17:00:28,045 [INFO] Simulation is Stable
+2026-09-08 17:00:28,046 [INFO] Stability is -8.311545614051545e-05
+2026-09-08 17:00:28,046 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 17:00:28,046 [INFO] Time = 299.3012113571167
+
+2026-09-08 17:00:28,046 [INFO] RAM used: 1855.43 MB
+2026-09-08 17:00:28,510 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 17:00:28,510 [INFO] Starting Vlasov simulation, current time = 2026-09-08 21-00-28
+2026-09-08 17:01:01,897 [INFO] Mesh points modified by params function
+2026-09-08 17:01:01,901 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 17:01:01,988 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 17:03:31,498 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 17:04:25,495 [INFO] All terms built
+2026-09-08 17:04:25,599 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 17:04:25,600 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 17:46:24,755 [INFO] SciPy solve, exit code 156250
+2026-09-08 17:46:24,756 [INFO] Solution converted to numpy
+2026-09-08 17:46:24,761 [INFO] Solution injected to GetFEM
+2026-09-08 17:46:27,423 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:46:27,423 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:46:27,423 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:46:29,178 [INFO] Forces in +x (m_NO*m/ms^2): [4.40233751e+68 3.80617319e+67 3.33585244e+63]
+2026-09-08 17:46:29,178 [INFO] Forces in -x (m_NO*m/ms^2): [-2.95459530e+69  3.44903835e+67 -4.85383142e+63]
+2026-09-08 17:46:29,179 [INFO] Forces in +y (m_NO*m/ms^2): [ 6.63050951e+67  2.09542380e+68 -1.07732108e+63]
+2026-09-08 17:46:29,179 [INFO] Forces in -y (m_NO*m/ms^2): [-1.88319268e+67 -1.19474318e+69  4.80371793e+62]
+2026-09-08 17:46:29,179 [INFO] Forces in +z (m_NO*m/ms^2): [ 2.56094484e+63 -2.43293638e+63  7.07659114e+68]
+2026-09-08 17:46:29,179 [INFO] Forces in -z (m_NO*m/ms^2): [-5.37286738e+63 -8.62556016e+62 -6.99721111e+68]
+2026-09-08 17:46:29,180 [INFO] Total force (m_NO*m/ms^2): [-2.46689120e+69 -9.12651978e+68  7.93588811e+66]
+2026-09-08 17:46:29,180 [INFO] Simulation is Extremely unstable
+2026-09-08 17:46:29,181 [INFO] Stability is -1.7801453488646299e+50
+2026-09-08 17:46:29,181 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 17:46:29,181 [INFO] Time = 2760.670553445816
+
+2026-09-08 17:46:29,181 [INFO] RAM used: 2976.8 MB
+2026-09-08 17:46:29,673 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-08 17:46:29,673 [INFO] Starting Vlasov simulation, current time = 2026-09-08 21-46-29
+2026-09-08 17:47:03,279 [INFO] Mesh points modified by params function
+2026-09-08 17:47:03,282 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-08 17:47:03,371 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-08 17:49:33,226 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-08 17:50:28,017 [INFO] All terms built
+2026-09-08 17:50:28,113 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-08 17:50:28,113 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-08 17:50:49,006 [INFO] SciPy solve, exit code 0
+2026-09-08 17:50:49,006 [INFO] Solution converted to numpy
+2026-09-08 17:50:49,010 [INFO] Solution injected to GetFEM
+2026-09-08 17:50:51,607 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:50:51,607 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:50:51,607 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-08 17:50:52,147 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000024e+18  3.23536865e+16 -5.66411024e+11]
+2026-09-08 17:50:52,148 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425572e+18  1.26456407e+16  4.36837372e+11]
+2026-09-08 17:50:52,148 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449793e+16  1.03078418e+18 -6.82093058e+11]
+2026-09-08 17:50:52,148 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283577e+15 -1.03073845e+18  7.08175475e+11]
+2026-09-08 17:50:52,148 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60502328e+11 -6.56087002e+11  1.00943165e+18]
+2026-09-08 17:50:52,148 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45485459e+11  6.79135122e+11 -1.00939557e+18]
+2026-09-08 17:50:52,148 [INFO] Total force (m_NO*m/ms^2): [4.17622205e+16 4.50450819e+16 3.59710607e+13]
+2026-09-08 17:50:52,149 [INFO] Simulation is Stable
+2026-09-08 17:50:52,149 [INFO] Stability is 9.266415998295769e-36
+2026-09-08 17:50:52,149 [INFO] Total degrees of freedom >= 8830976
+2026-09-08 17:50:52,149 [INFO] Time = 262.47560691833496
+
+2026-09-08 17:50:52,150 [INFO] RAM used: 3051.96 MB
+2026-09-08 17:50:52,646 [INFO] error: 0.006685043429894866
+2026-09-08 17:50:52,646 [INFO] Total force (N): 1.3103169424158408e+50
+2026-09-08 17:50:52,647 [INFO] Total force (kg*m/s/yr): 4.135045794198214e+57
+2026-09-10 09:38:42,328 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 09:38:42,329 [INFO] Starting Vlasov simulation, current time = 2026-09-10 13-38-42
+2026-09-10 09:39:06,145 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 09:39:06,145 [INFO] Starting Vlasov simulation, current time = 2026-09-10 13-39-06
+2026-09-10 09:39:38,747 [INFO] Mesh points modified by params function
+2026-09-10 09:39:38,749 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 09:39:38,837 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 09:41:44,603 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-10 09:42:38,077 [INFO] All terms built
+2026-09-10 09:42:38,188 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-10 09:42:38,189 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 09:42:38,664 [INFO] SciPy solve, exit code 0
+2026-09-10 09:42:38,664 [INFO] Solution converted to numpy
+2026-09-10 09:42:38,665 [INFO] Solution injected to GetFEM
+2026-09-10 09:42:41,270 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 09:42:41,270 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 09:42:41,271 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 09:42:42,077 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-10 09:42:42,077 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-10 09:42:42,077 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-10 09:42:42,077 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-10 09:42:42,077 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-10 09:42:42,077 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-10 09:42:42,077 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-10 09:42:42,078 [INFO] Simulation is Stable
+2026-09-10 09:42:42,078 [INFO] Stability is -2.601466614639472e-07
+2026-09-10 09:42:42,079 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 09:42:42,079 [INFO] Time = 215.93383073806763
+
+2026-09-10 09:42:42,079 [INFO] RAM used: 1403.11 MB
+2026-09-10 10:37:42,032 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 10:37:42,033 [INFO] Starting Vlasov simulation, current time = 2026-09-10 14-37-42
+2026-09-10 10:38:14,933 [INFO] Mesh points modified by params function
+2026-09-10 10:38:14,935 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 10:38:15,026 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 10:40:22,771 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-10 10:41:15,012 [INFO] All terms built
+2026-09-10 10:41:15,108 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-10 10:41:15,109 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 10:41:15,564 [INFO] SciPy solve, exit code 0
+2026-09-10 10:41:15,564 [INFO] Solution converted to numpy
+2026-09-10 10:41:15,565 [INFO] Solution injected to GetFEM
+2026-09-10 10:41:18,164 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:41:18,165 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:41:18,165 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:41:18,723 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-10 10:41:18,724 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-10 10:41:18,724 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-10 10:41:18,724 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-10 10:41:18,724 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-10 10:41:18,724 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-10 10:41:18,725 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-10 10:41:18,725 [INFO] Simulation is Stable
+2026-09-10 10:41:18,726 [INFO] Stability is -2.601466614639472e-07
+2026-09-10 10:41:18,726 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 10:41:18,726 [INFO] Time = 216.6931278705597
+
+2026-09-10 10:41:18,726 [INFO] RAM used: 2890.34 MB
+2026-09-10 10:41:19,182 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 10:41:19,183 [INFO] Starting Vlasov simulation, current time = 2026-09-10 14-41-19
+2026-09-10 10:41:52,539 [INFO] Mesh points modified by params function
+2026-09-10 10:41:52,542 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 10:41:52,634 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 10:43:58,748 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-10 10:44:51,780 [INFO] All terms built
+2026-09-10 10:44:51,880 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-10 10:44:51,881 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 10:45:52,250 [INFO] SciPy solve, exit code 0
+2026-09-10 10:45:52,251 [INFO] Solution converted to numpy
+2026-09-10 10:45:52,255 [INFO] Solution injected to GetFEM
+2026-09-10 10:45:54,882 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:45:54,883 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:45:54,883 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 10:45:57,992 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852956e+18  3.01896678e+16 -6.03693735e+13]
+2026-09-10 10:45:57,992 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60533139e+18  1.82119325e+16  8.35274120e+13]
+2026-09-10 10:45:57,993 [INFO] Forces in +y (m_NO*m/ms^2): [3.14747784e+16 1.09830834e+18 2.67369515e+12]
+2026-09-10 10:45:57,993 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72667248e+16 -1.09889754e+18 -9.35261263e+12]
+2026-09-10 10:45:57,993 [INFO] Forces in +z (m_NO*m/ms^2): [-5.98922622e+13  2.29700898e+13  2.01647599e+16]
+2026-09-10 10:45:57,993 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.26897836e+13  1.68558947e+13 -2.01411336e+16]
+2026-09-10 10:45:57,993 [INFO] Total force (m_NO*m/ms^2): [4.19624637e+16 4.78522259e+16 4.01054099e+13]
+2026-09-10 10:45:57,994 [INFO] Simulation is Stable
+2026-09-10 10:45:57,995 [INFO] Stability is -8.311545614051545e-05
+2026-09-10 10:45:57,995 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 10:45:57,995 [INFO] Time = 278.8124895095825
+
+2026-09-10 10:45:57,995 [INFO] RAM used: 1747.11 MB
+2026-09-10 10:45:58,454 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 10:45:58,454 [INFO] Starting Vlasov simulation, current time = 2026-09-10 14-45-58
+2026-09-10 10:46:32,218 [INFO] Mesh points modified by params function
+2026-09-10 10:46:32,222 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 10:46:32,310 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 10:48:56,430 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-10 10:49:49,300 [INFO] All terms built
+2026-09-10 10:49:49,402 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-10 10:49:49,402 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 11:31:39,432 [INFO] SciPy solve, exit code 156250
+2026-09-10 11:31:39,433 [INFO] Solution converted to numpy
+2026-09-10 11:31:39,438 [INFO] Solution injected to GetFEM
+2026-09-10 11:31:42,045 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:31:42,045 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:31:42,046 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:31:43,577 [INFO] Forces in +x (m_NO*m/ms^2): [4.40233751e+68 3.80617319e+67 3.33585244e+63]
+2026-09-10 11:31:43,577 [INFO] Forces in -x (m_NO*m/ms^2): [-2.95459530e+69  3.44903835e+67 -4.85383142e+63]
+2026-09-10 11:31:43,578 [INFO] Forces in +y (m_NO*m/ms^2): [ 6.63050951e+67  2.09542380e+68 -1.07732108e+63]
+2026-09-10 11:31:43,578 [INFO] Forces in -y (m_NO*m/ms^2): [-1.88319268e+67 -1.19474318e+69  4.80371793e+62]
+2026-09-10 11:31:43,578 [INFO] Forces in +z (m_NO*m/ms^2): [ 2.56094484e+63 -2.43293638e+63  7.07659114e+68]
+2026-09-10 11:31:43,578 [INFO] Forces in -z (m_NO*m/ms^2): [-5.37286738e+63 -8.62556016e+62 -6.99721111e+68]
+2026-09-10 11:31:43,579 [INFO] Total force (m_NO*m/ms^2): [-2.46689120e+69 -9.12651978e+68  7.93588811e+66]
+2026-09-10 11:31:43,579 [INFO] Simulation is Extremely unstable
+2026-09-10 11:31:43,580 [INFO] Stability is -1.7801453488646299e+50
+2026-09-10 11:31:43,580 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 11:31:43,580 [INFO] Time = 2745.1257996559143
+
+2026-09-10 11:31:43,580 [INFO] RAM used: 1729.79 MB
+2026-09-10 11:31:44,071 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 11:31:44,071 [INFO] Starting Vlasov simulation, current time = 2026-09-10 15-31-44
+2026-09-10 11:32:17,350 [INFO] Mesh points modified by params function
+2026-09-10 11:32:17,353 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 11:32:17,443 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 11:34:41,763 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-10 11:35:36,345 [INFO] All terms built
+2026-09-10 11:35:36,446 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-10 11:35:36,447 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 11:35:58,343 [INFO] SciPy solve, exit code 0
+2026-09-10 11:35:58,343 [INFO] Solution converted to numpy
+2026-09-10 11:35:58,347 [INFO] Solution injected to GetFEM
+2026-09-10 11:36:00,930 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:36:00,930 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:36:00,930 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:36:01,470 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000024e+18  3.23536865e+16 -5.66411024e+11]
+2026-09-10 11:36:01,470 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425572e+18  1.26456407e+16  4.36837372e+11]
+2026-09-10 11:36:01,470 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449793e+16  1.03078418e+18 -6.82093058e+11]
+2026-09-10 11:36:01,470 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283577e+15 -1.03073845e+18  7.08175475e+11]
+2026-09-10 11:36:01,470 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60502328e+11 -6.56087002e+11  1.00943165e+18]
+2026-09-10 11:36:01,470 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45485459e+11  6.79135122e+11 -1.00939557e+18]
+2026-09-10 11:36:01,471 [INFO] Total force (m_NO*m/ms^2): [4.17622205e+16 4.50450819e+16 3.59710607e+13]
+2026-09-10 11:36:01,471 [INFO] Simulation is Stable
+2026-09-10 11:36:01,472 [INFO] Stability is 9.266415998295769e-36
+2026-09-10 11:36:01,472 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 11:36:01,472 [INFO] Time = 257.40022110939026
+
+2026-09-10 11:36:01,472 [INFO] RAM used: 3068.83 MB
+2026-09-10 11:43:04,980 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 11:43:04,980 [INFO] Starting Vlasov simulation, current time = 2026-09-10 15-43-04
+2026-09-10 11:43:37,495 [INFO] Mesh points modified by params function
+2026-09-10 11:43:37,498 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 11:43:37,581 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 11:45:43,634 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-10 11:46:37,136 [INFO] All terms built
+2026-09-10 11:46:37,248 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-10 11:46:37,248 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 11:46:37,759 [INFO] SciPy solve, exit code 0
+2026-09-10 11:46:37,759 [INFO] Solution converted to numpy
+2026-09-10 11:46:37,760 [INFO] Solution injected to GetFEM
+2026-09-10 11:46:40,356 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:46:40,356 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:46:40,356 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:46:41,152 [INFO] Forces in +x (m_NO*m/ms^2): [ 1.22003870e+18  3.51117906e+13 -3.91646208e+10]
+2026-09-10 11:46:41,152 [INFO] Forces in -x (m_NO*m/ms^2): [-1.22001484e+18 -2.58885467e+13  3.49707166e+10]
+2026-09-10 11:46:41,152 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.49885500e+13  1.58106817e+16 -2.28119591e+09]
+2026-09-10 11:46:41,152 [INFO] Forces in -y (m_NO*m/ms^2): [-2.55955769e+13 -1.58080324e+16  1.88456972e+09]
+2026-09-10 11:46:41,152 [INFO] Forces in +z (m_NO*m/ms^2): [-4.19360028e+10 -1.96194853e+09  1.60109244e+16]
+2026-09-10 11:46:41,152 [INFO] Forces in -z (m_NO*m/ms^2): [ 2.06731275e+10  2.43677216e+09 -1.60083117e+16]
+2026-09-10 11:46:41,153 [INFO] Total force (m_NO*m/ms^2): [3.32321198e+13 1.18730898e+13 2.60811052e+12]
+2026-09-10 11:46:41,153 [INFO] Simulation is Stable
+2026-09-10 11:46:41,154 [INFO] Stability is -2.601466614639472e-07
+2026-09-10 11:46:41,154 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 11:46:41,154 [INFO] Time = 216.17412543296814
+
+2026-09-10 11:46:41,154 [INFO] RAM used: 1403.14 MB
+2026-09-10 11:46:41,606 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 11:46:41,606 [INFO] Starting Vlasov simulation, current time = 2026-09-10 15-46-41
+2026-09-10 11:47:14,576 [INFO] Mesh points modified by params function
+2026-09-10 11:47:14,579 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 11:47:14,670 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 11:49:22,511 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-10 11:50:15,335 [INFO] All terms built
+2026-09-10 11:50:15,436 [INFO] Stiffness matrix nonzero values: 1153148
+2026-09-10 11:50:15,436 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 11:51:15,405 [INFO] SciPy solve, exit code 0
+2026-09-10 11:51:15,406 [INFO] Solution converted to numpy
+2026-09-10 11:51:15,410 [INFO] Solution injected to GetFEM
+2026-09-10 11:51:18,006 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:51:18,007 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:51:18,007 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 11:51:18,564 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.59852956e+18  3.01896678e+16 -6.03693735e+13]
+2026-09-10 11:51:18,564 [INFO] Forces in -x (m_NO*m/ms^2): [-2.60533139e+18  1.82119325e+16  8.35274120e+13]
+2026-09-10 11:51:18,564 [INFO] Forces in +y (m_NO*m/ms^2): [3.14747784e+16 1.09830834e+18 2.67369515e+12]
+2026-09-10 11:51:18,565 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72667248e+16 -1.09889754e+18 -9.35261263e+12]
+2026-09-10 11:51:18,565 [INFO] Forces in +z (m_NO*m/ms^2): [-5.98922622e+13  2.29700898e+13  2.01647599e+16]
+2026-09-10 11:51:18,565 [INFO] Forces in -z (m_NO*m/ms^2): [ 8.26897836e+13  1.68558947e+13 -2.01411336e+16]
+2026-09-10 11:51:18,565 [INFO] Total force (m_NO*m/ms^2): [4.19624637e+16 4.78522259e+16 4.01054099e+13]
+2026-09-10 11:51:18,566 [INFO] Simulation is Stable
+2026-09-10 11:51:18,566 [INFO] Stability is -8.311545614051545e-05
+2026-09-10 11:51:18,567 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 11:51:18,567 [INFO] Time = 276.96091294288635
+
+2026-09-10 11:51:18,567 [INFO] RAM used: 2892.85 MB
+2026-09-10 11:51:19,021 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 11:51:19,021 [INFO] Starting Vlasov simulation, current time = 2026-09-10 15-51-19
+2026-09-10 11:51:52,297 [INFO] Mesh points modified by params function
+2026-09-10 11:51:52,299 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 11:51:52,386 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 11:54:08,750 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-10 11:55:01,815 [INFO] All terms built
+2026-09-10 11:55:01,917 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-10 11:55:01,918 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 12:36:42,966 [INFO] SciPy solve, exit code 156250
+2026-09-10 12:36:42,967 [INFO] Solution converted to numpy
+2026-09-10 12:36:42,972 [INFO] Solution injected to GetFEM
+2026-09-10 12:36:45,543 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:36:45,543 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:36:45,544 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:36:48,621 [INFO] Forces in +x (m_NO*m/ms^2): [4.40233751e+68 3.80617319e+67 3.33585244e+63]
+2026-09-10 12:36:48,622 [INFO] Forces in -x (m_NO*m/ms^2): [-2.95459530e+69  3.44903835e+67 -4.85383142e+63]
+2026-09-10 12:36:48,622 [INFO] Forces in +y (m_NO*m/ms^2): [ 6.63050951e+67  2.09542380e+68 -1.07732108e+63]
+2026-09-10 12:36:48,622 [INFO] Forces in -y (m_NO*m/ms^2): [-1.88319268e+67 -1.19474318e+69  4.80371793e+62]
+2026-09-10 12:36:48,622 [INFO] Forces in +z (m_NO*m/ms^2): [ 2.56094484e+63 -2.43293638e+63  7.07659114e+68]
+2026-09-10 12:36:48,623 [INFO] Forces in -z (m_NO*m/ms^2): [-5.37286738e+63 -8.62556016e+62 -6.99721111e+68]
+2026-09-10 12:36:48,623 [INFO] Total force (m_NO*m/ms^2): [-2.46689120e+69 -9.12651978e+68  7.93588811e+66]
+2026-09-10 12:36:48,623 [INFO] Simulation is Extremely unstable
+2026-09-10 12:36:48,624 [INFO] Stability is -1.7801453488646299e+50
+2026-09-10 12:36:48,624 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 12:36:48,624 [INFO] Time = 2729.602741241455
+
+2026-09-10 12:36:48,624 [INFO] RAM used: 1759.99 MB
+2026-09-10 12:36:49,107 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-10 12:36:49,108 [INFO] Starting Vlasov simulation, current time = 2026-09-10 16-36-49
+2026-09-10 12:37:22,173 [INFO] Mesh points modified by params function
+2026-09-10 12:37:22,176 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-10 12:37:22,261 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-10 12:39:45,440 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-10 12:40:39,731 [INFO] All terms built
+2026-09-10 12:40:39,831 [INFO] Stiffness matrix nonzero values: 1154641
+2026-09-10 12:40:39,832 [INFO] Stiffness matrix size: (15625, 15625)
+2026-09-10 12:41:00,839 [INFO] SciPy solve, exit code 0
+2026-09-10 12:41:00,839 [INFO] Solution converted to numpy
+2026-09-10 12:41:00,844 [INFO] Solution injected to GetFEM
+2026-09-10 12:41:03,453 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:41:03,453 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:41:03,453 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-10 12:41:04,895 [INFO] Forces in +x (m_NO*m/ms^2): [ 2.36000024e+18  3.23536865e+16 -5.66411024e+11]
+2026-09-10 12:41:04,896 [INFO] Forces in -x (m_NO*m/ms^2): [-2.36425572e+18  1.26456407e+16  4.36837372e+11]
+2026-09-10 12:41:04,896 [INFO] Forces in +y (m_NO*m/ms^2): [ 4.44449793e+16  1.03078418e+18 -6.82093058e+11]
+2026-09-10 12:41:04,896 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.57283577e+15 -1.03073845e+18  7.08175475e+11]
+2026-09-10 12:41:04,896 [INFO] Forces in +z (m_NO*m/ms^2): [-5.60502328e+11 -6.56087002e+11  1.00943165e+18]
+2026-09-10 12:41:04,896 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.45485459e+11  6.79135122e+11 -1.00939557e+18]
+2026-09-10 12:41:04,896 [INFO] Total force (m_NO*m/ms^2): [4.17622205e+16 4.50450819e+16 3.59710607e+13]
+2026-09-10 12:41:04,897 [INFO] Simulation is Stable
+2026-09-10 12:41:04,897 [INFO] Stability is 9.266415998295769e-36
+2026-09-10 12:41:04,897 [INFO] Total degrees of freedom >= 8830976
+2026-09-10 12:41:04,897 [INFO] Time = 255.78937149047852
+
+2026-09-10 12:41:04,897 [INFO] RAM used: 1724.24 MB
+2026-09-10 12:41:05,385 [INFO] error: 0.006685043429894866
+2026-09-10 12:41:05,385 [INFO] Total force (N): 1.3103169424158408e+50
+2026-09-10 12:41:05,386 [INFO] Total force (kg*m/s/yr): 4.135045794198214e+57
+2026-09-11 10:32:59,322 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-11 10:32:59,323 [INFO] Starting Vlasov simulation, current time = 2026-09-11 14-32-59
+2026-09-11 10:36:34,502 [INFO] Mesh points modified by params function
+2026-09-11 10:36:34,509 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-11 10:36:34,968 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-11 10:51:56,710 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-11 10:56:54,771 [INFO] All terms built
+2026-09-11 10:56:57,561 [INFO] Stiffness matrix nonzero values: 5683275
+2026-09-11 10:56:57,561 [INFO] Stiffness matrix size: (64000, 64000)
+2026-09-11 10:57:01,836 [INFO] SciPy solve, exit code 0
+2026-09-11 10:57:01,836 [INFO] Solution converted to numpy
+2026-09-11 10:57:01,842 [INFO] Solution injected to GetFEM
+2026-09-11 10:57:15,819 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 10:57:15,820 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 10:57:15,820 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 10:57:17,625 [INFO] Forces in +x (m_NO*m/ms^2): [ 6.22249772e+17  2.73257274e+14 -1.64156295e+09]
+2026-09-11 10:57:17,625 [INFO] Forces in -x (m_NO*m/ms^2): [-6.22249538e+17 -3.47227849e+13 -1.33495066e+10]
+2026-09-11 10:57:17,625 [INFO] Forces in +y (m_NO*m/ms^2): [2.78535970e+14 1.43432438e+17 9.76816442e+09]
+2026-09-11 10:57:17,626 [INFO] Forces in -y (m_NO*m/ms^2): [-3.48358983e+13 -1.43432386e+17 -9.38508293e+09]
+2026-09-11 10:57:17,626 [INFO] Forces in +z (m_NO*m/ms^2): [1.84508346e+10 1.87635711e+10 6.54045116e+16]
+2026-09-11 10:57:17,626 [INFO] Forces in -z (m_NO*m/ms^2): [ 3.22502719e+09 -2.72054834e+09 -6.54045079e+16]
+2026-09-11 10:57:17,626 [INFO] Total force (m_NO*m/ms^2): [ 2.43956440e+14  2.38602857e+14 -1.08849330e+10]
+2026-09-11 10:57:17,629 [INFO] Simulation is Stable
+2026-09-11 10:57:17,631 [INFO] Stability is 1.5442219353638178e-07
+2026-09-11 10:57:17,631 [INFO] Total degrees of freedom >= 47328512
+2026-09-11 10:57:17,631 [INFO] Time = 1458.3079805374146
+
+2026-09-11 10:57:17,631 [INFO] RAM used: 7667.13 MB
+2026-09-11 10:57:19,024 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-11 10:57:19,024 [INFO] Starting Vlasov simulation, current time = 2026-09-11 14-57-19
+2026-09-11 11:01:06,404 [INFO] Mesh points modified by params function
+2026-09-11 11:01:06,412 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-11 11:01:06,873 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-11 11:23:36,502 [INFO] Add only applied E & B fields, not fields from plasma
+2026-09-11 11:28:35,477 [INFO] All terms built
+2026-09-11 11:28:35,998 [INFO] Stiffness matrix nonzero values: 5683275
+2026-09-11 11:28:35,998 [INFO] Stiffness matrix size: (64000, 64000)
+2026-09-11 11:51:25,861 [INFO] SciPy solve, exit code 0
+2026-09-11 11:51:25,861 [INFO] Solution converted to numpy
+2026-09-11 11:51:25,888 [INFO] Solution injected to GetFEM
+2026-09-11 11:51:39,919 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 11:51:39,919 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 11:51:39,919 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 11:51:40,609 [INFO] Forces in +x (m_NO*m/ms^2): [ 6.22255622e+17 -5.79690785e+15  8.31351004e+13]
+2026-09-11 11:51:40,609 [INFO] Forces in -x (m_NO*m/ms^2): [-6.22247871e+17 -1.95485013e+15 -8.35873648e+13]
+2026-09-11 11:51:40,610 [INFO] Forces in +y (m_NO*m/ms^2): [-5.96494783e+15  1.43430869e+17  1.54471644e+14]
+2026-09-11 11:51:40,610 [INFO] Forces in -y (m_NO*m/ms^2): [-1.94694546e+15 -1.43434677e+17 -1.51401942e+14]
+2026-09-11 11:51:40,610 [INFO] Forces in +z (m_NO*m/ms^2): [8.40009441e+13 1.57326986e+14 6.54064618e+16]
+2026-09-11 11:51:40,610 [INFO] Forces in -z (m_NO*m/ms^2): [-8.28712632e+13 -1.52951798e+14 -6.54059600e+16]
+2026-09-11 11:51:40,610 [INFO] Total force (m_NO*m/ms^2): [-7.90301262e+15 -7.75119137e+15  3.11926616e+12]
+2026-09-11 11:51:40,612 [INFO] Simulation is Dubious
+2026-09-11 11:51:40,614 [INFO] Stability is -0.2571961098356764
+2026-09-11 11:51:40,614 [INFO] Total degrees of freedom >= 47328512
+2026-09-11 11:51:40,614 [INFO] Time = 3261.5891909599304
+
+2026-09-11 11:51:40,614 [INFO] RAM used: 13537.71 MB
+2026-09-11 11:51:41,985 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-11 11:51:41,986 [INFO] Starting Vlasov simulation, current time = 2026-09-11 15-51-41
+2026-09-11 11:56:41,425 [INFO] Mesh points modified by params function
+2026-09-11 11:56:41,433 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-11 11:56:41,916 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-11 12:18:00,305 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-11 12:22:56,541 [INFO] All terms built
+2026-09-11 12:22:57,058 [INFO] Stiffness matrix nonzero values: 5687930
+2026-09-11 12:22:57,059 [INFO] Stiffness matrix size: (64000, 64000)
+2026-09-11 12:28:38,649 [INFO] SciPy solve, exit code 0
+2026-09-11 12:28:38,649 [INFO] Solution converted to numpy
+2026-09-11 12:28:38,676 [INFO] Solution injected to GetFEM
+2026-09-11 12:28:52,465 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 12:28:52,465 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 12:28:52,466 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 12:32:34,156 [INFO] Forces in +x (m_NO*m/ms^2): [ 8.08082145e+17  3.75050184e+15 -5.31665705e+13]
+2026-09-11 12:32:34,156 [INFO] Forces in -x (m_NO*m/ms^2): [-8.08090994e+17  1.72311852e+15  4.06799842e+13]
+2026-09-11 12:32:34,156 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.85728244e+15  3.27964289e+17 -5.52952313e+13]
+2026-09-11 12:32:34,156 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.70808626e+15 -3.27966380e+17  5.36010212e+13]
+2026-09-11 12:32:34,157 [INFO] Forces in +z (m_NO*m/ms^2): [-4.48882979e+13 -5.27721260e+13  3.32313784e+17]
+2026-09-11 12:32:34,157 [INFO] Forces in -z (m_NO*m/ms^2): [ 4.94469538e+13  5.72261843e+13 -3.32310939e+17]
+2026-09-11 12:32:34,157 [INFO] Total force (m_NO*m/ms^2): [ 5.56107830e+15  5.47598372e+15 -1.13359830e+13]
+2026-09-11 12:32:34,159 [INFO] Simulation is Stable
+2026-09-11 12:32:34,161 [INFO] Stability is 0.1343162245804484
+2026-09-11 12:32:34,162 [INFO] Total degrees of freedom >= 47328512
+2026-09-11 12:32:34,162 [INFO] Time = 2452.176445245743
+
+2026-09-11 12:32:34,162 [INFO] RAM used: 7753.0 MB
+2026-09-11 12:32:35,656 [INFO] 
+
+
+Script run: C:\Users\ecomstock3\OneDrive - Georgia Institute of Technology\Documents\GetFem simulations\OpenVlasov6 1.5\functions\Vlasov_testing_code_6D.py
+2026-09-11 12:32:35,657 [INFO] Starting Vlasov simulation, current time = 2026-09-11 16-32-35
+2026-09-11 12:36:34,686 [INFO] Mesh points modified by params function
+2026-09-11 12:36:34,693 [INFO] [[-10.          -4.97510374 -10.          -4.97510374 -10.
+  -10.          -4.97510374   0.           4.97510374  10.        ]
+ [-10.         -10.          -4.97510374  -4.97510374 -10.
+   10.          10.          10.          10.          10.        ]
+ [-10.         -10.         -10.         -10.          -4.97510374
+   10.          10.          10.          10.          10.        ]
+ [-18.8        -18.8        -18.8        -18.8        -18.8
+    3.2          3.2          3.2          3.2          3.2       ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]
+ [-11.         -11.         -11.         -11.         -11.
+   11.          11.          11.          11.          11.        ]]
+2026-09-11 12:36:35,168 [INFO] Basis functions per element: ('1 - x - y - z - w - v - u', 'x', 'y', 'z', 'w', 'v', 'u')
+2026-09-11 13:10:41,814 [INFO] Add both applied E & B fields and fields generated by plasma
+2026-09-11 13:15:41,360 [INFO] All terms built
+2026-09-11 13:15:41,875 [INFO] Stiffness matrix nonzero values: 5687930
+2026-09-11 13:15:41,875 [INFO] Stiffness matrix size: (64000, 64000)
+2026-09-11 13:20:24,101 [INFO] SciPy solve, exit code 0
+2026-09-11 13:20:24,101 [INFO] Solution converted to numpy
+2026-09-11 13:20:24,130 [INFO] Solution injected to GetFEM
+2026-09-11 13:20:38,063 [INFO] x unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 13:20:38,063 [INFO] y unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 13:20:38,064 [INFO] z unique elements: [-10.          -4.97510374   0.           4.97510374  10.        ]
+2026-09-11 13:21:54,660 [INFO] Forces in +x (m_NO*m/ms^2): [ 8.09230127e+17  3.75643684e+15 -6.32267623e+13]
+2026-09-11 13:21:54,660 [INFO] Forces in -x (m_NO*m/ms^2): [-8.09228548e+17  1.73220479e+15  6.06415599e+13]
+2026-09-11 13:21:54,661 [INFO] Forces in +y (m_NO*m/ms^2): [ 3.87035091e+15  3.28225303e+17 -1.06218645e+14]
+2026-09-11 13:21:54,661 [INFO] Forces in -y (m_NO*m/ms^2): [ 1.72329014e+15 -3.28241253e+17  1.04685096e+14]
+2026-09-11 13:21:54,661 [INFO] Forces in +z (m_NO*m/ms^2): [-5.78870023e+13 -1.00229977e+14  3.32752599e+17]
+2026-09-11 13:21:54,661 [INFO] Forces in -z (m_NO*m/ms^2): [ 6.62506981e+13  1.11865002e+14 -3.32751076e+17]
+2026-09-11 13:21:54,662 [INFO] Total force (m_NO*m/ms^2): [ 5.60358436e+15  5.48432666e+15 -2.59544380e+12]
+2026-09-11 13:21:54,664 [INFO] Simulation is Stable
+2026-09-11 13:21:54,666 [INFO] Stability is 0.13438351188649497
+2026-09-11 13:21:54,666 [INFO] Total degrees of freedom >= 47328512
+2026-09-11 13:21:54,666 [INFO] Time = 2959.008683204651
+
+2026-09-11 13:21:54,666 [INFO] RAM used: 7736.13 MB
+2026-09-11 13:21:56,139 [INFO] error: 0.003161801514330711
+2026-09-11 13:21:56,140 [INFO] Total force (N): 0.0007793908465096086
+2026-09-11 13:21:56,140 [INFO] Total force (kg*m/s/yr): 24595.70457781163
